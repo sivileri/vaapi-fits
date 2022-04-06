@@ -37,6 +37,9 @@ class HEVC10EncoderTest(HEVC10EncoderBaseTest):
       caps      = platform.get_caps("encode", "hevc_10"),
       lowpower  = 0,
     )
+    hasSupport = have_vainfo_entrypoint("VAProfileHEVCMain10", "VAEntrypointEncSlice", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
 
 @slash.requires(*platform.have_caps("vdenc", "hevc_10"))
 class HEVC10EncoderLPTest(HEVC10EncoderBaseTest):
@@ -50,6 +53,14 @@ class HEVC10EncoderLPTest(HEVC10EncoderBaseTest):
 class cqp(HEVC10EncoderTest):
   def init(self, tspec, case, gop, slices, bframes, qp, quality, profile):
     vars(self).update(tspec[case].copy())
+    maxSupportedSlices=int(get_vainfo_max_slices("VAProfileHEVCMain10", "VAEntrypointEncSlice", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedSlices))
+    if (maxSupportedSlices < slices):
+      slash.skip_test("Number of slices requested is not supported by underlying device.")
+    maxSupportedBFrames = int(get_vainfo_num_lX_references("VAProfileHEVCMain10", "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
+    if ((bframes > 0) and (maxSupportedBFrames == 0)):
+      slash.skip_test("B frames are not supported by underlying device.")
     vars(self).update(
       bframes = bframes,
       case    = case,
@@ -99,6 +110,14 @@ class cqp_lp(HEVC10EncoderLPTest):
 class cbr(HEVC10EncoderTest):
   def init(self, tspec, case, gop, slices, bframes, bitrate, fps, profile):
     vars(self).update(tspec[case].copy())
+    maxSupportedSlices=int(get_vainfo_max_slices("VAProfileHEVCMain10", "VAEntrypointEncSlice", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedSlices))
+    if (maxSupportedSlices < slices):
+      slash.skip_test("Number of slices requested is not supported by underlying device.")
+    maxSupportedBFrames = int(get_vainfo_num_lX_references("VAProfileHEVCMain10", "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
+    if ((bframes > 0) and (maxSupportedBFrames == 0)):
+      slash.skip_test("B frames are not supported by underlying device.")    
     vars(self).update(
       bframes = bframes,
       bitrate = bitrate,
@@ -152,6 +171,14 @@ class cbr_lp(HEVC10EncoderLPTest):
 class vbr(HEVC10EncoderTest):
   def init(self, tspec, case, gop, slices, bframes, bitrate, fps, quality, refs, profile):
     vars(self).update(tspec[case].copy())
+    maxSupportedSlices=int(get_vainfo_max_slices("VAProfileHEVCMain10", "VAEntrypointEncSlice", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedSlices))
+    if (maxSupportedSlices < slices):
+      slash.skip_test("Number of slices requested is not supported by underlying device.")
+    maxSupportedBFrames = int(get_vainfo_num_lX_references("VAProfileHEVCMain10", "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
+    if ((bframes > 0) and (maxSupportedBFrames == 0)):
+      slash.skip_test("B frames are not supported by underlying device.")    
     vars(self).update(
       bframes = bframes,
       bitrate = bitrate,

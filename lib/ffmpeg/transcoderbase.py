@@ -103,6 +103,7 @@ class BaseTranscoderTest(slash.Test):
   def gen_input_opts(self):
     opts = "-init_hw_device {hwaccel}=hw:{renderDevice}"
     opts += " -hwaccel_output_format {hwaccel}"
+    opts += " -filter_hw_device hw"
     if "hw" == self.mode:
       opts += " -hwaccel {hwaccel}"
     opts += " -c:v {}".format(self.get_decoder(self.codec, self.mode))
@@ -159,7 +160,7 @@ class BaseTranscoderTest(slash.Test):
       "src_{case}.yuv".format(**vars(self)))
     self.ossrcyuv = filepath2os(self.srcyuv)
     if "hw" == self.mode:
-      opts += " -vf 'hwdownload,format=nv12'"
+      opts += " -vf \"hwdownload,format=nv12\""
     opts += " -pix_fmt yuv420p -f rawvideo"
     opts += " -vframes {frames} -y {ossrcyuv}"
 

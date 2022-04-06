@@ -25,6 +25,185 @@ media._get_test_spec("hevc", "decode", "8bit").update({
     width = 1920, height = 1080, format = "NV12", frames = 10,
     metric = dict(type = "md5"), refctx = ["key:decode.hevc.8bit"],
   ),
+  "HEVC_3840x2160_64tiles_sao_no_cross_tile" : dict (
+    source = os.path.join(assets, "DXVAContent", "HEVC_3840x2160_64tiles_sao_no_cross_tile.h265"),
+    width=3840, height=2160, format = "NV12", frames = 256,
+    metric = dict(type = "md5", expect = "2b30a91aea0b0d0cfb8a254d4987862a"), refctx = ["key:decode.hevc.8bit"]),
+  "HEVC_4096x2160_64tiles_sao_cross_tile" : dict (
+    source = os.path.join(assets, "DXVAContent", "HEVC_4096x2160_64tiles_sao_cross_tile.h265"),
+    width=4096, height=2160, format = "NV12", frames = 256,
+    metric = dict(type = "md5", expect = "2595de748a8202ca7808fd321fbe7615"), refctx = ["key:decode.hevc.8bit"]),
+  "HEVC_4096x2160_64tiles_sao_no_cross_tile" : dict (
+    source = os.path.join(assets, "DXVAContent", "HEVC_4096x2160_64tiles_sao_no_cross_tile.h265"),
+    width=4096, height=2160, format = "NV12", frames = 256,
+    metric = dict(type = "md5", expect = "ae6bd473c0ca5b827407aa9b0e887d8b"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480i30f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480i30f_intra_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "b9d95870f12fa4282afe54d198d3f548"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480i30f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480i30f_lowdelay_P_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "a46cec7860302b3bc94e1dc319052202"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480i30f_lowdelay_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480i30f_lowdelay_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "7c981ecb6d2a05b8b5a8d16677f08981"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480p24f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480p24f_lowdelay_P_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "2b7a5a5bfd4261dbf248a3478593342d"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480p30f_1047kbps_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480p30f_1047kbps_randomaccess_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "56a5bf800e79a33bbac03b3ec22544fe"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480p30f_1739kbps_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480p30f_1739kbps_randomaccess_main.h265"),
+    width=720, height=480, format = "NV12", frames = 32,
+    metric = dict(type = "md5", expect = "1a0a00d92b86c6fdadbb3fc8b5aeb2c5"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480p30f_560kbps_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480p30f_560kbps_randomaccess_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "b87e04a13e71291cfa4c0d692548793a"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480p30f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480p30f_intra_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "56a5bf800e79a33bbac03b3ec22544fe"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480p30f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480p30f_lowdelay_P_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "a651fe1c5854cfe456db23e194db7a60"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_02_720x480p30f_lowdelay_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_02_720x480p30f_lowdelay_main.h265"),
+    width=720, height=480, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "4c05eb5d24d80aa469c61f8eeeba2b2b"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_06_720x576i25f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_06_720x576i25f_intra_main.h265"),
+    width=720, height=576, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "1375275d61fccdd9b5e48073f9f80429"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_06_720x576i25f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_06_720x576i25f_lowdelay_P_main.h265"),
+    width=720, height=576, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "487e78616f9922ef6dd2ca05b2086ef8"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_06_720x576i25f_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_06_720x576i25f_randomaccess_main.h265"),
+    width=720, height=576, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "5880ac1b1dcad0a63444d2511727b36d"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_06_720x576p25f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_06_720x576p25f_intra_main.h265"),
+    width=720, height=576, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "8c6440bbc2f02023d4f3155a6145d77d"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_06_720x576p25f_lowdelay_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_06_720x576p25f_lowdelay_main.h265"),
+    width=720, height=576, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "aa29566c10d17f29b50eafa172a10dd2"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Difficult_Edge_06_720x576p25f_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Difficult_Edge_06_720x576p25f_randomaccess_main.h265"),
+    width=720, height=576, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "1dc26cdb2b21955dd791189e8dcf50c9"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_DifDirect_01_1280x720p24f_2983kbps_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_DifDirect_01_1280x720p24f_2983kbps_randomaccess_main.h265"),
+    width=1280, height=720, format = "NV12", frames = 32,
+    metric = dict(type = "md5", expect = "e05cdc56c14f9ebe1dba206d16e96ba8"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_DifDirect_01_1280x720p24f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_DifDirect_01_1280x720p24f_intra_main.h265"),
+    width=1280, height=720, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "8e8a5fce29553de5d300fe81373bba94"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_DifDirect_01_1280x720p24f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_DifDirect_01_1280x720p24f_lowdelay_P_main.h265"),
+    width=1280, height=720, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "ac648543650148a726500329e92bd7b4"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080i30f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080i30f_intra_main.h265"),
+    width=1920, height=1080, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "35b45573c4fd0b01682f1d609f036000"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080i30f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080i30f_lowdelay_P_main.h265"),
+    width=1920, height=1080, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "56d6241aaa3ffeb3161f0da08d32d26c"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080i30f_lowdelay_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080i30f_lowdelay_main.h265"),
+    width=1920, height=1080, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "96730d79e023d95c5555569533d96b88"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_3834kbps_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_3834kbps_randomaccess_main.h265"),
+    width=1920, height=1080, format = "NV12", frames = 32,
+    metric = dict(type = "md5", expect = "05a8d6297b7b0189b0c0de2a98f28991"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_intra_main.h265"),
+    width=1920, height=1080, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "63fbe08c2e584c468885e5d01d061518"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowdelay_P_main.h265"),
+    width=1920, height=1080, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "70345a0723f10a48d426184f66972f49"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_main.h265"),
+    width=1920, height=1080, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "0aced51d75b2efb1eb4fda61dbdce152"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_High_01_320x240p30f_lowdelay_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_High_01_320x240p30f_lowdelay_main.h265"),
+    width=320, height=240, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "b86e15334c9c70063ab4e2a0af76b20d"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_High_01_320x240p30f_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_High_01_320x240p30f_randomaccess_main.h265"),
+    width=320, height=240, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "32e9f788f33efb7d94c37743e81dd7ce"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_05_352x288p15f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p15f_intra_main.h265"),
+    width=352, height=288, format = "NV12", frames = 261,
+    metric = dict(type = "md5", expect = "919190047570099e6c9e23ada83e3b2a"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_05_352x288p15f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p15f_lowdelay_P_main.h265"),
+    width=352, height=288, format = "NV12", frames = 261,
+    metric = dict(type = "md5", expect = "aa613aeb30721d78584b159e52e7c36b"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_05_352x288p15f_lowdelay_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p15f_lowdelay_main.h265"),
+    width=352, height=288, format = "NV12", frames = 261,
+    metric = dict(type = "md5", expect = "08090ffded4c7e975c826a0b0efa5fe1"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_05_352x288p15f_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p15f_randomaccess_main.h265"),
+    width=352, height=288, format = "NV12", frames = 261,
+    metric = dict(type = "md5", expect = "2ff31556a6de2130c6043231e2530afb"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_05_352x288p25f_intra_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p25f_intra_main.h265"),
+    width=352, height=288, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "2447d9b4304c47b90b26596f717c8591"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_05_352x288p25f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p25f_lowdelay_P_main.h265"),
+    width=352, height=288, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "76bb68840dc1822a6e09ebd0f9f18cf8"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_05_352x288p25f_lowdelay_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p25f_lowdelay_main.h265"),
+    width=352, height=288, format = "NV12", frames = 261,
+    metric = dict(type = "md5", expect = "08090ffded4c7e975c826a0b0efa5fe1"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_08_320x240p24f_lowdelay_P_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_08_320x240p24f_lowdelay_P_main.h265"),
+    width=320, height=240, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "f6d1c4808989e49dd0ceaea669ee6e2f"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_08_320x240p24f_lowlevel_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_08_320x240p24f_lowlevel_main.h265"),
+    width=320, height=240, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "dcd7f0d27222ac74ae3b5c429eb17452"), refctx = ["key:decode.hevc.8bit"]),
+  "MSHDRef_Texture_SkinTones_08_320x240p24f_randomaccess_main" : dict (
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_08_320x240p24f_randomaccess_main.h265"),
+    width=320, height=240, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "0047ba3d00590752519739b2bd2dbfaa"), refctx = ["key:decode.hevc.8bit"]),
+  "tearsofsteel_4k_60s_24fps_12000kbps_3840x2160_h265-8b_2ch_128kbps_aac" : dict (
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h265-8b.2ch.128kbps.aac.h265"),
+    width=3840, height=2160, format = "NV12", frames = 1440,
+    metric = dict(type = "md5", expect = "47a7fad745ebb7c1ac12cdadde8da996"), refctx = ["key:decode.hevc.8bit"]),
+})
+
+media._get_test_spec("hevc", "decode", "10bit").update({
+  "4K_10bit" : dict (
+    source = os.path.join(assets, "DXVAContent", "4K_10bit.h265"),
+    width=4096, height=2160, format = "P010", frames = 293,
+    metric = dict(type = "md5", expect = "e542e0502ba9b7fa1f96ff092707c64b"), refctx = ["key:decode.hevc.10bit"]),
+  "tearsofsteel_4k_60s_24fps_12000kbps_3840x2160_h265-10b_2ch_128kbps_aac" : dict (
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h265-10b.2ch.128kbps.aac.h265"),
+    width=3840, height=2160, format = "P010", frames = 1440,
+    metric = dict(type = "md5", expect = "5f8cd9d05cfa5fd285635e5994658b83"), refctx = ["key:decode.hevc.10bit"]),
 })
 
 media._get_test_spec("hevc", "encode", "8bit").update({
@@ -88,6 +267,27 @@ media._get_test_spec("hevc", "encode", "8bit").update({
       vbr = [
         dict(gop = 30, slices = 3, bframes = 0, bitrate = 6000, fps = 30, quality = 4, refs = 1, profile = "main"),
         dict(gop = 30, slices = 1, bframes = 3, bitrate = 6000, fps = 30, quality = 4, refs = 1, profile = "main"),
+      ],
+    ),
+  ),
+})
+
+
+media._get_test_spec("hevc", "encode", "10bit").update({
+  "720p" : dict(
+    source = os.path.join(assets, "yuv", "720p_1280x720_P010_10LE.yuv"),
+    width = 1280, height = 720, format = "P010", frames = 300,
+    refctx = ["driver"],
+    variants = dict(
+      cqp = [
+        dict(gop = 1, slices = 1, bframes = 0, qp = 28, quality = 4, profile = "main10"),
+      ],
+      cbr = [
+        dict(gop = 30, slices = 4, bframes = 2, bitrate = 4000, fps = 30, profile = "main10"),
+      ],
+      vbr = [
+        dict(gop = 30, slices = 3, bframes = 0, bitrate = 4000, fps = 30, quality = 4, refs = 1, profile = "main10"),
+        dict(gop = 30, slices = 1, bframes = 3, bitrate = 4000, fps = 30, quality = 4, refs = 1, profile = "main10"),
       ],
     ),
   ),

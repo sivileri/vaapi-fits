@@ -10,5 +10,38 @@
   },
   "decode.vp9.8bit:default.test(case=QVGA)": {
     "md5": "e0b3e642609dcd5718bc0c6d7c5b8c3d"
+  },
+  "decode.vp9.8bit:default.test(case=4096x2160_25f)" : {
+    "md5" : "8957f73a5338bff551a2ba9d4edf8342"
+  },
+  "decode.vp9.8bit:default.test(case=4096x2160_25f_tile_4_4)" : {
+    "md5" : "d4921b7084255db31811f3b80b2d4edc"
+  },
+  "decode.vp9.8bit:default.test(case=MSHDRef_Difficult_Edge_02_720x480i30f)" : {
+    "md5" : "d6158dc5c1375dcdf07a432c3cb9b2e7"
+  },
+  "decode.vp9.8bit:default.test(case=MSHDRef_Difficult_Edge_02_720x480p24f)" : {
+    "md5" : "4096fe3cd88da4d233f02d8885d47151"
+  },
+  "decode.vp9.8bit:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_tile_1_4)" : {
+    "md5" : "7d199d424ac44a1cbd5319148062925d"
+  },
+  "decode.vp9.8bit:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_tile_4_1)" : {
+    "md5" : "0b67679b29adde3878221664dc7529bc"
+  },
+  "decode.vp9.8bit:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_tile_4_4)" : {
+    "md5" : "17939707befa47f351904a03a2cdc855"
+  },
+  "decode.vp9.8bit:default.test(case=MSHDRef_Texture_SkinTones_05_352x288p25f)" : {
+    "md5" : "cb65391273dac70337d16e6640d4b049"
+  },
+  "decode.vp9.8bit:default.test(case=MSHDRef_Texture_SkinTones_08_320x240p24f)" : {
+    "md5" : "5e1e37fdc341b18b9a17c97e8bb4127a"
+  },
+  "decode.vp9.10bit:default.test(case=VP_10bit_content)" : {
+    "md5" : "d18d13be7b63f365eba7a449feb666f1"
+  },
+  "decode.vp9.10bit:default.test(case=VP_10bit_tile_4_4)" : {
+    "md5" : "a7416cd4bdb2fe965b90a0dc7162bfe3"
   }
 }

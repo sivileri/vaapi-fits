@@ -6,24 +6,64 @@
 
 media._get_test_spec("mpeg2", "decode").update({
   "QCIF" : dict(
-    source = os.path.join(assets, "mpeg2", "QCIF.mpeg2"),
+    source = os.path.join(assets, "DXVAContent", "QCIF.mpeg2"),
     reference = os.path.join(assets, "yuv", "QCIF.mpeg2_ref.NV12.yuv"),
     width = 176, height = 144, format = "NV12", frames = 10,
   ),
   "QVGA" : dict(
-    source = os.path.join(assets, "mpeg2", "QVGA.mpeg2"),
+    source = os.path.join(assets, "DXVAContent", "QVGA.mpeg2"),
     reference = os.path.join(assets, "yuv", "QVGA.mpeg2_ref.NV12.yuv"),
     width = 320, height = 240, format = "NV12", frames = 10,
   ),
   "720p" : dict(
-    source = os.path.join(assets, "mpeg2", "720p.mpeg2"),
+    source = os.path.join(assets, "DXVAContent", "720p.mpeg2"),
     reference = os.path.join(assets, "yuv", "720p.mpeg2_ref.NV12.yuv"),
     width = 1280, height = 720, format = "NV12", frames = 10,
   ),
   "1080p" : dict(
-    source = os.path.join(assets, "mpeg2", "1080p.mpeg2"),
+    source = os.path.join(assets, "DXVAContent", "1080p.mpeg2"),
     reference = os.path.join(assets, "yuv", "1080p.mpeg2_ref.NV12.yuv"),
     width = 1920, height = 1080, format = "NV12", frames = 10,
+  ),
+  "Dancing_1920x1080p_10mbps_23_97fps_Main_at_High" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1080p_10mbps_23.97fps_Main_at_High.mpg"),
+    width = 1920, height = 1080, format = "NV12", frames = 846,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
+  ),
+  "Dancing_1920x1080p_17mbps_23_97fps_Main_at_High" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1080p_17mbps_23.97fps_Main_at_High.mpg"),
+    width = 1920, height = 1080, format = "NV12", frames = 846,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
+  ),
+  "Dancing_1920x1080p_20mbps_23_97fps_Main_at_High" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1080p_20mbps_23.97fps_Main_at_High.mpg"),
+    width = 1920, height = 1080, format = "NV12", frames = 846,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
+  ),
+  "Soccer_1280x720p_17_5mbps_29_97fps_Main_at_High" : dict(
+    source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_17.5mbps_29.97fps_Main_at_High.mpg"),
+    width = 1280, height = 720, format = "NV12", frames = 900,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
+  ),
+  "Soccer_MPG2_352x240p_1145kbps_24fps_Main_at_Main" : dict(
+    source = os.path.join(assets, "DXVAContent", "Soccer_MPG2_352x240p_1145kbps_24fps_Main_at_Main.mpg"),
+    width = 352, height = 240, format = "NV12", frames = 1440,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
+  ),
+  "TallShip_1920x1080p_15mbps_29_97fps_Main_at_High" : dict(
+    source = os.path.join(assets, "DXVAContent", "TallShip_1920x1080p_15mbps_29.97fps_Main_at_High.mpg"),
+    width = 1920, height = 1080, format = "NV12", frames = 1108,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
+  ),
+  "Tallship_1920x1080p_10mbps_29_97fps_Main_at_High" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1080p_10mbps_29.97fps_Main_at_High.mpg"),
+    width = 1920, height = 1080, format = "NV12", frames = 1108,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
+  ),
+  "Tallship_720x480i_field_60mbps_29_97fps_Main_at_High" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_720x480i_field_60mbps_29.97fps_Main_at_High.mpg"),
+    width = 720, height = 480, format = "NV12", frames = 900,
+    metric = dict(type = "md5"), refctx = ["key:decode.mpeg2"]
   ),
 })
 

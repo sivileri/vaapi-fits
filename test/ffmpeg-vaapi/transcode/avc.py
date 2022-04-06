@@ -10,6 +10,7 @@ from ....lib.ffmpeg.vaapi.transcoder import TranscoderTest
 
 spec = load_test_spec("avc", "transcode")
 
+@slash.requires(*platform.have_caps("transcode", "avc"))
 class default(TranscoderTest):
   @slash.parametrize(("case"), sorted_by_resolution(spec))
   def test(self, case):

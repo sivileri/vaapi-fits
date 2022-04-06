@@ -34,14 +34,17 @@ class BaseDecoderTest(slash.Test, BaseFormatMapper):
         f"{exe2os('ffmpeg')} -hwaccel {self.hwaccel}"
         f" -init_hw_device {self.hwaccel}=hw:{self.renderDevice}"
         f" -hwaccel_output_format {self.hwformat}"
+        f" -filter_hw_device hw"
         f" -hwaccel_flags allow_profile_mismatch -v verbose"
       ) + (
         " -c:v {ffdecoder}" if hasattr(self, "ffdecoder") else ""
       ).format(**vars(self)) + (
         f" -i {filepath2os(self.source)} {scale_range}"
-        f" -pix_fmt {self.mformat} -f rawvideo -vsync passthrough -autoscale 0"
+        f" -pix_fmt {self.mformat} -f rawvideo -vsync passthrough"
         f" -vframes {self.frames} -y {filepath2os(self.decoded)}"
-      )
+      ) #+ (
+        #f" -c:a copy -c:v h264 -b:v 5M {filepath2os(self.decoded)}.mp4"
+      #)
     )
 
   def gen_name(self):

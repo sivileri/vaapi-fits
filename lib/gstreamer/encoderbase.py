@@ -61,6 +61,7 @@ class BaseEncoderTest(slash.Test):
     super().before()
     self.refctx = []
     self.post_validate = lambda: None
+    self.renderDevice = get_media().render_device
 
   def map_profile(self):
     raise NotImplementedError
@@ -204,8 +205,8 @@ class BaseEncoderTest(slash.Test):
       bitrate_gap = abs(bitrate_actual - self.bitrate) / self.bitrate
       get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
 
-      # acceptable bitrate within 10% of bitrate
-      assert(bitrate_gap <= 0.10)
+      # acceptable bitrate within 12% of bitrate
+      assert(bitrate_gap <= 0.12)
 
     elif self.rcmode in ["vbr", "la_vbr"]:
       # acceptable bitrate within 25% of minrate and 10% of maxrate

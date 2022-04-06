@@ -1,0 +1,11 @@
+###
+### SPDX-License-Identifier: BSD-3-Clause
+###
+
+###
+### kate: syntax python;
+###
+
+info = dict(
+  gpu = dict(gen = 1),
+)

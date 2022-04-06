@@ -17,6 +17,9 @@ class default(DecoderTest):
     self.metric = dict(type = "ssim", miny = 1.0, minu = 1.0, minv = 1.0)
     self.caps   = platform.get_caps("decode", "hevc_10")
     super(default, self).before()
+    hasSupport = have_vainfo_entrypoint("VAProfileHEVCMain10", "VAEntrypointVLD", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
 
   @slash.parametrize(("case"), sorted(spec.keys()))
   def test(self, case):

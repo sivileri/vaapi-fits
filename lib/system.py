@@ -5,6 +5,7 @@
 ###
 
 from .common import call
+import os
 
 class Capture:
   def __init__(self):
@@ -15,6 +16,9 @@ class Capture:
       "dmesg", False).strip().split('\n')]
 
   def checkpoint(self):
-    last = len(self.dmesg)
-    self.__dmesg()
-    return '\n'.join(self.dmesg[last:]).strip()
+    if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+      return ""
+    else:
+      last = len(self.dmesg)
+      self.__dmesg()
+      return '\n'.join(self.dmesg[last:]).strip()

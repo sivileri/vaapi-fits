@@ -10,6 +10,7 @@ from ....lib.gstreamer.vaapi.transcoder import TranscoderTest
 
 spec = load_test_spec("hevc", "transcode")
 
+@slash.requires(*platform.have_caps("transcode", "hevc"))
 class default(TranscoderTest):
   @slash.parametrize(("case"), sorted_by_resolution(spec))
   def test(self, case):

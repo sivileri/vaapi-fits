@@ -22,6 +22,9 @@ class default(DecoderTest):
       gstdecoder  = "vaapih265dec",
       gstparser   = "h265parse",
     )
+    hasSupport = have_vainfo_entrypoint("VAProfileHEVCMain10", "VAEntrypointVLD", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
 
   @slash.parametrize(("case"), sorted(spec.keys()))
   def test(self, case):

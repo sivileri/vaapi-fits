@@ -38,6 +38,13 @@ class AVCEncoderTest(AVCEncoderBaseTest):
       caps      = platform.get_caps("encode", "avc"),
       lowpower  = 0,
     )
+    hasSupport = have_vainfo_entrypoint("VAProfileH264Main", "VAEntrypointEncSlice", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
+    hasSupport = have_vainfo_entrypoint("VAProfileH264High", "VAEntrypointEncSlice", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
+
 
 @slash.requires(*platform.have_caps("vdenc", "avc"))
 class AVCEncoderLPTest(AVCEncoderBaseTest):
@@ -51,6 +58,14 @@ class AVCEncoderLPTest(AVCEncoderBaseTest):
 class cqp(AVCEncoderTest):
   def init(self, tspec, case, gop, slices, bframes, qp, quality, profile):
     vars(self).update(tspec[case].copy())
+    maxSupportedSlices=int(get_vainfo_max_slices("VAProfileH264Main", "VAEntrypointEncSlice", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedSlices))
+    if (maxSupportedSlices < slices):
+      slash.skip_test("Number of slices requested is not supported by underlying device.")
+    maxSupportedBFrames = int(get_vainfo_num_lX_references("VAProfileH264Main", "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
+    if ((bframes > 0) and (maxSupportedBFrames == 0)):
+      slash.skip_test("B frames are not supported by underlying device.")    
     vars(self).update(
       bframes   = bframes,
       case      = case,
@@ -100,6 +115,14 @@ class cqp_lp(AVCEncoderLPTest):
 class cbr(AVCEncoderTest):
   def init(self, tspec, case, gop, slices, bframes, bitrate, fps, profile):
     vars(self).update(tspec[case].copy())
+    maxSupportedSlices=int(get_vainfo_max_slices("VAProfileH264Main", "VAEntrypointEncSlice", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedSlices))
+    if (maxSupportedSlices < slices):
+      slash.skip_test("Number of slices requested is not supported by underlying device.")
+    maxSupportedBFrames = int(get_vainfo_num_lX_references("VAProfileH264Main", "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
+    if ((bframes > 0) and (maxSupportedBFrames == 0)):
+      slash.skip_test("B frames are not supported by underlying device.")
     vars(self).update(
       bframes   = bframes,
       bitrate   = bitrate,
@@ -153,6 +176,14 @@ class cbr_lp(AVCEncoderLPTest):
 class vbr(AVCEncoderTest):
   def init(self, tspec, case, gop, slices, bframes, bitrate, fps, quality, refs, profile):
     vars(self).update(tspec[case].copy())
+    maxSupportedSlices=int(get_vainfo_max_slices("VAProfileH264Main", "VAEntrypointEncSlice", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedSlices))
+    if (maxSupportedSlices < slices):
+      slash.skip_test("Number of slices requested is not supported by underlying device.")
+    maxSupportedBFrames = int(get_vainfo_num_lX_references("VAProfileH264Main", "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
+    slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
+    if ((bframes > 0) and (maxSupportedBFrames == 0)):
+      slash.skip_test("B frames are not supported by underlying device.")
     vars(self).update(
       bframes   = bframes,
       bitrate   = bitrate,

@@ -113,8 +113,11 @@ def startproc(command, logger = slash.logger.debug):
   #
   # When we use "exec" to run the "command". This will cause the "command" to
   # inherit the shell process and proc.pid will represent the actual "command".
+  command_prefix = ""
+  if "vaon12" != os.environ.get("LIBVA_DRIVER_NAME", None):
+    command_prefix = "exec "
   proc = subprocess.Popen(
-    "exec " + command,
+    command_prefix + command,
     stdin = subprocess.PIPE,
     stdout = subprocess.PIPE,
     stderr = subprocess.STDOUT,
@@ -176,16 +179,32 @@ def call(command, withSlashLogger = True):
     get_media()._report_call_timeout()
     message = "CALL TIMEOUT: timeout after {} seconds (pid: {}).".format(
       timer.interval, proc.pid)
-  elif proc.returncode != 0:
+  elif ((os.environ.get('D3D12_VAAPIFITS_IGNORE_EXITCODE') == None) and (proc.returncode != 0)):
     error = True
     message = "CALL ERROR: failed with exitcode {} (pid: {})".format(proc.returncode, proc.pid)
 
   assert not error, message
   return readproc.output
 
-def try_call(command):
+def try_call_with_output(command, use_shell = True):
+  proc_out=""
   try:
-    subprocess.check_output(command, stderr = subprocess.STDOUT, shell = True)
+    proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr = subprocess.STDOUT, shell=use_shell)
+    proc_out = proc.communicate()[0]
+    return proc_out != b'', proc_out
+  except:
+    return False, proc_out
+  return True, proc_out
+
+
+def try_call(command, communicate=False):
+  try:
+    if(communicate):
+      proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr = subprocess.STDOUT)
+      proc_out = proc.communicate()[0]
+      return proc_out != b''
+    else:
+      subprocess.check_output(command, stderr = subprocess.STDOUT, shell = True)
   except:
     return False
   return True
@@ -209,7 +228,10 @@ def mapRangeWithDefault(value, srcRange, dstRange):
 
 # some path helpers
 def abspath(path):
-  return os.path.sep + os.path.abspath(path).lstrip(os.path.sep)
+  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+    return os.path.abspath(path).lstrip(os.path.sep)
+  else:
+    return os.path.sep + os.path.abspath(path).lstrip(os.path.sep)
 
 def pathexists(path):
   return os.path.exists(abspath(path))
@@ -220,18 +242,15 @@ def makepath(path):
 
 @memoize
 def exe2os(name):
-  return f"{name}" if "linux" == get_media()._get_os() else f"{name}.exe"
+  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+    return f"{name}.exe"
+  elif "linux" == get_media()._get_os():
+    return f"{name}"
+  elif "wsl" == get_media()._get_os():
+    return f"{name}"
+  else:
+    return f"{name}.exe"
 
 @memoize
 def filepath2os(file_path):
-  if get_media()._get_os() == "wsl":
-    # WSL mounts the windows file system in "/mnt/<DRIVE LETTER>/path/to/file" form.
-    # Here, we convert to native windows file path form "<DRIVE LETTER>:/path/to/file"
-    # wslpath issue: https://github.com/microsoft/WSL/issues/4908
-    # return call(f"wslpath -w {file_path}")
-    path = os.path.realpath(file_path).strip(os.sep).split(os.sep)
-    assert "mnt" == path[0], f"{file_path} does not resolve to /mnt/<drive>/.."
-    path[1] += ':'
-    return os.sep.join(path[1:])
-  else:
-    return file_path
+  return file_path

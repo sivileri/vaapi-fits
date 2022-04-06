@@ -63,7 +63,7 @@ class VppTest(slash.Test, BaseFormatMapper):
     vfilter.append("hwdownload")
     vfilter.append("format={ohwformat}")
 
-    opts += " '{}'".format(",".join(vfilter))
+    opts += " \"{}\"".format(",".join(vfilter))
     if self.vpp_op not in ["csc"]:
       opts += " -pix_fmt {mformat}"
     opts += " -f rawvideo -vsync passthrough -an -vframes {frames} -y {decoded}"

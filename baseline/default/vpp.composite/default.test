@@ -1,5 +1,11 @@
 {
   "vpp.composite:default.test(case=QCIF_2x2)": {
     "md5": "53c95d7ec61e543f162809c2ede387fd"
+  },
+  "vpp.composite:default.test(case=720p_2x2_alpha)": {
+    "md5": "57f6b759e8f061bf0a5196b552227b6f"
+  },
+  "vpp.composite:default.test(case=1080p_2x2_alpha)": {
+    "md5": "778b7183b3d7442e8a1d187f336f1323"
   }
 }

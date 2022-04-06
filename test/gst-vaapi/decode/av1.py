@@ -22,12 +22,15 @@ class default(DecoderTest):
       gstdecoder  = "vaapiav1dec",
       gstparser   = "av1parse",
     )
+    hasSupport = have_vainfo_entrypoint("VAProfileAV1Profile0", "VAEntrypointVLD", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
 
   @slash.parametrize(("case"), sorted(spec.keys()))
   def test(self, case):
     vars(self).update(spec[case].copy())
 
-    dxmap = {".ivf" : "ivfparse", ".av1" : "ivfparse", ".webm" : "matroskademux"}
+    dxmap = {".ivf" : "ivfparse", ".av1" : "ivfparse", ".webm" : "matroskademux", ".mkv" : "matroskademux", ".mp4" : "qtdemux"}
     ext = os.path.splitext(self.source)[1]
     assert ext in dxmap.keys(), "Unrecognized source file extension {}".format(ext)
 

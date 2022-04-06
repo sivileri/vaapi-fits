@@ -25,6 +25,66 @@ media._get_test_spec("avc", "decode").update({
     width = 1920, height = 1080, format = "NV12", frames = 10,
     metric = dict(type = "md5"), refctx = ["key:decode.avc"],
   ),
+ "Dancing_1920x1088_6mbps_25fps_High_at_L4_1_Cavlc" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1088_6mbps_25fps_High_at_L4.1_Cavlc.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 844,
+    metric = dict(type = "md5", expect = "33013bb818b7cfc43cd9c5ebe9c71a03"), refctx = ["key:decode.avc"]),
+  "Dancing_1920x1088_9mbps_25fps_Main_at_L4_1_Cabac_NoFrext" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1088_9mbps_25fps_Main_at_L4.1_Cabac_NoFrext.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 844,
+    metric = dict(type = "md5", expect = "0ebc209b426e58fb4f9da5fa314415e3"), refctx = ["key:decode.avc"]),
+  "Dancing_1920x1088i_6mbps_25fps_High_at_L4_1_Cabac_Frext" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1088i_6mbps_25fps_High_at_L4.1_Cabac_Frext.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 844,
+    metric = dict(type = "md5", expect = "1d7a8a260d3b0941fcf053d3c1b87e12"), refctx = ["key:decode.avc"]),
+  "Dancing_1920x1088i_8mbps_25fps_Main_at_L4_1_Cabac_Frext_Frm" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1088i_8mbps_25fps_Main_at_L4.1_Cabac_Frext_Frm.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 844,
+    metric = dict(type = "md5", expect = "a8b24922fb02f88051ce0ec2120d334f"), refctx = ["key:decode.avc"]),
+  "Dancing_1920x1088i_9mbps_25fps_Main_at_L4_1_Cabac_PureMbaff" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1088i_9mbps_25fps_Main_at_L4.1_Cabac_PureMbaff.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 844,
+    metric = dict(type = "md5", expect = "609660675ab7ab3229421331b81e0024"), refctx = ["key:decode.avc"]),
+  "Dancing_1920x1088p_9mbps_25fps_High_at_L4_1_Cabac_Frext" : dict(
+    source = os.path.join(assets, "DXVAContent", "Dancing_1920x1088p_9mbps_25fps_High_at_L4.1_Cabac_Frext.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 844,
+    metric = dict(type = "md5", expect = "b9087226002221180e4f5e4033344f10"), refctx = ["key:decode.avc"]),
+  "Lanczos_Mobileportrait_720x1280p_9mbps_25fps_Main_at_L3_1_Cabac" : dict(
+    source = os.path.join(assets, "DXVAContent", "Lanczos_Mobileportrait_720x1280p_9mbps_25fps_Main_at_L3.1_Cabac.h264"),
+    width = 720, height = 1280, format = "NV12", frames = 300,
+    metric = dict(type = "md5", expect = "b4e6847b524b7ba25f2d75d6b612913d"), refctx = ["key:decode.avc"]),
+  "Singing_320x240p_62kbps_24fps_Baseline_at_L3_0_TextureSkinTones" : dict (
+    source = os.path.join(assets, "DXVAContent", "Singing_320x240p_62kbps_24fps_Baseline_at_L3.0_TextureSkinTones.h264"),
+    width=320, height=240, format = "NV12", frames = 720,
+    metric = dict(type = "md5", expect = "61926da7a80a98cb5155984f8fa77710"), refctx = ["key:decode.avc"]),
+  "Soccer_1280x720p_3mbps_25fps_High_at_L4_1_Cabac_frext_slice" : dict (
+    source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_3mbps_25fps_High_at_L4.1_Cabac_frext_slice.h264"),
+    width=1280, height=720, format = "NV12", frames = 898,
+    metric = dict(type = "md5", expect = "b1e1706295a4b7d1b16ee3c1430926d7"), refctx = ["key:decode.avc"]),
+  "Soccer_544x480i_2mbps_29_97fps_Main_at_L3_0_Cabac" : dict(
+    source = os.path.join(assets, "DXVAContent", "Soccer_544x480i_2mbps_29.97fps_Main_at_L3.0_Cabac.h264"),
+    width = 544, height = 480, format = "NV12", frames = 664,
+    metric = dict(type = "md5", expect = "217104108d32d0c18d34e9817d33e5e5"), refctx = ["key:decode.avc"]),
+  "Tallship_1920x1088_10mbps_25fps_High_at_L4_1_Cabac_Mbaff" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088_10mbps_25fps_High_at_L4.1_Cabac_Mbaff.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 961,
+    metric = dict(type = "md5", expect = "e0d48a0942fb5f9cf60def1af40e511f"), refctx = ["key:decode.avc"]),
+  "Tallship_1920x1088_10mbps_25fps_High_at_L4_1_Cabac_Prog" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088_10mbps_25fps_High_at_L4.1_Cabac_Prog.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 961,
+    metric = dict(type = "md5", expect = "74313dccad7eccafd8dd56a6d58b529d"), refctx = ["key:decode.avc"]),
+  "Tallship_1920x1088i_field_14mbps_25fps_High_at_L4_1_Cabac_Slice" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088i_field_14mbps_25fps_High_at_L4.1_Cabac_Slice.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 922,
+    metric = dict(type = "md5", expect = "673f6570e1054991a8afe1b326060f7f"), refctx = ["key:decode.avc"]),
+  "Tallship_720x480p_5mbps_24fps_Main_at_L3_2_CABAC_DifficultEdge" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_720x480p_5mbps_24fps_Main_at_L3.2_CABAC_DifficultEdge.h264"),
+    width = 720, height = 480, format = "NV12", frames = 720,
+    metric = dict(type = "md5", expect = "a9a1840d1586c61b5fcce2bfc9974465"), refctx = ["key:decode.avc"]),
+  "tearsofsteel_4k_60s_24fps_12000kbps_3840x2160_h264-8b_2ch_128kbps_aac" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440,
+    metric = dict(type = "md5", expect = "67d2e5d18376e8f9ed75e12d0e18127f"), refctx = ["key:decode.avc"]),
 })
 
 media._get_test_spec("avc", "encode").update({

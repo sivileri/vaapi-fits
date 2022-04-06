@@ -46,6 +46,7 @@ class BaseDecoderTest(slash.Test):
     super().before()
     self.refctx = []
     self.post_validate = lambda: None
+    self.renderDevice = get_media().render_device
 
   def gen_name(self):
     name = "{case}_{width}x{height}_{format}"

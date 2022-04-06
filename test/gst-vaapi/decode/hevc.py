@@ -22,9 +22,21 @@ class default(DecoderTest):
       gstdecoder  = "vaapih265dec",
       gstparser   = "h265parse",
     )
+    hasSupport = have_vainfo_entrypoint("VAProfileHEVCMain", "VAEntrypointVLD", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
 
   @slash.parametrize(("case"), sorted(spec.keys()))
   def test(self, case):
     vars(self).update(spec[case].copy())
     vars(self).update(case = case)
+
+    dxmap = {".mp4" : "qtdemux"}
+    ext = os.path.splitext(self.source)[1]
+    if ext in dxmap.keys():
+      vars(self).update(
+        case        = case,
+        gstdemuxer  = dxmap[ext],
+      )
+
     self.decode()

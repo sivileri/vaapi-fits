@@ -1,0 +1,107 @@
+{
+  "decode.av1:default.test(case=1920_1080)": {
+    "md5": "0c2b8ef569ea43aff088ef0672271b59"
+  },
+  "decode.av1:default.test(case=960_540)": {
+    "md5": "2cdf318384129b79a3393d35fa5c9b13"
+  },
+  "decode.av1:default.test(case=4K_10Bit)": {
+    "md5": "8167a5c1c342e758d0bcc54ffe702bc2"
+  },
+  "decode.av1:default.test(case=Chimera-2397fps-AV1-10bit-1920x1080-3365kbps)": {
+    "md5": "d9afb7f22da69bd2cb2e20f49f751d50"
+  },
+  "decode.av1:default.test(case=AV1_4096x2160)" : {
+    "md5": "9f933daafc91a1610dfe32a9cb1e2f29"
+  },
+  "decode.av1:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_3834kbps_randomaccess_av1)" : {
+    "md5": "a79d1fcc068a4ef943b3bde734df7dae"
+  },
+  "decode.av1:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1)" : {
+    "md5": "6769e1bd0df1379740d32b1b82dd5bbe"
+  },
+  "decode.av1:default.test(case=MSHDRef_Texture_High_01_320x240p30f_lowdelay_av1)" : {
+    "md5": "a89ce96ce1c2b81e175092e078d0e19d"
+  },
+  "decode.av1:default.test(case=MSHDRef_Texture_SkinTones_05_352x288p15f_intra_av1)" : {
+    "md5": "226f496a8427c092ebcfccd414d107d6"
+  },
+  "decode.av1:default.test(case=MSHDRef_Texture_SkinTones_05_352x288p15f_randomaccess_av1)" : {
+    "md5": "199acb1c767f4e1519406bf17c5ff61b"
+  },
+  "decode.av1:default.test(case=MSHDRef_Texture_SkinTones_05_352x288p25f_lowdelay_P_av1)" : {
+    "md5": "b6c470ace8bbb4a8f4c3a38251d633f7"
+  },
+  "decode.av1:default.test(case=av1_v1_crew_50frames_mp4box_fixed)" : {
+    "md5": "bb7bcd639947eb79b460bd3443458e3e"
+  },
+  "decode.av1:default.test(case=screen_basketball_1920x1080_2000kbps_gop2s)" : {
+    "md5": "b1793d4ce577d75002c05995931e2439"
+  },
+  "decode.av1:default.test(case=screen_chinese_1920x1080_2000kbps_gop2s)" : {
+    "md5": "0c2b8ef569ea43aff088ef0672271b59"
+  },
+  "decode.av1:default.test(case=screen_chrome_1920x1080_2000kbps_gop2s)" : {
+    "md5": "59881731fb607ccd0344ca9897d01204"
+  },
+  "decode.av1:default.test(case=screen_circuit_1920x1080_2000kbps_gop2s)" : {
+    "md5": "6b2c12769f911da994e5a08ca733986f"
+  },
+  "decode.av1:default.test(case=screen_craigslist_1920x1080_2000kbps_gop2s)" : {
+    "md5": "b530fb674a92237c22291ec4301bec91"
+  },
+  "decode.av1:default.test(case=screen_englishdoc_1920x1080_2000kbps_gop2s)" : {
+    "md5": "ceae868176c53e8047739fbd3c3f80d6"
+  },
+  "decode.av1:default.test(case=screen_excel_1920x1080_2000kbps_gop2s)" : {
+    "md5": "b392ce17d5fec35935bb50c478f92098"
+  },
+  "decode.av1:default.test(case=screen_logfile_1920x1080_2000kbps_gop2s)" : {
+    "md5": "38677128eab46db9d70e4e155307e9be"
+  },
+  "decode.av1:default.test(case=screen_macdesktop1_1920x1080_2000kbps_gop2s)" : {
+    "md5": "5163d7054e551d82209b4f2487276c3e"
+  },
+  "decode.av1:default.test(case=screen_macdesktop2_1920x1080_2000kbps_gop2s)" : {
+    "md5": "097ecb3dc61ad322f78bdcd3e85b9d56"
+  },
+  "decode.av1:default.test(case=screen_mouse_1920x1080_2000kbps_gop2s)" : {
+    "md5": "674167182e03a89e791d4d49254aee31"
+  },
+  "decode.av1:default.test(case=screen_notepad_1920x1080_2000kbps_gop2s)" : {
+    "md5": "b1c59a3caab12aa3eee289ad4ff81089"
+  },
+  "decode.av1:default.test(case=screen_outlook_1920x1080_2000kbps_gop2s)" : {
+    "md5": "7d959dcccd5c484e32345ab4e0c53fdf"
+  },
+  "decode.av1:default.test(case=screen_powerpoint1_1920x1080_2000kbps_gop2s)" : {
+    "md5": "cc7817c4b7c3888cb34f2d9f3d2c6ccc"
+  },
+  "decode.av1:default.test(case=screen_powerpoint2_1920x1080_2000kbps_gop2s)" : {
+    "md5": "af4e10497611342fd9021ab6ec6d7018"
+  },
+  "decode.av1:default.test(case=screen_powerpoint3_1920x1080_2000kbps_gop2s)" : {
+    "md5": "3b99efd533dc4a0c5319d29536f6aad3"
+  },
+  "decode.av1:default.test(case=screen_scroll1_1920x1080_2000kbps_gop2s)" : {
+    "md5": "88133e3d37413e560a88dbfbc4d6efe8"
+  },
+  "decode.av1:default.test(case=screen_scroll2_1920x1080_2000kbps_gop2s)" : {
+    "md5": "5ffa70ecd4aa6f8f1d5e1246b67974cd"
+  },
+  "decode.av1:default.test(case=screen_spreadsheet_1920x1080_2000kbps_gop2s)" : {
+    "md5": "f954b56895ce3ab9457b9eee565dd86a"
+  },
+  "decode.av1:default.test(case=screen_windesktop1_1920x1080_2000kbps_gop2s)" : {
+    "md5": "716fb388302e244234d648b9c42193a8"
+  },
+  "decode.av1:default.test(case=screen_windesktop2_1920x1080_2000kbps_gop2s)" : {
+    "md5": "dce6c5aa7dd40dd94ff6c3234d150cb7"
+  },
+  "decode.av1:default.test(case=screen_word_1920x1080_2000kbps_gop2s)" : {
+    "md5": "0c9152bab2171f3ff9ec30059ef6ecb7"
+  },
+  "decode.av1:default.test(case=stockholm-superres)" : {
+    "md5": "6d1e632bbc9065edfe6d7e9a01a9504e"
+  }
+}

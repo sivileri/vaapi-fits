@@ -1,0 +1,26 @@
+{
+  "decode.mpeg2:default.test(case=Dancing_1920x1080p_10mbps_23_97fps_Main_at_High)": {
+    "md5": "7974c032f3cc750cb251d7d3a05c1384"
+  },
+  "decode.mpeg2:default.test(case=Dancing_1920x1080p_17mbps_23_97fps_Main_at_High)": {
+    "md5": "23efd09625b99949658610dec535e561"
+  },
+  "decode.mpeg2:default.test(case=Dancing_1920x1080p_20mbps_23_97fps_Main_at_High)": {
+    "md5": "c24be6359482af1635cec81c904c6bef"
+  },
+  "decode.mpeg2:default.test(case=Soccer_1280x720p_17_5mbps_29_97fps_Main_at_High)": {
+    "md5": "5c2d0d68b1bb2d5b67a341c15d78e06b"
+  },
+  "decode.mpeg2:default.test(case=Soccer_MPG2_352x240p_1145kbps_24fps_Main_at_Main)" : {
+    "md5": "06d0c339d33ffcd67cf9eec5e0b04524"
+  },
+  "decode.mpeg2:default.test(case=TallShip_1920x1080p_15mbps_29_97fps_Main_at_High)" : {
+    "md5": "d4e5d3ae442778b7cb1ed24b2c1caabb"
+  },
+  "decode.mpeg2:default.test(case=Tallship_1920x1080p_10mbps_29_97fps_Main_at_High)" : {
+    "md5": "dbc47d81e7c5c56adce65e6eacb39a32"
+  },
+  "decode.mpeg2:default.test(case=Tallship_720x480i_field_60mbps_29_97fps_Main_at_High)" : {
+    "md5": "316d2a833f8dcdf990b8c8ed7cb88f7b"
+  }
+}

@@ -41,10 +41,10 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     return opts
 
   def gen_output_opts(self):
-    opts = "-vf 'format={hwformat},hwupload"
+    opts = "-vf \"format={hwformat},hwupload"
     if vars(self).get("hwframes", None) is not None:
       opts += "=extra_hw_frames={hwframes}"
-    opts += "' -an -c:v {ffencoder}"
+    opts += "\" -an -c:v {ffencoder}"
 
     if vars(self).get("profile", None) is not None:
       opts += " -profile:v {mprofile}"
@@ -92,6 +92,9 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       opts += " -b_strategy 1"
 
     opts += " -vframes {frames} -y {osencoded}"
+
+    opts += " -async_depth 16" # More than 16 and ffmpeg does not have enough hw_frames buffered and fails
+    opts += " -loglevel trace"
 
     return opts
 
@@ -181,6 +184,7 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
         f"{exe2os('ffmpeg')}"
         " -hwaccel {hwaccel} -init_hw_device {hwaccel}=hw:{renderDevice}"
         " -hwaccel_output_format {hwaccel}"
+        " -filter_hw_device hw"
       ).format(**vars(self)) + (
         " -v verbose {iopts} {oopts}"
       ).format(iopts = iopts, oopts = oopts)
@@ -236,8 +240,8 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       bitrate_gap = abs(bitrate_actual - self.bitrate) / self.bitrate
       get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
 
-      # acceptable bitrate within 10% of bitrate
-      assert(bitrate_gap <= 0.10)
+      # acceptable bitrate within 12% of bitrate
+      assert(bitrate_gap <= 0.12)
 
     elif "vbr" == self.rcmode:
       # acceptable bitrate within 25% of minrate and 10% of maxrate
@@ -253,7 +257,7 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     name = (self.gen_name() + "-{width}x{height}-{format}").format(**vars(self))
     self.decoded = get_media()._test_artifact("{}.yuv".format(name))
     oopts = (
-      "-vf 'hwdownload,format={hwformat}' -pix_fmt {mformat} -f rawvideo"
+      "-vf \"hwdownload,format={hwformat}\" -pix_fmt {mformat} -f rawvideo"
       " -vsync passthrough -vframes {frames}"
       f" -y {filepath2os(self.decoded)}")
     self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)))
@@ -287,5 +291,5 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       f"{exe2os('ffmpeg')}"
       " -v verbose -i {osencoded} -c:v copy"
       " -vframes {frames} -bsf:v trace_headers"
-      " -f null - 2>&1 | grep 'nal_unit_type.*{judge}' | wc -l".format(**vars(self)))
+      " -f null - 2>&1 | grep \"nal_unit_type.*{judge}\" | wc -l".format(**vars(self)))
     assert str(self.frames) == output.strip(), "It appears that the forced_idr did not work"

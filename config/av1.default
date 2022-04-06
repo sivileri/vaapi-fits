@@ -1,0 +1,175 @@
+###
+###
+### SPDX-License-Identifier: BSD-3-Clause
+###
+
+media._get_test_spec("av1", "decode", "8bit").update({
+  "AV1_4096x2160" : dict(
+    source = os.path.join(assets, "DXVAContent", "AV1_4096x2160.mp4"),
+    width = 4096, height = 2160, format = "NV12", frames = 256,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_3834kbps_randomaccess_av1" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_3834kbps_randomaccess_av1.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 32,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 300,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "MSHDRef_Texture_High_01_320x240p30f_lowdelay_av1" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_High_01_320x240p30f_lowdelay_av1.mp4"),
+    width = 320, height = 240, format = "NV12", frames = 300,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "MSHDRef_Texture_SkinTones_05_352x288p15f_intra_av1" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p15f_intra_av1.mp4"),
+    width = 352, height = 288, format = "NV12", frames = 261,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "MSHDRef_Texture_SkinTones_05_352x288p15f_randomaccess_av1" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p15f_randomaccess_av1.mp4"),
+    width = 352, height = 288, format = "NV12", frames = 261,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "MSHDRef_Texture_SkinTones_05_352x288p25f_lowdelay_P_av1" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Texture_SkinTones_05_352x288p25f_lowdelay_P_av1.mp4"),
+    width = 352, height = 288, format = "NV12", frames = 300,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "av1_v1_crew_50frames_mp4box_fixed" : dict(
+    source = os.path.join(assets, "DXVAContent", "av1_v1_crew_50frames_mp4box_fixed.mp4"),
+    width = 352, height = 288, format = "NV12", frames = 50,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_basketball_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_basketball_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 450,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_chinese_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_chinese_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 240,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_chrome_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_chrome_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 3600,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_circuit_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_circuit_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 336,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_craigslist_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_craigslist_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 376,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_englishdoc_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_englishdoc_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 450,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_excel_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_excel_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 3567,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_logfile_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_logfile_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 82,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_macdesktop1_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_macdesktop1_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 441,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_macdesktop2_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_macdesktop2_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 444,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_mouse_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_mouse_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 89,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_notepad_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 227,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_outlook_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_outlook_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 3600,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_powerpoint1_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_powerpoint1_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 3591,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_powerpoint2_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_powerpoint2_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 93,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_powerpoint3_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_powerpoint3_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 263,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_scroll1_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_scroll1_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 131,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_scroll2_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_scroll2_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 119,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_spreadsheet_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_spreadsheet_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 450,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_windesktop1_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_windesktop1_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 194,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_windesktop2_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_windesktop2_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 440,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "screen_word_1920x1080_2000kbps_gop2s" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_word_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 3600,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "stockholm-superres" : dict(
+    source = os.path.join(assets, "DXVAContent", "stockholm-superres.mkv"),
+    width = 1280, height = 720, format = "NV12", frames = 516,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  )
+})
+
+media._get_test_spec("av1", "decode", "10bit").update({
+   "4K_10Bit" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.av1-10b.2ch.128kbps.aac.mp4"),
+    width = 3840, height = 2160, format = "P010", frames = 723,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  ),
+  "Chimera-2397fps-AV1-10bit-1920x1080-3365kbps" : dict(
+    source = os.path.join(assets, "DXVAContent", "Chimera-2397fps-AV1-10bit-1920x1080-3365kbps.mp4"),
+    width = 1920, height = 1080, format = "P010", frames = 3000,
+    metric = dict(type = "md5"), refctx = ["key:decode.av1"],
+  )
+})

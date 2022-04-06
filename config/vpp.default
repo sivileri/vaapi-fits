@@ -37,7 +37,6 @@ media._get_test_spec("vpp", "brightness").update(copy.deepcopy(inputs))
 media._get_test_spec("vpp", "contrast").update(copy.deepcopy(inputs))
 media._get_test_spec("vpp", "hue").update(copy.deepcopy(inputs))
 media._get_test_spec("vpp", "saturation").update(copy.deepcopy(inputs))
-media._get_test_spec("vpp", "csc").update(copy.deepcopy(inputs))
 media._get_test_spec("vpp", "denoise").update(copy.deepcopy(inputs))
 media._get_test_spec("vpp", "sharpen").update(copy.deepcopy(inputs))
 
@@ -90,6 +89,83 @@ media._get_test_spec("vpp", "composite").update({
       dict(x = 0, y = 144, a = 1), dict(x = 176, y = 144, a = 1),
     ],
     refctx = ["key:vpp.composite"],
+  ),
+  "720p_2x2_alpha" : dict(
+    source = os.path.join(assets, "yuv", "720p_NV12.yuv"),
+    width = 1280, height = 720, format = "NV12", frames = 5,
+    comps = [
+      dict(x = 0, y = 0, a = 0.25), dict(x = 1280, y = 0, a = 0.5),
+      dict(x = 0, y = 720, a = 0.75), dict(x = 1280, y = 720, a = 0.8),
+    ],
+    refctx = ["key:vpp.composite"],
+  ),
+  "1080p_2x2_alpha" : dict(
+    source = os.path.join(assets, "yuv", "1080p_NV12.yuv"),
+    width = 1920, height = 1080, format = "NV12", frames = 5,
+    comps = [
+      dict(x = 0, y = 0, a = 0.25), dict(x = 1920, y = 0, a = 0.5),
+      dict(x = 0, y = 1080, a = 0.66), dict(x = 1920, y = 1080, a = 0.9),
+    ],
+    refctx = ["key:vpp.composite"],
+  ),
+})
+
+media._get_test_spec("vpp", "csc").update({
+  "QCIF_NV12_to_P010" : dict(
+    source = os.path.join(assets, "yuv", "QCIF_NV12.yuv"),
+    width = 176, height = 144, frames = 5,
+    format = "NV12", # source format
+    reference = os.path.join(assets, "yuv", "QCIF_P010_10LE.yuv"),
+    colorspaces = ["P010"], # output/reference format
+  ),
+  "QCIF_P010_to_NV12" : dict(
+    source = os.path.join(assets, "yuv", "QCIF_P010_10LE.yuv"),
+    width = 176, height = 144, frames = 5,
+    format = "P010", # source format
+    reference = os.path.join(assets, "yuv", "QCIF_NV12.yuv"),
+    colorspaces = ["NV12"], # output/reference format
+  ),
+  "QVGA_NV12_to_P010" : dict(
+    source = os.path.join(assets, "yuv", "QVGA_NV12.yuv"),
+    width = 320, height = 240, frames = 5,
+    format = "NV12", # source format
+    reference = os.path.join(assets, "yuv", "QVGA_P010_10LE.yuv"),
+    colorspaces = ["P010"], # output/reference format
+  ),
+  "QVGA_P010_to_NV12" : dict(
+    source = os.path.join(assets, "yuv", "QVGA_P010_10LE.yuv"),
+    width = 320, height = 240, frames = 5,
+    format = "P010", # source format
+    reference = os.path.join(assets, "yuv", "QVGA_NV12.yuv"),
+    colorspaces = ["NV12"], # output/reference format
+  ),
+  "720p_NV12_to_P010" : dict(
+    source = os.path.join(assets, "yuv", "720p_1280x720_NV12.yuv"),
+    width = 1280, height = 720, frames = 5,
+    format = "NV12", # source format
+    reference = os.path.join(assets, "yuv", "720p_1280x720_P010_10LE.yuv"),
+    colorspaces = ["P010"], # output/reference format
+  ),
+  "720p_P010_to_NV12" : dict(
+    source = os.path.join(assets, "yuv", "720p_1280x720_P010_10LE.yuv"),
+    width = 1280, height = 720, frames = 5,
+    format = "P010", # source format
+    reference = os.path.join(assets, "yuv", "720p_1280x720_NV12.yuv"),
+    colorspaces = ["NV12"], # output/reference format
+  ),
+  "1080p_NV12_to_P010" : dict(
+    source = os.path.join(assets, "yuv", "1080p_NV12.yuv"),
+    width = 1920, height = 1080, frames = 5,
+    format = "NV12", # source format
+    reference = os.path.join(assets, "yuv", "1080p_P010_10LE.yuv"),
+    colorspaces = ["P010"], # output/reference format
+  ),
+  "1080p_P010_to_NV12" : dict(
+    source = os.path.join(assets, "yuv", "1080p_P010_10LE.yuv"),
+    width = 1920, height = 1080, frames = 5,
+    format = "P010", # source format
+    reference = os.path.join(assets, "yuv", "1080p_NV12.yuv"),
+    colorspaces = ["NV12"], # output/reference format
   ),
 })
 

@@ -22,6 +22,10 @@ class default(DecoderTest):
       gstdecoder  = "vaapivp9dec",
       gstparser   = "vp9parse",
     )
+    hasSupport = have_vainfo_entrypoint("VAProfileVP9Profile0", "VAEntrypointVLD", self.renderDevice)
+    if(not hasSupport[0]):
+      slash.skip_test(hasSupport[1])
+
 
   @slash.parametrize(("case"), sorted(spec.keys()))
   def test(self, case):

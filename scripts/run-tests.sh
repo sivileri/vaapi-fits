@@ -15,6 +15,19 @@ then
     sudo add-apt-repository ppa:oibaf/graphics-drivers -y
     sudo apt-get update && sudo apt-get upgrade -y
 fi
+
+if [[ ! -f "/etc/apt/sources.list.d/savoury1-ubuntu-ffmpeg4-jammy.list" ]];
+then
+    sudo add-apt-repository ppa:savoury1/ffmpeg4
+    sudo apt-get update && sudo apt-get upgrade -y
+fi
+
+if [[ ! -f "/etc/apt/sources.list.d/savoury1-ubuntu-ffmpeg5-jammy.list" ]];
+then
+    sudo add-apt-repository ppa:savoury1/ffmpeg5
+    sudo apt-get update && sudo apt-get upgrade -y
+fi
+
 sudo apt-get install vainfo tar python3-pip -y
 sudo apt-get install ffmpeg autoconf meson libtool -y
 sudo apt-get install gstreamer-1.0 libgstreamer-plugins-base1.0-dev gstreamer1.0 gstreamer1.0-plugins-bad gstreamer1.0-tools gstreamer1.0-vaapi -y

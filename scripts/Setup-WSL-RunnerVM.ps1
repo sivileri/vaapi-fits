@@ -31,16 +31,19 @@ if (-not((wsl --list) -replace "`0" | Select-String -Pattern Ubuntu-22.04 -Quiet
     "wslrunner Ubuntu-22.04 not detected in wsl --list, installing..."
 
     if (-not(Test-Path $destination\ubuntu.zip)) {
+        # Hide the progress bar to avoid download slowdown
+        $ProgressPreference = 'SilentlyContinue'
         Invoke-WebRequest -Uri https://aka.ms/wslubuntu2204 -OutFile $destination\ubuntu.zip -UseBasicParsing
+        $ProgressPreference = "Continue"
     }
     
     if (-not(Test-Path $destination\UbuntuInstall)) {
         Expand-Archive $destination\ubuntu.zip -DestinationPath $destination\UbuntuInstall
-        mv $destination\UbuntuInstall\Ubuntu_2204.0.10.0_x64.appx $destination\UbuntuInstall\Ubuntu_2204.0.10.0_x64.zip
+        mv $destination\UbuntuInstall\Ubuntu_2204.1.7.0_x64.appx $destination\UbuntuInstall\Ubuntu_2204.1.7.0_x64.zip
     }
     
     if (-not(Test-Path $destination\UbuntuInstall\x64)) {
-        Expand-Archive $destination\UbuntuInstall\Ubuntu_2204.0.10.0_x64.zip -DestinationPath $destination\UbuntuInstall\x64
+        Expand-Archive $destination\UbuntuInstall\Ubuntu_2204.1.7.0_x64.zip -DestinationPath $destination\UbuntuInstall\x64
     }
     
     cd $destination\UbuntuInstall\x64
@@ -55,11 +58,6 @@ if (-not((wsl --list) -replace "`0" | Select-String -Pattern Ubuntu-22.04 -Quiet
     "wslrunner Ubuntu-22.04 detected in wsl --list, using that distro..."
 }
 
-# Copy test assets into Ubuntu-22.04 wslrunner home dir
-if (-not(Test-Path \\wsl.localhost\Ubuntu-22.04\home\wslrunner\assets.tar.gz)) {
-    "Provisioning test assets into /home/wslrunner/assets.tar.gz"
-    cp $destination\assets.tar.gz \\wsl.localhost\Ubuntu-22.04\home\wslrunner\assets.tar.gz
-}
 if (-not(Test-Path \\wsl.localhost\Ubuntu-22.04\home\wslrunner\d3d12libs)) {
     "Provisioning d3d12 libs into /home/wslrunner/d3d12libs/"
     mkdir -p \\wsl.localhost\Ubuntu-22.04\home\wslrunner\d3d12libs\
@@ -67,7 +65,7 @@ if (-not(Test-Path \\wsl.localhost\Ubuntu-22.04\home\wslrunner\d3d12libs)) {
 }
 
 "Provisioning latest run-tests.sh into /home/wslrunner/d3d12libs/"
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/sivileri/vaapi-fits/user/sivileri/vaapifits_mesad3d12/scripts/run-tests.sh -OutFile \\wsl.localhost\Ubuntu-22.04\home\wslrunner\run-tests.sh -UseBasicParsing
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/sivileri/vaapi-fits/vaapifits_mesad3d12/scripts/run-tests.sh -OutFile \\wsl.localhost\Ubuntu-22.04\home\wslrunner\run-tests.sh -UseBasicParsing
 
 wsl -d Ubuntu-22.04 --cd ~ chmod +x /home/wslrunner/run-tests.sh
 wsl -d Ubuntu-22.04 -u wslrunner --cd ~ /home/wslrunner/run-tests.sh

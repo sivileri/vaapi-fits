@@ -18,14 +18,15 @@ fi
 sudo apt-get install vainfo tar python3-pip -y
 sudo apt-get install ffmpeg autoconf meson libtool -y
 sudo apt-get install gstreamer-1.0 libgstreamer-plugins-base1.0-dev gstreamer1.0 gstreamer1.0-plugins-bad gstreamer1.0-tools gstreamer1.0-vaapi -y
+sudo apt install git-lfs -y
+git lfs install
 
 export LIBVA_DRIVER_NAME=d3d12
 export LIBVA_DRIVERS_PATH=/usr/lib/x86_64-linux-gnu/dri
 export GST_VAAPI_ALL_DRIVERS=1
 export D3D12_DEBUG="verbose debug"
 export D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE=1
-export ITU_T_ASSETS=~/repos/vaapi-fits/assets
-export VAAPI_FITS_CONFIG_FILE=~/repos/vaapi-fits/config/d3d12_conformance
+export VAAPI_FITS_CONFIG_FILE=~/repos/vaapi-fits/config/default
 export D3D12_VAAPIFITS_IGNORE_EXITCODE=1
 
 # Copy latest d3d12 libraries
@@ -60,34 +61,53 @@ else
     if [[ ! -d ~/repos/vaapi-fits ]];
     then
         git clone https://github.com/sivileri/vaapi-fits.git
+        pushd ~/repos/vaapi-fits
+
+        git checkout vaapifits_mesad3d12
+        sudo pip3 install -r requirements.txt
+
+        # Expand test assets
+        mkdir -p ~/repos/vaapi-fits/assets
+        tar -xvf assets.tbz2 -C ./
+        mkdir -p ~/repos/vaapi-fits/assets/yuv
+        tar -xvzf yuv_assets.tar.gz -C ./assets/yuv
+
+        wget -O assets_HLK.iso https://go.microsoft.com/fwlink/?linkid=2166397
+        sudo mkdir /mnt/iso
+        sudo mount -o loop assets_HLK.iso /mnt/iso
+        mkdir -p ~/repos/vaapi-fits/assets/DXVAContent
+        cp /mnt/iso/tests/DXVAContent/* ~/repos/vaapi-fits/assets/DXVAContent
+        sudo umount ~/repos/vaapi-fits/assets_HLK.iso
+        rm -f ~/repos/vaapi-fits/assets_HLK.iso
+
+        chmod +x scripts/extract_elementary_DXVAContent.sh
+        scripts/extract_elementary_DXVAContent.sh
+        rm -f ~/repos/vaapi-fits/assets/DXVAContent/*.mp4
+
+        popd # ~/repos/vaapi-fits
     fi
 
-    pushd ~/repos/vaapi-fits
+    if [[ ! -d ~/repos/gst-checksumsink ]];
+    then
+        git clone https://github.com/intel-media-ci/gst-checksumsink
+        pushd ~/repos/gst-checksumsink
+        meson build -Dprefix=/usr
+        sudo ninja -C build install
+        popd # ~/repos/gst-checksumsink
+    fi
 
-    git checkout user/sivileri/vaapifits_mesad3d12
-    sudo pip3 install -r requirements.txt
-
-    popd # ~/repos/vaapi-fits
-
-    git clone https://github.com/intel-media-ci/gst-checksumsink
-    pushd ~/repos/gst-checksumsink
-    meson build -Dprefix=/usr
-    sudo ninja -C build install
-    popd # ~/repos/gst-checksumsink
-
-    sudo apt-get install libva-dev -y
-    git clone https://github.com/sivileri/libva-utils.git
-    pushd ~/repos/libva-utils
-    git checkout fix_vainfo_VAConfigAttribEncMaxSlices
-    meson build
-    sudo ninja -C build install
-    # Delete ubuntu version so it falls back to /usr/local/bin/vainfo
-    sudo rm /usr/bin/vainfo
-    popd # ~/repos/libva-utils
-
-    # Expand test assets
-    mkdir -p ~/repos/vaapi-fits/assets
-    tar -xvzf ~/assets.tar.gz -C ~/repos/vaapi-fits/assets
+    if [[ ! -d ~/repos/libva-utils ]];
+    then
+        # Need latest version >= 2.17 from master that includes fixes
+        sudo apt-get install libva-dev -y
+        git clone https://github.com/sivileri/libva-utils.git
+        pushd ~/repos/libva-utils
+        meson build
+        sudo ninja -C build install
+        # Delete ubuntu version so it falls back to /usr/local/bin/vainfo
+        sudo rm /usr/bin/vainfo
+        popd # ~/repos/libva-utils
+    fi
 
     popd # ~/repos
 fi
@@ -97,7 +117,7 @@ pushd ~/repos/vaapi-fits
 # Get latest tests playlists
 git pull
 
-# Delete previous results
+# Delete previous results (avoids using up all the disk space)
 rm -rf ~/repos/vaapi-fits/results
 
 ##

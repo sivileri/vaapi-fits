@@ -26,9 +26,9 @@ if ($destination -eq "invalid"){
 
 "List of installed WSL distros:"
 wsl --list
-if (-not((wsl --list) -replace "`0" | Select-String -Pattern Ubuntu-22.04 -Quiet)) {
+if (-not((wsl --list) -replace "`0" | Select-String -Pattern Ubuntu -Quiet)) {
 
-    "wslrunner Ubuntu-22.04 not detected in wsl --list, installing..."
+    "Ubuntu not detected in wsl --list, installing..."
 
     if (-not(Test-Path $destination\ubuntu.zip)) {
         # Hide the progress bar to avoid download slowdown
@@ -47,25 +47,36 @@ if (-not((wsl --list) -replace "`0" | Select-String -Pattern Ubuntu-22.04 -Quiet
     }
     
     cd $destination\UbuntuInstall\x64
-    
-    .\ubuntu2204.exe install --root
-    .\ubuntu2204.exe run useradd -m wslrunner
-    .\ubuntu2204.exe run 'echo wslrunner:wslrunner | chpasswd'
-    .\ubuntu2204.exe run 'chsh -s /bin/bash wslrunner'
-    .\ubuntu2204.exe run 'usermod -aG sudo wslrunner'
-    .\ubuntu2204.exe run "echo 'wslrunner ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
-} else {
-    "wslrunner Ubuntu-22.04 detected in wsl --list, using that distro..."
+    .\ubuntu.exe install --root
 }
 
-if (-not(Test-Path \\wsl.localhost\Ubuntu-22.04\home\wslrunner\d3d12libs)) {
+if (-not(Test-Path \\wsl.localhost\Ubuntu\home\wslrunner)) {
+    pushd $destination\UbuntuInstall\x64
+    "Creating wslrunner user in Ubuntu distro image..."
+    .\ubuntu.exe run -u root useradd -m wslrunner
+    .\ubuntu.exe run -u root 'echo wslrunner:wslrunner | chpasswd'
+    .\ubuntu.exe run -u root 'chsh -s /bin/bash wslrunner'
+    .\ubuntu.exe run -u root 'usermod -aG sudo wslrunner'
+    .\ubuntu.exe run -u root "echo 'wslrunner ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
+    popd # $destination\UbuntuInstall\x64
+}
+
+"Ubuntu detected in wsl --list, using existing Ubuntu version:"
+wsl -d Ubuntu -u wslrunner --cd ~ lsb_release -r
+if (-not(wsl -d Ubuntu -u wslrunner --cd ~ lsb_release -r | Select-String "22.10" -Quiet)) {
+    if (-not(wsl -d Ubuntu -u wslrunner --cd ~ lsb_release -r | Select-String "22.04" -Quiet)) {
+        Write-Error "When using the pre-existing Ubuntu distro, the version must be 22.04 or 22.10"
+    }
+}
+
+if (-not(Test-Path \\wsl.localhost\Ubuntu\home\wslrunner\d3d12libs)) {
     "Provisioning d3d12 libs into /home/wslrunner/d3d12libs/"
-    mkdir -p \\wsl.localhost\Ubuntu-22.04\home\wslrunner\d3d12libs\
-    cp $destination\d3d12libs\*.so \\wsl.localhost\Ubuntu-22.04\home\wslrunner\d3d12libs\
+    mkdir -p \\wsl.localhost\Ubuntu\home\wslrunner\d3d12libs\
+    cp $destination\d3d12libs\*.so \\wsl.localhost\Ubuntu\home\wslrunner\d3d12libs\
 }
 
 "Provisioning latest run-tests.sh into /home/wslrunner/d3d12libs/"
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/sivileri/vaapi-fits/vaapifits_mesad3d12/scripts/run-tests.sh -OutFile \\wsl.localhost\Ubuntu-22.04\home\wslrunner\run-tests.sh -UseBasicParsing
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/sivileri/vaapi-fits/vaapifits_mesad3d12/scripts/run-tests.sh -OutFile \\wsl.localhost\Ubuntu\home\wslrunner\run-tests.sh -UseBasicParsing
 
-wsl -d Ubuntu-22.04 --cd ~ chmod +x /home/wslrunner/run-tests.sh
-wsl -d Ubuntu-22.04 -u wslrunner --cd ~ /home/wslrunner/run-tests.sh
+wsl -d Ubuntu --cd ~ chmod +x /home/wslrunner/run-tests.sh
+wsl -d Ubuntu -u wslrunner --cd ~ /home/wslrunner/run-tests.sh

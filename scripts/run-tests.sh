@@ -18,13 +18,13 @@ fi
 
 if [[ ! -f "/etc/apt/sources.list.d/savoury1-ubuntu-ffmpeg4-jammy.list" ]];
 then
-    sudo add-apt-repository ppa:savoury1/ffmpeg4
+    sudo add-apt-repository ppa:savoury1/ffmpeg4 -y
     sudo apt-get update && sudo apt-get upgrade -y
 fi
 
 if [[ ! -f "/etc/apt/sources.list.d/savoury1-ubuntu-ffmpeg5-jammy.list" ]];
 then
-    sudo add-apt-repository ppa:savoury1/ffmpeg5
+    sudo add-apt-repository ppa:savoury1/ffmpeg5 -y
     sudo apt-get update && sudo apt-get upgrade -y
 fi
 

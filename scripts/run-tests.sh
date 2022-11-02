@@ -143,6 +143,27 @@ python3 vaapi-fits run test/ffmpeg-vaapi/ --platform D3D12_WSL --artifact-retent
 ## Run all gstreamer tests
 ##
 
+# Override and use gstreamer >= 1.21 to include this HEVC fix below
+# https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/1886/diffs
+
+if [[ ! -d ~/repos/gstreamer ]];
+then
+    sudo apt-get install flex bison -y
+    wget http://ftp.de.debian.org/debian/pool/main/m/meson/meson_0.63.3-1_all.deb
+    sudo dpkg -i meson_0.63.3-1_all.deb
+
+    git clone https://gitlab.freedesktop.org/gstreamer/gstreamer.git
+    pushd gstreamer
+    meson build -Dprefix=/usr -Dvaapi=enabled
+    sudo ninja -C build install
+    popd # gstreamer
+fi
+
+#
+# End install gstreamer
+#
+
+
 python3 vaapi-fits run test/gst-vaapi/ --platform D3D12_WSL --artifact-retention 1 --device /dev/dri/renderD128
 
 popd # ~/repos/vaapi-fits

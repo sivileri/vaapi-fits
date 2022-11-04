@@ -95,7 +95,6 @@ else
 
         chmod +x scripts/extract_elementary_DXVAContent.sh
         scripts/extract_elementary_DXVAContent.sh
-        rm -f ~/repos/vaapi-fits/assets/DXVAContent/*.mp4
 
         popd # ~/repos/vaapi-fits
     fi

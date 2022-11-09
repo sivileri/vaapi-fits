@@ -6,6 +6,7 @@
 
 from .common import call
 import os
+from lib.common import is_windows_libva_driver
 
 class Capture:
   def __init__(self):
@@ -16,7 +17,7 @@ class Capture:
       "dmesg", False).strip().split('\n')]
 
   def checkpoint(self):
-    if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+    if is_windows_libva_driver():
       return ""
     else:
       last = len(self.dmesg)

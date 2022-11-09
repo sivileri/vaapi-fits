@@ -6,6 +6,7 @@
 
 from ...lib.common import memoize, try_call, try_call_with_output, call, exe2os
 import os
+from lib.common import is_windows_libva_driver
 
 @memoize
 def have_gst():
@@ -27,7 +28,7 @@ def have_gst_version(versionStr):
 
 @memoize
 def have_vainfo_entrypoint(profile, entrypoint, adapter_index):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call(f"powershell.exe {exe2os('vainfo')} --display win32 --device {adapter_index} 2>&1 | Select-String \"{profile} \" | Select-String \"{entrypoint}\" -Quiet", communicate=True)
   else:
     result = try_call(f"{exe2os('vainfo')} --display drm --device {adapter_index} 2>&1 | grep '{profile} ' | grep '{entrypoint}'")
@@ -35,7 +36,7 @@ def have_vainfo_entrypoint(profile, entrypoint, adapter_index):
 
 @memoize
 def get_vainfo_num_lX_references(profile, entrypoint, lX, adapter_index):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     group_id = int(lX) + 2
     result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)l0=(.*?)l1=(.*?) (.*?)VAProfile').Groups[{group_id}].Value\"", use_shell = False)
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
@@ -45,7 +46,7 @@ def get_vainfo_num_lX_references(profile, entrypoint, lX, adapter_index):
 
 @memoize
 def get_vainfo_max_slices(profile, entrypoint, adapter_index):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribEncMaxSlices(.*?):(.*?)VAConfigAttribEncSliceStructure(.*?)VAProfile').Groups[3].Value.Trim()\"", use_shell = False)
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
   else:

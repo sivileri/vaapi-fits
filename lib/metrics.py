@@ -11,6 +11,7 @@ import psutil
 
 from .common import get_media, memoize, timefn
 from .framereader import FrameReaders
+from lib.common import is_windows_libva_driver
 
 try:
   # try skimage >= 0.16, first
@@ -98,7 +99,7 @@ class RawMetricAggregator:
     self.biggest_deviator = biggest_deviator;
 
     # 50% of physical memory (i.e. 25% in main process and 25% in async pool)
-    if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+    if is_windows_libva_driver():
       self.async_thresh = int(psutil.virtual_memory().total / 4) # 25% of the system memory in bytes
     else:
       self.async_thresh = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES') / 4

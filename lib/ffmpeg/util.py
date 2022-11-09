@@ -7,17 +7,18 @@
 from ...lib.common import memoize, try_call, try_call_with_output, call, exe2os
 from ...lib.formats import FormatMapper
 import os
+from lib.common import is_windows_libva_driver
 
 @memoize
 def have_ffmpeg():
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     return try_call(f"powershell.exe {exe2os('ffmpeg')} | Select-String 'ffmpeg version' -Quiet", communicate=True)
   else:
     return try_call(f"which {exe2os('ffmpeg')}")
 
 @memoize
 def have_ffmpeg_hwaccel(accel):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call(f"powershell.exe {exe2os('ffmpeg')} -hide_banner -hwaccels | Select-String {accel} -Quiet", communicate=True)
   else:
     result = try_call(f"{exe2os('ffmpeg')} -hide_banner -hwaccels | grep {accel}")
@@ -25,7 +26,7 @@ def have_ffmpeg_hwaccel(accel):
 
 @memoize
 def have_ffmpeg_filter(name):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call(f"powershell.exe {exe2os('ffmpeg')} -hide_banner -filters | Select-String {name} -Quiet", communicate=True)  
   else:
     result = try_call(f"{exe2os('ffmpeg')} -hide_banner -filters | awk '{{print $2}}' | grep -w {name}")
@@ -33,7 +34,7 @@ def have_ffmpeg_filter(name):
 
 @memoize
 def have_ffmpeg_encoder(encoder):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call(f"powershell.exe {exe2os('ffmpeg')} -hide_banner -encoders | Select-String {encoder} -Quiet", communicate=True)  
   else:
     result = try_call(f"{exe2os('ffmpeg')} -hide_banner -encoders | awk '{{print $2}}' | grep -w {encoder}")
@@ -41,7 +42,7 @@ def have_ffmpeg_encoder(encoder):
 
 @memoize
 def have_vainfo_entrypoint(profile, entrypoint, adapter_index):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call(f"powershell.exe {exe2os('vainfo')} --display win32 --device {adapter_index} 2>&1 | Select-String \"{profile} \" | Select-String \"{entrypoint}\" -Quiet", communicate=True)
   else:
     result = try_call(f"{exe2os('vainfo')} --display drm --device {adapter_index} 2>&1 | grep '{profile} ' | grep '{entrypoint}'")
@@ -49,7 +50,7 @@ def have_vainfo_entrypoint(profile, entrypoint, adapter_index):
 
 @memoize
 def get_vainfo_num_lX_references(profile, entrypoint, lX, adapter_index):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     group_id = int(lX) + 2
     result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)l0=(.*?)l1=(.*?) (.*?)VAProfile').Groups[{group_id}].Value\"", use_shell = False)
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
@@ -59,7 +60,7 @@ def get_vainfo_num_lX_references(profile, entrypoint, lX, adapter_index):
 
 @memoize
 def get_vainfo_max_slices(profile, entrypoint, adapter_index):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribEncMaxSlices(.*?):(.*?)VAConfigAttribEncSliceStructure(.*?)VAProfile').Groups[3].Value.Trim()\"", use_shell = False)
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
   else:
@@ -70,7 +71,7 @@ def get_vainfo_max_slices(profile, entrypoint, adapter_index):
 
 @memoize
 def have_ffmpeg_decoder(decoder):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     result = try_call(f"powerhell.exe {exe2os('ffmpeg')} -hide_banner -decoders | Select-String {decoder} -Quiet", communicate=True)  
   else:
     result = try_call(f"{exe2os('ffmpeg')} -hide_banner -decoders | awk '{{print $2}}' | grep -w {decoder}")

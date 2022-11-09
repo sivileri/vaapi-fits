@@ -12,6 +12,10 @@ import subprocess
 import threading
 import time
 
+def is_windows_libva_driver():
+  vaDrvName = os.environ.get("LIBVA_DRIVER_NAME", None)
+  return ("vaon12" == vaDrvName) or ("vaon12_warp" == vaDrvName)
+
 def sorted_by_resolution(cases):
   size = lambda kv: kv[1]["width"] * kv[1]["height"]
   return [kv[0] for kv in sorted(cases.items(), key = size)]
@@ -114,7 +118,7 @@ def startproc(command, logger = slash.logger.debug):
   # When we use "exec" to run the "command". This will cause the "command" to
   # inherit the shell process and proc.pid will represent the actual "command".
   command_prefix = ""
-  if "vaon12" != os.environ.get("LIBVA_DRIVER_NAME", None):
+  if not is_windows_libva_driver():
     command_prefix = "exec "
   proc = subprocess.Popen(
     command_prefix + command,
@@ -228,7 +232,7 @@ def mapRangeWithDefault(value, srcRange, dstRange):
 
 # some path helpers
 def abspath(path):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     return os.path.abspath(path).lstrip(os.path.sep)
   else:
     return os.path.sep + os.path.abspath(path).lstrip(os.path.sep)
@@ -242,7 +246,7 @@ def makepath(path):
 
 @memoize
 def exe2os(name):
-  if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+  if is_windows_libva_driver():
     return f"{name}.exe"
   elif "linux" == get_media()._get_os():
     return f"{name}"

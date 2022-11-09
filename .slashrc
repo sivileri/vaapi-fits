@@ -14,6 +14,7 @@ import slash
 from slash.utils.traceback_utils import get_traceback_string
 import sys
 import xml.etree.cElementTree as et
+from lib.common import is_windows_libva_driver
 
 __required_slash_version__ = "1.12.0"
 assert slash.__version__ == __required_slash_version__, \
@@ -104,7 +105,7 @@ class MediaPlugin(slash.plugins.PluginInterface):
     assert not (args.ctapt != -1 and slash.config.root.parallel.num_workers > 0), "ctapt in parallel mode is not supported"
     assert not (args.ctapr != -1 and slash.config.root.parallel.num_workers > 0), "ctapr in parallel mode is not supported"
 
-    if self._get_os() == 'linux' and "NONE" != self.platform.upper() and "vaon12" != os.environ.get("LIBVA_DRIVER_NAME", None):
+    if self._get_os() == 'linux' and "NONE" != self.platform.upper() and (not is_windows_libva_driver()):
       assert os.path.exists(args.device), "Target Device {} not exist".format(args.device)
 
   def _calls_allowed(self):
@@ -167,7 +168,7 @@ class MediaPlugin(slash.plugins.PluginInterface):
     else:
       key = os.path.relpath(path, self.mypath)
 
-    if "vaon12" == os.environ.get("LIBVA_DRIVER_NAME", None):
+    if is_windows_libva_driver():
       key = key.replace("\\", "/")
 
     return ':'.join([key, case])

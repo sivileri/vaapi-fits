@@ -1,0 +1,59 @@
+###
+### SPDX-License-Identifier: BSD-3-Clause
+###
+
+###
+### kate: syntax python;
+###
+
+caps = dict(
+  decode  = dict(
+    avc     = dict(maxres = res4k, fmts = ["NV12"]),
+    hevc_8  = dict(maxres = res4k, fmts = ["NV12"]),
+    hevc_10  = dict(maxres = res4k, fmts = ["P010"]),
+    av1_8   = dict(maxres = res4k, fmts = ["NV12"]),
+    av1_10   = dict(maxres = res4k, fmts = ["P010"]),
+    vp9_8   = dict(maxres = res8k , fmts = ["NV12"]),
+    vp9_10  = dict(maxres = res8k , fmts = ["P010"]),
+    # mpeg2   = dict(maxres = res2k , fmts = ["NV12"]),
+  ),
+  encode  = dict(
+    avc     = dict(maxres = res4k, fmts = ["NV12"]),
+    hevc_8  = dict(maxres = res4k, fmts = ["NV12"]),
+    hevc_10  = dict(maxres = res4k, fmts = ["P010"]),
+  ),
+  vdenc  = dict(),
+  vpp    = dict(
+    # brightness, contrast, hue and saturation
+    procamp     = dict(),
+    # mirroring and transpose are supported by the mesa impl and by the D3D12 API, but not all the drivers have support for them. 
+    # These are correctly reported in the VA pipeline caps but this test suite does not check that but use this table instead
+    mirroring   = dict(),
+    transpose   = dict(),
+    # mirroring and rotation
+    rotation =  dict(
+      ifmts = ["NV12", "P010", "BGRA"],
+      ofmts = ["NV12", "P010", "BGRA"],
+    ),
+    crop        = dict(
+      ifmts = ["NV12", "P010", "BGRA"],
+      ofmts = ["NV12", "P010", "BGRA"],
+    ),
+    sharpen     = dict(),
+    deinterlace = dict(),
+    denoise     = dict(),
+    scale       = dict(
+      ifmts = ["NV12", "P010", "BGRA"],
+      ofmts = ["NV12", "P010", "BGRA"],
+    ),
+    # colorspace conversion
+    csc         = dict(
+      ifmts = ["NV12", "P010", "BGRA"],
+      ofmts = ["NV12", "P010", "BGRA"],
+    ),
+    blend       = dict(
+      ifmts = ["NV12", "P010", "BGRA"],
+      ofmts = ["NV12", "P010", "BGRA"],
+    ),
+  ),
+)

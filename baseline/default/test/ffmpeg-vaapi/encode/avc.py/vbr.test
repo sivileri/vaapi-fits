@@ -39,6 +39,16 @@
         46.3312,
         46.8826
       ]
+    },
+    "drv.vaon12_warp": {
+      "psnr": [
+        28.3893,
+        40.5173,
+        39.2922,
+        31.2097,
+        42.763,
+        42.5385
+      ]
     }
   },
   "test/ffmpeg-vaapi/encode/avc.py:vbr.test(bframes=0,bitrate=6000,case=1080p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=3)": {
@@ -80,6 +90,16 @@
         31.3471, 
         45.7186, 
         45.2167
+      ]
+    },
+    "drv.vaon12_warp": {
+      "psnr": [
+        28.3808,
+        39.8493,
+        40.8822,
+        29.7072,
+        42.389,
+        43.1526
       ]
     }
   },

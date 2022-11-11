@@ -65,7 +65,7 @@ def get_vainfo_max_slices(profile, entrypoint, adapter_index):
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
   else:
     result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep 'VAConfigAttribEncMaxSlices' | cut -f2 -d: | xargs")  
-  if (result[1] == b'\n'):
+  if (result[1] == b'\n') or (result[1] == ''):
     result = (True, 1)
   return result, "vainfo support for device:" + adapter_index + " " + profile + " " + entrypoint + " max slices (" + str(result) + ")"
 

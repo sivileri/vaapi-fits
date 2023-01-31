@@ -78,5 +78,13 @@ class EncoderTest(BaseEncoderTest):
       "Using intra and P-frames|[L|l]ow delay|forward-prediction",
       "Using intra, P- and B-frames|[L|l]ow delay|forward-prediction",
     ]
+
+    m = re.search("Driver does not support P-frames, replacing them with B-frames", self.output, re.MULTILINE)
+    PAsLowDelayB = m is not None
+
+    if PAsLowDelayB:
+      ipbmsgs[1] = "Using intra and B-frames"
+      ipbmsgs[2] = "Using intra and B-frames"
+
     m = re.search(ipbmsgs[ipbmode], self.output, re.MULTILINE)
     assert m is not None, "Possible incorrect IPB mode used"

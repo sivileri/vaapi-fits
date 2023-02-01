@@ -77,10 +77,10 @@ class Baseline:
       finally:
         get_media()._set_test_details(**{"{}:success".format(strkey):compareSuccess})
 
-  def check_psnr(self, psnr, context = []):
+  def check_psnr(self, psnr, context = [], percent_tolerance=0.1):
     def compare(k, ref, actual):
       assert ref is not None, "Invalid reference value"
-      assert all(map(lambda r,a: a > (r * 0.98), ref[3:], actual[3:]))
+      assert all(map(lambda r,a: a > (r * (1.00-percent_tolerance)), ref[3:], actual[3:]))
     self.check_result(compare = compare, context = context, psnr = psnr)
 
   def check_md5(self, md5, expect = None, context = []):

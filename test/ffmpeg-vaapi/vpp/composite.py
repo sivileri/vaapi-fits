@@ -10,7 +10,9 @@ from ....lib.ffmpeg.vaapi.vpp import VppTest
 
 spec = load_test_spec("vpp", "composite")
 
-@slash.requires(*platform.have_caps("vpp", "blend"))
+# Disable ffmpeg vpp blend tests as they issue a bad VAAPI blend call
+# with a src region outside of the bounds of the source texture
+@slash.requires(*platform.have_caps("vpp", "blend_ffmpeg"))
 @slash.requires(*have_ffmpeg_filter("overlay_vaapi"))
 class default(VppTest):
   def before(self):

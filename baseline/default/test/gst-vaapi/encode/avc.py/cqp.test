@@ -292,5 +292,49 @@
         47.4258
       ]
     }    
+  },
+  "test/gst-vaapi/encode/avc.py:cqp.test(bframes=0,case=2160p,gop=1,profile=high,qp=14,quality=4,slices=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        59.131,
+        71.0524,
+        71.5899,
+        59.1503,
+        71.0524,
+        71.5899
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        59.131,
+        71.0524,
+        71.5899,
+        59.1503,
+        71.0524,
+        71.5899
+      ]
+    }    
+  },
+  "test/gst-vaapi/encode/avc.py:cqp.test(bframes=2,case=2160p,gop=30,profile=main,qp=28,quality=4,slices=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        45.0723,
+        51.1756,
+        53.8177,
+        45.1725,
+        51.366,
+        54.1019
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        45.0723,
+        51.1756,
+        53.8177,
+        45.1725,
+        51.366,
+        54.1019
+      ]
+    }    
   }
 }

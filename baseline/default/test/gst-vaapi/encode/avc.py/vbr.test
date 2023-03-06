@@ -166,5 +166,49 @@
         46.4092
       ]
     }
+  },
+  "test/gst-vaapi/encode/avc.py:vbr.test(bframes=3,bitrate=24000,case=2160p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        24.2472,
+        41.8269,
+        41.6035,
+        28.7936,
+        45.7702,
+        45.7642
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        24.2472,
+        41.8269,
+        41.6035,
+        28.7936,
+        45.7702,
+        45.7642
+      ]
+    }
+  },
+  "test/gst-vaapi/encode/avc.py:vbr.test(bframes=0,bitrate=24000,case=2160p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=3)": {
+    "drv.d3d12": {
+      "psnr": [
+        28.0381,
+        43.5804,
+        41.7525,
+        30.122,
+        47.2078,
+        45.7214
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        28.0381,
+        43.5804,
+        41.7525,
+        30.122,
+        47.2078,
+        45.7214
+      ]
+    }
   }
 }

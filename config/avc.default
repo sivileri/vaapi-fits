@@ -165,6 +165,27 @@ media._get_test_spec("avc", "encode").update({
       ],
     ),
   ),
+  "2160p" : dict(
+    source = os.path.join(assets, "yuv", "2160p_NV12.yuv"),
+    width = 3840, height = 2160, format = "NV12", frames = 150,
+    refctx = ["driver"],
+    variants = dict(
+      cqp = [
+        dict(gop = 1, slices = 1, bframes = 0, qp = 14, quality = 4, profile = "high"),
+        dict(gop = 30, slices = 4, bframes = 2, qp = 28, quality = 4, profile = "main"),
+      ],
+      cqp_lp = [
+        dict(gop = 30, slices = 1, qp = 28, quality = 4),
+      ],
+      cbr = [
+        dict(gop = 30, slices = 1, bframes = 0, bitrate = 24000, fps = 30, profile = "high"),
+      ],
+      vbr = [
+        dict(gop = 30, slices = 3, bframes = 0, bitrate = 24000, fps = 30, quality = 4, refs = 1, profile = "main"),
+        dict(gop = 30, slices = 1, bframes = 3, bitrate = 24000, fps = 30, quality = 4, refs = 1, profile = "main"),
+      ],
+    ),
+  ),
 })
 
 if media._get_driver_name() == "iHD": # iHD driver supports LP with multi-slice

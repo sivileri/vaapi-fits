@@ -188,5 +188,27 @@
         51.2675
       ]
     }
+  },
+  "test/ffmpeg-vaapi/encode/hevc.py:cbr.test(bframes=0,bitrate=24000,case=2160p,fps=30,gop=30,profile=main,slices=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.1324,
+        48.3084,
+        48.0265,
+        30.9928,
+        50.9376,
+        50.6861
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.1324,
+        48.3084,
+        48.0265,
+        30.9928,
+        50.9376,
+        50.6861
+      ]
+    }
   }
 }

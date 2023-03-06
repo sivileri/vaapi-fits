@@ -76,7 +76,7 @@ else
         git clone https://github.com/sivileri/vaapi-fits.git
         pushd ~/repos/vaapi-fits
 
-        git checkout vaapifits_mesad3d12
+        git checkout devel_mesad3d12
         sudo pip3 install -r requirements.txt
 
         # Expand test assets
@@ -84,6 +84,7 @@ else
         tar -xvf assets.tbz2 -C ./
         mkdir -p ~/repos/vaapi-fits/assets/yuv
         tar -xvzf yuv_assets.tar.gz -C ./assets/yuv
+        tar -xvzf 4K_yuv_assets.tar.gz -C ./assets/yuv
 
         wget -O assets_HLK.iso https://go.microsoft.com/fwlink/?linkid=2166397
         sudo mkdir /mnt/iso

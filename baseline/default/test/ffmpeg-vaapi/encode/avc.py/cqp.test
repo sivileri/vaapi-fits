@@ -332,5 +332,49 @@
         47.5359
       ]
     }
+  },
+  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=0,case=2160p,gop=1,profile=high,qp=14,quality=4,slices=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        59.131,
+        71.0524,
+        71.5899,
+        59.1503,
+        71.0524,
+        71.5899
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        59.131,
+        71.0524,
+        71.5899,
+        59.1503,
+        71.0524,
+        71.5899
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=2,case=2160p,gop=30,profile=main,qp=28,quality=4,slices=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        45.0527,
+        51.0066,
+        54.2097,
+        45.1678,
+        51.1616,
+        54.4554
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        45.0527,
+        51.0066,
+        54.2097,
+        45.1678,
+        51.1616,
+        54.4554
+      ]
+    }
   }
 }

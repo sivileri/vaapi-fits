@@ -76,7 +76,7 @@ if (-not(Test-Path \\wsl.localhost\Ubuntu\home\wslrunner\d3d12libs)) {
 }
 
 "Provisioning latest run-tests.sh into /home/wslrunner/d3d12libs/"
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/sivileri/vaapi-fits/vaapifits_mesad3d12/scripts/run-tests.sh -OutFile \\wsl.localhost\Ubuntu\home\wslrunner\run-tests.sh -UseBasicParsing
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/sivileri/vaapi-fits/devel_mesad3d12/scripts/run-tests.sh -OutFile \\wsl.localhost\Ubuntu\home\wslrunner\run-tests.sh -UseBasicParsing
 
 wsl -d Ubuntu --cd ~ chmod +x /home/wslrunner/run-tests.sh
 wsl -d Ubuntu -u wslrunner --cd ~ /home/wslrunner/run-tests.sh

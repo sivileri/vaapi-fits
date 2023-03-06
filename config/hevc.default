@@ -270,6 +270,24 @@ media._get_test_spec("hevc", "encode", "8bit").update({
       ],
     ),
   ),
+  "2160p" : dict(
+    source = os.path.join(assets, "yuv", "2160p_NV12.yuv"),
+    width = 3840, height = 2160, format = "NV12", frames = 150,
+    refctx = ["driver"],
+    variants = dict(
+      cqp = [
+        dict(gop = 1, slices = 1, bframes = 0, qp = 14, quality = 4, profile = "main"),
+        dict(gop = 30, slices = 2, bframes = 2, qp = 28, quality = 4, profile = "main"),
+      ],
+      cbr = [
+        dict(gop = 30, slices = 1, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
+      ],
+      vbr = [
+        dict(gop = 30, slices = 3, bframes = 0, bitrate = 24000, fps = 30, quality = 4, refs = 1, profile = "main"),
+        dict(gop = 30, slices = 1, bframes = 3, bitrate = 24000, fps = 30, quality = 4, refs = 1, profile = "main"),
+      ],
+    ),
+  ),
 })
 
 

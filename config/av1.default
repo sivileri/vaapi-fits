@@ -358,4 +358,62 @@ media._get_test_spec("av1", "encode", "8bit").update({
       ],
     ),
   ),
+  "2160p" : dict(
+    source = os.path.join(assets, "yuv", "2160p_NV12.yuv"),
+    width = 3840, height = 2160, format = "NV12", frames = 150,
+    refctx = ["driver"],
+    variants = dict(
+      cqp = [
+        # Single tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, qp = 14, quality = 4, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, qp = 14, quality = 4, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 3, qp = 14, quality = 4, profile = "main"),
+        # Uniform tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, qp = 14, quality = 4, profile = "main"),
+        # Configurable tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 3, qp = 14, quality = 4, profile = "main"),
+      ],
+      cbr = [
+        # Single tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 3, bitrate = 24000, fps = 30, profile = "main"),
+        # Uniform tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 24000, fps = 30, profile = "main"),
+        # Configurable tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 3, bitrate = 24000, fps = 30, profile = "main"),
+      ],
+      vbr = [
+        # Single tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 3, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+        # Uniform tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+        # Configurable tile
+          # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+          dict(gop = 30, tile_rows_log2 = 3, tile_cols_log2 = 2, bframes = 3, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
+      ],
+    ),
+  ),
 })

@@ -315,5 +315,49 @@
         46.7869
       ]
     }
+  },
+  "test/ffmpeg-vaapi/encode/hevc.py:cqp.test(bframes=0,case=2160p,gop=1,profile=main,qp=14,quality=4,slices=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        59.2946,
+        74.661,
+        74.8724,
+        59.3182,
+        74.661,
+        74.8724
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        59.2946,
+        74.661,
+        74.8724,
+        59.3182,
+        74.661,
+        74.8724
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/hevc.py:cqp.test(bframes=2,case=2160p,gop=30,profile=main,qp=28,quality=4,slices=2)": {
+    "drv.d3d12": {
+      "psnr": [
+        43.4536,
+        58.9257,
+        59.2653,
+        43.7018,
+        59.3176,
+        59.382
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        43.4536,
+        58.9257,
+        59.2653,
+        43.7018,
+        59.3176,
+        59.382
+      ]
+    }
   }
 }

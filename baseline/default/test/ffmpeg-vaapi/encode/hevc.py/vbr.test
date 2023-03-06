@@ -210,5 +210,49 @@
         50.6513
       ]
     }
+  },
+  "test/ffmpeg-vaapi/encode/hevc.py:vbr.test(bframes=0,bitrate=24000,case=2160p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=3)": {
+    "drv.d3d12": {
+      "psnr": [
+        29.2108,
+        46.5838,
+        46.4781,
+        31.3862,
+        50.1708,
+        50.1375
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        29.2108,
+        46.5838,
+        46.4781,
+        31.3862,
+        50.1708,
+        50.1375
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/hevc.py:vbr.test(bframes=3,bitrate=24000,case=2160p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        27.8891,
+        48.4458,
+        48.4713,
+        31.897,
+        52.7226,
+        52.7784
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        27.8891,
+        48.4458,
+        48.4713,
+        31.897,
+        52.7226,
+        52.7784
+      ]
+    }
   }
 }

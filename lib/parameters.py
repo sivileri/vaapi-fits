@@ -422,10 +422,10 @@ def gen_av1_cqp_lp_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["qp"], variant["quality"],
-        variant.get("tilecols", 0), variant.get("tilerows", 0), variant.get("profile", "profile0")]
+        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("profile", "profile0")]
 
 def gen_av1_cqp_lp_parameters(spec):
-  keys = ("case", "gop", "bframes", "qp", "quality", "tilecols", "tilerows", "profile")
+  keys = ("case", "gop", "bframes", "qp", "quality", "tile_cols_log2", "tile_rows_log2", "profile")
   params = gen_av1_cqp_lp_variants(spec)
   return keys, params
 
@@ -435,10 +435,10 @@ def gen_av1_cqp_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["qp"], variant["quality"],
-        variant.get("tilecols", 0), variant.get("tilerows", 0), variant.get("profile", "profile0")]
+        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("profile", "profile0")]
 
 def gen_av1_cqp_parameters(spec):
-  keys = ("case", "gop", "bframes", "qp", "quality", "tilecols", "tilerows", "profile")
+  keys = ("case", "gop", "bframes", "qp", "quality", "tile_cols_log2", "tile_rows_log2", "profile")
   params = gen_av1_cqp_variants(spec)
   return keys, params
 
@@ -448,11 +448,11 @@ def gen_av1_cbr_lp_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["bitrate"], variant.get("quality", 4),
-        variant.get("tilecols", 0), variant.get("tilerows", 0), variant.get("fps", 30),
+        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("fps", 30),
         variant.get("profile", "profile0")]
 
 def gen_av1_cbr_lp_parameters(spec):
-  keys = ("case", "gop", "bframes", "bitrate", "quality", "tilecols", "tilerows", "fps", "profile")
+  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols_log2", "tile_rows_log2", "fps", "profile")
   params = gen_av1_cbr_lp_variants(spec)
   return keys, params
 
@@ -462,11 +462,11 @@ def gen_av1_cbr_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["bitrate"], variant.get("quality", 4),
-        variant.get("tilecols", 0), variant.get("tilerows", 0), variant.get("fps", 30),
+        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("fps", 30),
         variant.get("profile", "profile0")]
 
 def gen_av1_cbr_parameters(spec):
-  keys = ("case", "gop", "bframes", "bitrate", "quality", "tilecols", "tilerows", "fps", "profile")
+  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols_log2", "tile_rows_log2", "fps", "profile")
   params = gen_av1_cbr_variants(spec)
   return keys, params
 
@@ -476,11 +476,11 @@ def gen_av1_vbr_lp_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["bitrate"], variant.get("quality", 4),
-        variant.get("tilecols", 0), variant.get("tilerows", 0), variant.get("fps", 30),
+        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("fps", 30),
         variant.get("profile", "profile0")]
 
 def gen_av1_vbr_lp_parameters(spec):
-  keys = ("case", "gop", "bframes", "bitrate", "quality", "tilecols", "tilerows", "fps", "profile")
+  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols_log2", "tile_rows_log2", "fps", "profile")
   params = gen_av1_vbr_lp_variants(spec)
   return keys, params
 
@@ -490,11 +490,11 @@ def gen_av1_vbr_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["bitrate"], variant.get("quality", 4),
-        variant.get("tilecols", 0), variant.get("tilerows", 0), variant.get("fps", 30),
+        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("fps", 30),
         variant.get("profile", "profile0")]
 
 def gen_av1_vbr_parameters(spec):
-  keys = ("case", "gop", "bframes", "bitrate", "quality", "tilecols", "tilerows", "fps", "profile")
+  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols_log2", "tile_rows_log2", "fps", "profile")
   params = gen_av1_vbr_variants(spec)
   return keys, params
 

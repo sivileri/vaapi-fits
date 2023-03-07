@@ -42,6 +42,13 @@ class EncoderTest(BaseEncoderTest):
       self.rcmodeu = self.rcmode.upper()
 
   def check_output(self):
+    # resolution
+    m = re.search(
+      "Hardware does not support encoding at size",
+      self.output, re.MULTILINE)
+    if m is not None:
+      slash.skip_test("Hardware does not support encoding at the requested resolution")
+
     # profile
     m = re.search(
       "Using VAAPI profile {} ([0-9]*)".format(self.get_vaapi_profile()),

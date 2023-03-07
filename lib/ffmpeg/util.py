@@ -8,6 +8,7 @@ from ...lib.common import memoize, try_call, try_call_with_output, call, exe2os
 from ...lib.formats import FormatMapper
 import os
 from lib.common import is_windows_libva_driver
+import re
 
 @memoize
 def have_ffmpeg():
@@ -72,9 +73,15 @@ def get_vainfo_max_slices(profile, entrypoint, adapter_index):
 @memoize
 def have_vainfo_rt_format(profile, entrypoint, adapter_index, rt_format):
   if is_windows_libva_driver():
-    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribEncMaxSlices(.*?):(.*?)VAConfigAttribEncSliceStructure(.*?)VAProfile').Groups[3].Value.Trim()\"", use_shell = False)
+    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribRTFormat(.*?):(.*?)VAConfigAttribRateControl(.*?):(.*?)VAProfile(.*?)')\"", use_shell = False)
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
-    assert False # Implement me
+    m = re.search(
+      rt_format,
+      result[1], re.MULTILINE)
+    if m is None:
+      return False, rt_format + " NOT supported in " + adapter_index + " " + profile + " " + entrypoint
+    else:
+      return True, rt_format + " supported in " + adapter_index + " " + profile + " " + entrypoint
   else:
     result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep 'VA_RT_FORMAT_' | xargs | grep -w '{rt_format}'")
   if (result[1] == b'\n') or (result[1] == ''):

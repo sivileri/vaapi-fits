@@ -70,6 +70,21 @@ def get_vainfo_max_slices(profile, entrypoint, adapter_index):
   return result, "vainfo support for device:" + adapter_index + " " + profile + " " + entrypoint + " max slices (" + str(result) + ")"
 
 @memoize
+def have_vainfo_rt_format(profile, entrypoint, adapter_index, rt_format):
+  if is_windows_libva_driver():
+    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribEncMaxSlices(.*?):(.*?)VAConfigAttribEncSliceStructure(.*?)VAProfile').Groups[3].Value.Trim()\"", use_shell = False)
+    result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
+    assert False # Implement me
+  else:
+    result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep 'VA_RT_FORMAT_' | xargs | grep -w '{rt_format}'")
+  if (result[1] == b'\n') or (result[1] == ''):
+    result = (False, "")
+  if result[0]:
+    return result[0], rt_format + " supported in " + adapter_index + " " + profile + " " + entrypoint
+  else:
+    return result[0], rt_format + " NOT supported in " + adapter_index + " " + profile + " " + entrypoint
+
+@memoize
 def have_ffmpeg_decoder(decoder):
   if is_windows_libva_driver():
     result = try_call(f"powerhell.exe {exe2os('ffmpeg')} -hide_banner -decoders | Select-String {decoder} -Quiet", communicate=True)  

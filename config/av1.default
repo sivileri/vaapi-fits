@@ -188,6 +188,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, qp = 14, quality = 4, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, qp = 14, quality = 4, profile = "main"),
@@ -205,6 +206,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 800, fps = 30, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 800, fps = 30, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 800, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 800, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 800, fps = 30, profile = "main"),
@@ -222,6 +224,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 1250, fps = 30, quality = 4, refs = 1, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 1250, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 1250, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 1250, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 1250, fps = 30, quality = 4, refs = 1, profile = "main"),
@@ -246,6 +249,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, qp = 14, quality = 4, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, qp = 14, quality = 4, profile = "main"),
@@ -263,6 +267,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 4000, fps = 30, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 4000, fps = 30, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 4000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 4000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 4000, fps = 30, profile = "main"),
@@ -280,6 +285,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 4000, fps = 30, quality = 4, refs = 1, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 4000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 4000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 4000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 4000, fps = 30, quality = 4, refs = 1, profile = "main"),
@@ -305,6 +311,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, qp = 14, quality = 4, profile = "main"),
         # Uniform tile
           # Intra, Inter P, 2 Inter B, 3 Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 2, qp = 14, quality = 4, profile = "main"),
@@ -325,6 +332,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 6000, fps = 30, profile = "main"),
         # Uniform tile
           # Intra, Inter P, 2 Inter B, 3 Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 6000, fps = 30, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 6000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 6000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 2, bitrate = 6000, fps = 30, profile = "main"),
@@ -345,6 +353,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 6000, fps = 30, quality = 4, refs = 1, profile = "main"),
         # Uniform tile
           # Intra, Inter P, 2 Inter B, 3 Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 6000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 6000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 6000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 2, bitrate = 6000, fps = 30, quality = 4, refs = 1, profile = "main"),
@@ -371,6 +380,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, qp = 14, quality = 4, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, qp = 14, quality = 4, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, qp = 14, quality = 4, profile = "main"),
@@ -388,6 +398,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 24000, fps = 30, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 24000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 24000, fps = 30, profile = "main"),
@@ -405,6 +416,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
         # Uniform tile
           # Intra, Inter P, Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 3, bitrate = 36000, fps = 30, quality = 4, refs = 1, profile = "main"),
@@ -433,6 +445,7 @@ media._get_test_spec("av1", "encode", "10bit").update({
           dict(gop = 30, tile_rows_log2 = 0, tile_cols_log2 = 0, bframes = 3, bitrate = 6000, fps = 30, profile = "main"),
         # Uniform tile
           # Intra, Inter P, 2 Inter B, 3 Inter B
+          dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 1, bframes = 0, bitrate = 6000, fps = 30, profile = "main"),
           dict(gop = 1, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 6000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 0, bitrate = 6000, fps = 30, profile = "main"),
           dict(gop = 30, tile_rows_log2 = 2, tile_cols_log2 = 2, bframes = 2, bitrate = 6000, fps = 30, profile = "main"),

@@ -93,9 +93,13 @@ class VppTest(slash.Test, BaseFormatMapper):
 
   @timefn("ffmpeg")
   def call_ffmpeg(self, iopts, oopts):
-    call(
+    return call(
       "ffmpeg -hwaccel vaapi -vaapi_device {renderDevice} -v verbose"
-      " {iopts} {oopts}".format(renderDevice = self.renderDevice, iopts = iopts, oopts = oopts))
+      " {iopts} {oopts} -loglevel trace".format(renderDevice = self.renderDevice, iopts = iopts, oopts = oopts),
+      # withSlashLogger
+      True,
+      # ignore_proc_code
+      True)
 
   def validate_caps(self):
     ifmts         = self.caps.get("ifmts", [])
@@ -135,7 +139,13 @@ class VppTest(slash.Test, BaseFormatMapper):
     name          = self.gen_name().format(**vars(self))
 
     self.decoded = get_media()._test_artifact("{}.yuv".format(name))
-    self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)))
+    output_ffmpeg = self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)))
+    m = re.search(
+      "VAAPI driver doesn't support transpose",
+      output_ffmpeg, re.MULTILINE)
+
+    if m is not None:
+      slash.skip_test("Hardware does not support the requested format conversion")
 
     if vars(self).get("r2r", None) is not None:
       assert type(self.r2r) is int and self.r2r > 1, "invalid r2r value"

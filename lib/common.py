@@ -132,7 +132,9 @@ def startproc(command, logger = slash.logger.debug):
 
   return proc
 
-def call(command, withSlashLogger = True):
+def call(command, withSlashLogger = True, ignore_proc_code = False):
+
+  ignore_proc_code = ignore_proc_code or (os.environ.get('D3D12_VAAPIFITS_IGNORE_EXITCODE') != None)
 
   calls_allowed = get_media()._calls_allowed()
   assert calls_allowed, "call refused"
@@ -183,7 +185,7 @@ def call(command, withSlashLogger = True):
     get_media()._report_call_timeout()
     message = "CALL TIMEOUT: timeout after {} seconds (pid: {}).".format(
       timer.interval, proc.pid)
-  elif ((os.environ.get('D3D12_VAAPIFITS_IGNORE_EXITCODE') == None) and (proc.returncode != 0)):
+  elif (not ignore_proc_code and (proc.returncode != 0)):
     error = True
     message = "CALL ERROR: failed with exitcode {} (pid: {})".format(proc.returncode, proc.pid)
 

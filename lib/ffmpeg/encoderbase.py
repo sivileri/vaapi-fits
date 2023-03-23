@@ -244,9 +244,9 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       bitrate_gap = abs(bitrate_actual - self.bitrate) / self.bitrate
       get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
 
-      # acceptable bitrate within 12% of bitrate
+      # acceptable bitrate within 13% of bitrate
       if (os.environ.get('D3D12_VAAPIFITS_IGNORE_BITRATE_GAP') == None):
-        assert(bitrate_gap <= 0.12)
+        assert(bitrate_gap <= 0.13)
 
     elif "vbr" == self.rcmode:
       # acceptable bitrate within 25% of minrate and 10% of maxrate

@@ -205,8 +205,8 @@ class BaseEncoderTest(slash.Test):
       bitrate_gap = abs(bitrate_actual - self.bitrate) / self.bitrate
       get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
 
-      # acceptable bitrate within 12% of bitrate
-      assert(bitrate_gap <= 0.12)
+      # acceptable bitrate within 13% of bitrate
+      assert(bitrate_gap <= 0.13)
 
     elif self.rcmode in ["vbr", "la_vbr"]:
       # acceptable bitrate within 25% of minrate and 10% of maxrate

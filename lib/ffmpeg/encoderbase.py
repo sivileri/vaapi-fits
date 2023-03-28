@@ -182,10 +182,10 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     self.post_validate()
 
   @timefn("ffmpeg")
-  def call_ffmpeg(self, iopts, oopts):
+  def call_ffmpeg(self, iopts, oopts, envvars = ""):
     return call(
       (
-        f"{exe2os('ffmpeg')}"
+        f"{envvars} {exe2os('ffmpeg')}"
         " -hwaccel {hwaccel} -init_hw_device {hwaccel}=hw:{renderDevice}"
         " -hwaccel_output_format {hwaccel}"
         " -filter_hw_device hw"
@@ -208,7 +208,11 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     iopts = self.gen_input_opts()
     oopts = self.gen_output_opts()
 
-    self.output = self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)))
+    envvars = "env "
+    if vars(self).get("tile_mode", None) is not None:
+      envvars += "D3D12_VIDEO_FORCE_TILE_MODE={tile_mode}"
+
+    self.output = self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)), envvars.format(**vars(self)))
 
     if vars(self).get("r2r", None) is not None:
       assert type(self.r2r) is int and self.r2r > 1, "invalid r2r value"

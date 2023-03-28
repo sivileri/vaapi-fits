@@ -24,7 +24,7 @@ class EncoderTest(BaseEncoderTest):
     return mapprofile(self.codec, self.profile)
 
   def gen_qp_opts(self):
-    if self.codec in ["vp8", "vp9",]:
+    if self.codec in ["vp8", "vp9", "av1-8", "av1-10"]:
       return " -global_quality {qp}"
     if self.codec in ["mpeg2"]:
       return " -global_quality {mqp}"

@@ -1,110 +1,34 @@
 {
-  "test/ffmpeg-vaapi/encode/avc.py:vbr.test(bframes=0,bitrate=4000,case=720p,fps=30,gop=30,profile=high,quality=4,refs=1,slices=3)": {
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=1250,case=QVGA,fps=30,gop=1,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
     "drv.d3d12": {
       "psnr": [
-        32.9072,
-        39.6509,
-        42.0029,
-        36.2415,
-        46.3312,
-        46.8826
+        54.6494,
+        57.6273,
+        56.7264,
+        56.9927,
+        60.1735,
+        59.4859
       ]
     },
     "drv.vaon12": {
       "psnr": [
-        32.9072,
-        39.6509,
-        42.0029,
-        36.2415,
-        46.3312,
-        46.8826
+        54.6494,
+        57.6273,
+        56.7264,
+        56.9927,
+        60.1735,
+        59.4859
       ]
     },
     "drv.vaon12_warp": {
       "psnr": [
-        28.3893,
-        40.5173,
-        39.2922,
-        31.2097,
-        42.763,
-        42.5385
+        54.6494,
+        57.6273,
+        56.7264,
+        56.9927,
+        60.1735,
+        59.4859
       ]
     }
-  },
-  "test/ffmpeg-vaapi/encode/avc.py:vbr.test(bframes=0,bitrate=6000,case=1080p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=3)": {
-    "drv.d3d12": {
-      "psnr": [
-        29.1773, 
-        42.2825, 
-        41.0636, 
-        31.3471, 
-        45.7186, 
-        45.2167
-      ]
-    },
-    "drv.vaon12": {
-      "psnr": [
-        29.1773, 
-        42.2825, 
-        41.0636, 
-        31.3471, 
-        45.7186, 
-        45.2167
-      ]
-    },
-    "drv.vaon12_warp": {
-      "psnr": [
-        28.3808,
-        39.8493,
-        40.8822,
-        29.7072,
-        42.389,
-        43.1526
-      ]
-    }
-  },
-  "test/ffmpeg-vaapi/encode/avc.py:vbr.test(bframes=3,bitrate=4000,case=720p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=1)": {
-    "drv.d3d12": {
-      "psnr": [
-        30.4665,
-        44.0058,
-        44.6263,
-        36.0606,
-        49.4072,
-        49.879
-      ]
-    },
-    "drv.vaon12": {
-      "psnr": [
-        30.4665,
-        44.0058,
-        44.6263,
-        36.0606,
-        49.4072,
-        49.879
-      ]
-    }
-  },
-  "test/ffmpeg-vaapi/encode/avc.py:vbr.test(bframes=3,bitrate=6000,case=1080p,fps=30,gop=30,profile=main,quality=4,refs=1,slices=1)": {
-    "drv.d3d12": {
-      "psnr": [
-       26.1827,
-       42.1903,
-       43.8397,
-       30.9837,
-       46.1686,
-       47.5398
-      ]
-    },
-    "drv.vaon12": {
-      "psnr": [
-       26.1827,
-       42.1903,
-       43.8397,
-       30.9837,
-       46.1686,
-       47.5398
-      ]
-    }    
   }
 }

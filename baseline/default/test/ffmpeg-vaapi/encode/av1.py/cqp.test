@@ -1,195 +1,129 @@
 {
-  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=0,case=1080p,gop=1,profile=high,qp=14,quality=4,slices=1)": {
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=QVGA,gop=1,profile=main,qp=14,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
     "drv.d3d12": {
       "psnr": [
-        58.96,
-        67.7832,
-        68.8242,
-        58.9913,
-        67.7832,
-        68.8242
+        60.3824,
+        65.5605,
+        64.7107,
+        60.6004,
+        65.5605,
+        64.7107
       ]
     },
     "drv.vaon12": {
       "psnr": [
-        58.96,
-        67.7832,
-        68.8242,
-        58.9913,
-        67.7832,
-        68.8242
+        60.3824,
+        65.5605,
+        64.7107,
+        60.6004,
+        65.5605,
+        64.7107
       ]
     },
     "drv.vaon12_warp": {
       "psnr": [
-        46.978,
-        52.3631,
-        52.003,
-        53.7875,
-        68.1276,
-        67.0743
+        60.3824,
+        65.5605,
+        64.7107,
+        60.6004,
+        65.5605,
+        64.7107
       ]
     }
   },
-  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=0,case=720p,gop=1,profile=high,qp=28,quality=4,slices=1)": {
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=720p,gop=1,profile=main,qp=14,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
     "drv.d3d12": {
       "psnr": [
-        45.0233,
-        54.8144,
-        52.373,
-        45.0638,
-        54.8144,
-        52.373
+        60.8142,
+        65.5418,
+        66.1506,
+        60.8616,
+        65.5418,
+        66.1506
       ]
     },
     "drv.vaon12": {
       "psnr": [
-        45.0233,
-        54.8144,
-        52.373,
-        45.0638,
-        54.8144,
-        52.373
+        60.8142,
+        65.5418,
+        66.1506,
+        60.8616,
+        65.5418,
+        66.1506
       ]
     },
     "drv.vaon12_warp": {
       "psnr": [
-        47.1776,
-        51.133,
-        52.9529,
-        55.7672,
-        64.5738,
-        63.9078
+        60.8142,
+        65.5418,
+        66.1506,
+        60.8616,
+        65.5418,
+        66.1506
       ]
     }
   },
-  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=0,case=QCIF,gop=1,profile=main,qp=14,quality=4,slices=1)": {
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=1080p,gop=1,profile=main,qp=14,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
     "drv.d3d12": {
       "psnr": [
-        58.5372,
-        59.3365,
-        59.5784,
-        58.8182,
-        59.3365,
-        59.5784
+        60.8551,
+        68.1898,
+        68.9206,
+        60.9062,
+        68.1898,
+        68.9206
       ]
     },
     "drv.vaon12": {
       "psnr": [
-        58.5372,
-        59.3365,
-        59.5784,
-        58.8182,
-        59.3365,
-        59.5784
+        60.8551,
+        68.1898,
+        68.9206,
+        60.9062,
+        68.1898,
+        68.9206
       ]
     },
     "drv.vaon12_warp": {
       "psnr": [
-        39.9588,
-        45.9189,
-        47.1415,
-        40.8967,
-        58.2592,
-        57.1358
+        60.8551,
+        68.1898,
+        68.9206,
+        60.9062,
+        68.1898,
+        68.9206
       ]
     }
   },
-  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=0,case=QCIF,gop=30,profile=high,qp=28,quality=4,slices=1)": {
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=2160p,gop=1,profile=main,qp=14,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
     "drv.d3d12": {
       "psnr": [
-        39.5256, 
-        44.6245, 
-        43.286, 
-        40.0992, 
-        44.7677, 
-        43.413
+        60.9118,
+        72.8069,
+        72.4974,
+        60.9372,
+        72.8069,
+        72.4974
       ]
     },
     "drv.vaon12": {
       "psnr": [
-        39.5256, 
-        44.6245, 
-        43.286, 
-        40.0992, 
-        44.7677, 
-        43.413
-      ]
-    }
-  },
-  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=0,case=QVGA,gop=1,profile=high,qp=14,quality=4,slices=1)": {
-    "drv.d3d12": {
-      "psnr": [
-        58.5852, 
-        62.6643, 
-        61.9329, 
-        58.7614, 
-        62.6643,
-        61.9329
-      ]
-    },
-    "drv.vaon12": {
-      "psnr": [
-        58.5852, 
-        62.6643, 
-        61.9329, 
-        58.7614, 
-        62.6643,
-        61.9329
+        60.9118,
+        72.8069,
+        72.4974,
+        60.9372,
+        72.8069,
+        72.4974
       ]
     },
     "drv.vaon12_warp": {
       "psnr": [
-        46.8153,
-        49.3588,
-        48.5243,
-        54.6613,
-        59.7035,
-        60.3532
-      ]
-    }
-  },
-  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=2,case=1080p,gop=30,profile=main,qp=28,quality=4,slices=4)": {
-    "drv.d3d12": {
-      "psnr": [
-        44.6185,
-        53.2662,
-        52.7454,
-        44.7843,
-        53.4372,
-        52.851
-      ]
-    },
-    "drv.vaon12": {
-      "psnr": [
-        44.6185,
-        53.2662,
-        52.7454,
-        44.7843,
-        53.4372,
-        52.851
-      ]
-    }    
-  },
-  "test/ffmpeg-vaapi/encode/avc.py:cqp.test(bframes=2,case=QVGA,gop=30,profile=main,qp=28,quality=4,slices=4)": {
-    "drv.d3d12": {
-      "psnr": [
-        21.104,
-        46.9056,
-        47.3679,
-        31.7045,
-        47.136,
-        47.5359
-      ]
-    },
-    "drv.vaon12": {
-      "psnr": [
-        21.104,
-        46.9056,
-        47.3679,
-        31.7045,
-        47.136,
-        47.5359
+        60.9118,
+        72.8069,
+        72.4974,
+        60.9372,
+        72.8069,
+        72.4974
       ]
     }
   }

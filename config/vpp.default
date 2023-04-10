@@ -169,6 +169,49 @@ media._get_test_spec("vpp", "csc").update({
   ),
 })
 
+media._get_test_spec("vpp", "scale").update({
+  # Downscale
+  "2160_to_1080p" : dict(
+    source = os.path.join(assets, "yuv", "2160p_NV12.yuv"),
+    width = 3840, height = 2160, frames = 150,
+    format = "NV12", # source format
+    scale_resolutions = [
+      [1920, 1080]
+    ],
+    reference = os.path.join(assets, "yuv", "1080p_NV12.yuv"),
+  ),
+  # Downscale
+  "1080p_to_720p" : dict(
+    source = os.path.join(assets, "yuv", "1080p_NV12.yuv"),
+    width = 1920, height = 1080, frames = 5,
+    format = "NV12", # source format
+    scale_resolutions = [
+      [1280, 720]
+    ],
+    reference = os.path.join(assets, "yuv", "720p_NV12.yuv"),
+  ),
+  # Upscale
+  "QVGA_to_720p" : dict(
+    source = os.path.join(assets, "yuv", "QVGA_NV12.yuv"),
+    width = 320, height = 240, frames = 5,
+    format = "NV12", # source format
+    scale_resolutions = [
+      [1280, 720]
+    ],
+    reference = os.path.join(assets, "yuv", "720p_NV12.yuv"),
+  ),
+  # Upscale
+  "720p_to_1080p" : dict(
+    source = os.path.join(assets, "yuv", "720p_NV12.yuv"),
+    width = 1280, height = 720, frames = 5,
+    format = "NV12", # source format
+    scale_resolutions = [
+      [1920, 1080]
+    ],
+    reference = os.path.join(assets, "yuv", "1080p_NV12.yuv"),
+  ),
+})
+
 ###
 ### kate: syntax python;
 ###

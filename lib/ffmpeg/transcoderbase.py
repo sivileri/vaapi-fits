@@ -150,7 +150,7 @@ class BaseTranscoderTest(slash.Test):
         osofile = filepath2os(ofile)
 
         if len(filters):
-          opts += " -vf '{}'".format(','.join(filters))
+          opts += " -vf \"{}\"".format(','.join(filters))
         opts += " -c:v {}".format(encoder)
         opts += " -vframes {frames}"
         opts += " -y {}".format(osofile)
@@ -200,7 +200,7 @@ class BaseTranscoderTest(slash.Test):
         osyuv = filepath2os(yuv)
         vppscale = self.get_vpp_scale(self.width, self.height, "sw")
         iopts = "-i {}"
-        oopts = "-vf '{}' -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
+        oopts = "-vf \"{}\" -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
         self.call_ffmpeg(
           iopts.format(osencoded), oopts.format(vppscale, self.frames, osyuv))
         self.check_resolution(output, osencoded)

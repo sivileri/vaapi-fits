@@ -26,7 +26,7 @@ class HEVC8EncoderBaseTest(EncoderTest):
     hasSupport = have_vainfo_entrypoint("VAProfileHEVCMain", "VAEntrypointEncSlice", self.renderDevice)
     if(not hasSupport[0]):
       slash.skip_test(hasSupport[1])
-    if not have_gst_version("9.9.99"):
+    if not have_gst_version("1.23.0"):
       slash.skip_test("Gstreamer does not query VAConfigAttribValEncHEVCBlockSizes or VAConfigAttribEncHEVCFeatures which is needed for D3D12/VA.")
 
   def get_file_ext(self):

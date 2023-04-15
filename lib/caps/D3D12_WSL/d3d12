@@ -24,6 +24,11 @@ caps = dict(
     av1_8   = dict(maxres = res4k, fmts = ["NV12"]),
     av1_10   = dict(maxres = res4k, fmts = ["P010"]),
   ),
+  transcode  = dict(
+    avc     = dict(maxres = res4k, fmts = ["NV12"]),
+    hevc  = dict(maxres = res4k, fmts = ["NV12"]),
+    av1   = dict(maxres = res4k, fmts = ["NV12"]),
+  ),
   vdenc  = dict(),
   vpp    = dict(
     # brightness, contrast, hue and saturation

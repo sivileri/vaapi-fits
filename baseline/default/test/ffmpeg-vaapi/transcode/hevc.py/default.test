@@ -1,0 +1,158 @@
+{
+  "test/ffmpeg-vaapi/transcode/hevc.py:default.test(case=SHDRef_Motion_DifDirect_01_1280x720p24f_intra_main-hevctohevc-720p-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/hevc.py:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_intra_main-hevctohevc-1080p-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/hevc.py:default.test(case=tearsofsteel-hevctohevc-4k-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/hevc.py:default.test(case=SHDRef_Motion_DifDirect_01_1280x720p24f_intra_main-720pto1080p-vppscale)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          35.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          38.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          35.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          38.0000,
+          40.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/hevc.py:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_intra_main-1080pto720p-vppscale)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          35.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          35.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/hevc.py:default.test(case=tearsofsteel-4kto1080p-vppscale)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          35.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          35.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
+  }
+}

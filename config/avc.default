@@ -193,6 +193,9 @@ if media._get_driver_name() == "iHD": # iHD driver supports LP with multi-slice
     v["variants"]["cqp_lp"].append(dict(gop = 30, slices = 4, qp = 14, quality = 4))
 
 media._get_test_spec("avc", "transcode").update({
+
+# Pure transcode
+
   "H_H-AVC_QCIF" : dict(
     source = os.path.join(assets, "avc", "QCIF.h264"),
     width = 176, height = 144, format = "NV12", frames = 10, mode = "hw",
@@ -203,29 +206,40 @@ media._get_test_spec("avc", "transcode").update({
     width = 176, height = 144, format = "NV12", frames = 10, mode = "sw",
     outputs = [dict(codec = "avc", mode = "hw")],
   ),
-  "H_H-AVC-8X_QCIF" : dict(
-    source = os.path.join(assets, "avc", "QCIF.h264"),
-    width = 176, height = 144, format = "NV12", frames = 10, mode = "hw",
-    outputs = [dict(codec = "avc", mode = "hw", channels = 8)],
+  "tearsofsteel-h264toh264-4k-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw")],
   ),
-  "H_H-AVC-2X_H-HEVC_H-MJPEG-2X_H-MPEG2_720p" : dict(
-    source = os.path.join(assets, "avc", "720p.h264"),
-    width = 1280, height = 720, format = "NV12", frames = 10, mode = "hw",
-    outputs = [
-      dict(codec = "avc", mode = "hw", channels = 2),
-      dict(codec = "hevc", mode = "hw"),
-      dict(codec = "mjpeg", mode = "hw", channels = 2),
-      dict(codec = "mpeg2", mode = "hw"),
-    ],
+  "Soccer-h264toh264-720p-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_3mbps_25fps_High_at_L4.1_Cabac_frext_slice.h264"),
+    width=1280, height=720, format = "NV12", frames = 898, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw")],
   ),
-  "H_H-HEVC_S-MJPEG_1080p" : dict(
-    source = os.path.join(assets, "avc", "1080p.h264"),
-    width = 1920, height = 1080, format = "NV12", frames = 10, mode = "hw",
-    outputs = [
-      dict(codec = "hevc", mode = "hw"),
-      dict(codec = "mjpeg", mode = "sw"),
-    ],
+  "Tallship-h264toh264-1080p-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088_10mbps_25fps_High_at_L4.1_Cabac_Prog.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 961, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw")],
   ),
+
+# VPP Scaling filter
+
+  "tearsofsteel-h264toh264-4kto1080p-vppscale" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", width = 1920, height = 1080)],
+  ),
+  "Soccer-h264toh264-720pto1080p-vppscale" : dict(
+    source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_3mbps_25fps_High_at_L4.1_Cabac_frext_slice.h264"),
+    width=1280, height=720, format = "NV12", frames = 898, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", width = 1920, height = 1080)],
+  ),
+  "Tallship-h264toh264-1080pto720p-vppscale" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088_10mbps_25fps_High_at_L4.1_Cabac_Prog.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 961, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", width = 1280, height = 720)],
+  ),
+
 })
 
 for v in media._get_test_spec("avc", "transcode").values():

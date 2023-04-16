@@ -94,7 +94,7 @@ def have_vainfo_rt_format(profile, entrypoint, adapter_index, rt_format):
 @memoize
 def have_ffmpeg_decoder(decoder):
   if is_windows_libva_driver():
-    result = try_call(f"powerhell.exe {exe2os('ffmpeg')} -hide_banner -decoders | Select-String {decoder} -Quiet", communicate=True)  
+    result = try_call(f"powershell.exe {exe2os('ffmpeg')} -hide_banner -decoders | Select-String {decoder} -Quiet", communicate=True)
   else:
     result = try_call(f"{exe2os('ffmpeg')} -hide_banner -decoders | awk '{{print $2}}' | grep -w {decoder}")
   return result, decoder  

@@ -141,15 +141,24 @@ class BaseTranscoderTest(slash.Test):
 
       self.rcmode = output.get("rcmode", None)
       if self.rcmode is not None:
-        if (self.rcmode == "QVBR"):
+        opts += " -rc_mode {rcmode}"
+        if (self.rcmode.upper() == "CBR"):
           self.qvbr_avg_bitrate = output.get("avg_bitrate", None)
-          self.qvbr_peak_bitrate = output.get("max_bitrate", None)
-          self.qvbr_quality = output.get("qvbr_quality", None)
           opts += " -b:v {qvbr_avg_bitrate}k"
+        elif (self.rcmode.upper() == "VBR"):
+          self.qvbr_avg_bitrate = output.get("avg_bitrate", None)
+          opts += " -b:v {qvbr_avg_bitrate}k"
+          self.qvbr_peak_bitrate = output.get("max_bitrate", None)
           opts += " -maxrate {qvbr_peak_bitrate}k"
+        elif (self.rcmode.upper() == "QVBR"):
+          self.qvbr_avg_bitrate = output.get("avg_bitrate", None)
+          opts += " -b:v {qvbr_avg_bitrate}k"
+          self.qvbr_peak_bitrate = output.get("max_bitrate", None)
+          opts += " -maxrate {qvbr_peak_bitrate}k"
+          self.qvbr_quality = output.get("qvbr_quality", None)
           opts += " -global_quality {qvbr_quality}"
-          opts += " -rc_mode {rcmode}"
         else:
+          print(self.rcmode)
           assert False # Unsupported RC mode for transcode
 
       vppscale = self.get_vpp_scale(

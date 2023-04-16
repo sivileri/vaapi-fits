@@ -834,5 +834,161 @@
         ]
       }
     }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=Soccer-h264toh264-720p-cbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          48.0000,
+          57.0000,
+          59.0000,
+          49.0000,
+          60.0000,
+          62.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          48.0000,
+          57.0000,
+          59.0000,
+          49.0000,
+          60.0000,
+          62.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=Soccer-h264toh264-720p-vbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          49.0000,
+          50.0000,
+          48.0000,
+          51.0000,
+          52.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          49.0000,
+          50.0000,
+          48.0000,
+          51.0000,
+          52.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=Tallship-h264toh264-1080p-cbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          47.0000,
+          55.0000,
+          55.0000,
+          54.0000,
+          63.0000,
+          64.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          47.0000,
+          55.0000,
+          55.0000,
+          54.0000,
+          63.0000,
+          64.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=Tallship-h264toh264-1080p-vbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          44.0000,
+          49.0000,
+          50.0000,
+          51.0000,
+          55.0000,
+          56.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          44.0000,
+          49.0000,
+          50.0000,
+          51.0000,
+          55.0000,
+          56.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=tearsofsteel-h264toh264-4k-cbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          48.0000,
+          49.0000,
+          49.0000,
+          52.0000,
+          56.0000,
+          56.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          48.0000,
+          49.0000,
+          49.0000,
+          52.0000,
+          56.0000,
+          56.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=tearsofsteel-h264toh264-4k-vbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          44.0000,
+          46.0000,
+          46.0000,
+          51.0000,
+          53.0000,
+          53.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          44.0000,
+          46.0000,
+          46.0000,
+          51.0000,
+          53.0000,
+          53.0000
+        ]
+      }
+    }
   }
 }

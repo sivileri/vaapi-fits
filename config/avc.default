@@ -240,6 +240,42 @@ media._get_test_spec("avc", "transcode").update({
     outputs = [dict(codec = "avc", mode = "hw", width = 1280, height = 720)],
   ),
 
+# CBR rate control mode
+
+ "tearsofsteel-h264toh264-4k-cbr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000)],
+  ),
+  "Soccer-h264toh264-720p-cbr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_3mbps_25fps_High_at_L4.1_Cabac_frext_slice.h264"),
+    width=1280, height=720, format = "NV12", frames = 898, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000 )],
+  ),
+  "Tallship-h264toh264-1080p-cbr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088_10mbps_25fps_High_at_L4.1_Cabac_Prog.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 961, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000 )],
+  ),
+
+# VBR rate control mode
+
+ "tearsofsteel-h264toh264-4k-vbr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="VBR", avg_bitrate = 50000 , max_bitrate = 100000)],
+  ),
+  "Soccer-h264toh264-720p-vbr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_3mbps_25fps_High_at_L4.1_Cabac_frext_slice.h264"),
+    width=1280, height=720, format = "NV12", frames = 898, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="VBR", avg_bitrate = 50000 , max_bitrate = 100000 )],
+  ),
+  "Tallship-h264toh264-1080p-vbr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088_10mbps_25fps_High_at_L4.1_Cabac_Prog.h264"),
+    width = 1920, height = 1080, format = "NV12", frames = 961, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="VBR", avg_bitrate = 50000 , max_bitrate = 100000 )],
+  ),
+
 # QVBR rate control mode
 
  "tearsofsteel-h264toh264-4k-qvbr-transcode" : dict(

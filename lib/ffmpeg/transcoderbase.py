@@ -143,23 +143,47 @@ class BaseTranscoderTest(slash.Test):
       if self.rcmode is not None:
         opts += " -rc_mode {rcmode}"
         if (self.rcmode.upper() == "CBR"):
-          self.qvbr_avg_bitrate = output.get("avg_bitrate", None)
-          opts += " -b:v {qvbr_avg_bitrate}k"
+          self.rc_avg_bitrate = output.get("avg_bitrate", None)
+          opts += " -b:v {rc_avg_bitrate}k"
         elif (self.rcmode.upper() == "VBR"):
-          self.qvbr_avg_bitrate = output.get("avg_bitrate", None)
-          opts += " -b:v {qvbr_avg_bitrate}k"
-          self.qvbr_peak_bitrate = output.get("max_bitrate", None)
-          opts += " -maxrate {qvbr_peak_bitrate}k"
+          self.rc_avg_bitrate = output.get("avg_bitrate", None)
+          opts += " -b:v {rc_avg_bitrate}k"
+          self.rc_peak_bitrate = output.get("max_bitrate", None)
+          opts += " -maxrate {rc_peak_bitrate}k"
         elif (self.rcmode.upper() == "QVBR"):
-          self.qvbr_avg_bitrate = output.get("avg_bitrate", None)
-          opts += " -b:v {qvbr_avg_bitrate}k"
-          self.qvbr_peak_bitrate = output.get("max_bitrate", None)
-          opts += " -maxrate {qvbr_peak_bitrate}k"
+          self.rc_avg_bitrate = output.get("avg_bitrate", None)
+          opts += " -b:v {rc_avg_bitrate}k"
+          self.rc_peak_bitrate = output.get("max_bitrate", None)
+          opts += " -maxrate {rc_peak_bitrate}k"
           self.qvbr_quality = output.get("qvbr_quality", None)
           opts += " -global_quality {qvbr_quality}"
         else:
           print(self.rcmode)
           assert False # Unsupported RC mode for transcode
+
+        self.rc_max_frame_size = output.get("rc_max_frame_size_bytes", None)
+        if self.rc_max_frame_size is not None:
+          opts += " -max_frame_size {rc_max_frame_size}" # this is in bytes
+
+        self.bufsize = output.get("rc_buffer_size", None)
+        if self.bufsize is not None:
+          opts += " -bufsize {bufsize}k"
+
+        self.rc_init_occupancy = output.get("rc_init_occupancy", None)
+        if self.rc_init_occupancy is not None:
+          opts += " -rc_init_occupancy {rc_init_occupancy}k"
+
+        self.framerate = output.get("fps", None)
+        if self.framerate is not None:
+          opts += " -framerate {framerate}"
+
+        self.qmin = output.get("qmin", None)
+        if self.qmin is not None:
+          opts += " -qmin {qmin}"
+
+        self.qmax = output.get("qmax", None)
+        if self.qmax is not None:
+          opts += " -qmax {qmax}"
 
       vppscale = self.get_vpp_scale(
         output.get("width", None), output.get("height", None), mode)
@@ -187,6 +211,7 @@ class BaseTranscoderTest(slash.Test):
     opts += " -pix_fmt yuv420p -f rawvideo"
     opts += " -vframes {frames} -y {ossrcyuv}"
 
+    opts += " -loglevel trace"
     return opts.format(**vars(self))
 
   def check_output(self):
@@ -216,9 +241,24 @@ class BaseTranscoderTest(slash.Test):
         m = re.search("RC quality: {qvbr_quality}".format(**vars(self)), self.output, re.MULTILINE)
         assert m is not None, "Possible incorrect RC Quality Value used"
 
+      if self.rc_max_frame_size is not None:
+        m = re.search("Set max frame size: {rc_max_frame_size} bytes.".format(**vars(self)), self.output, re.MULTILINE)
+        assert m is not None, "Possible incorrect RC max_frame_size used"
+
+      if self.bufsize is not None:
+        assert self.rc_init_occupancy is not None
+        # Put 000 to convert from "{bufsize}k" in command line
+        m = re.search("RC buffer: {bufsize}000 bits, initial fullness {rc_init_occupancy}000 bits.".format(**vars(self)), self.output, re.MULTILINE)
+        assert m is not None, "Possible incorrect RC VBV buffer values used"
+
+      # ffmpeg sometimes rounds the argument, disable check
+      #if self.framerate is not None:
+      #  m = re.search("RC framerate: {framerate}/1".format(**vars(self)), self.output, re.MULTILINE)
+      #  assert m is not None, "Possible incorrect RC frame rate used"
+
   @timefn("ffmpeg")
-  def call_ffmpeg(self, iopts, oopts):
-    return call(f"{exe2os('ffmpeg')}"
+  def call_ffmpeg(self, iopts, oopts, envvars = ""):
+    return call(f"{envvars} {exe2os('ffmpeg')}"
                 " -v verbose {} {}".format(iopts, oopts))
 
   def transcode(self):
@@ -227,7 +267,11 @@ class BaseTranscoderTest(slash.Test):
     oopts = self.gen_output_opts()
 
     get_media().test_call_timeout = vars(self).get("call_timeout", 0)
-    self.output = self.call_ffmpeg(iopts, oopts)
+    envvars = "env "
+    # We are testing the actual encoding VBV params here, so disable any overriding
+    if self.rcmode is not None:
+      envvars += "D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE=0"
+    self.output = self.call_ffmpeg(iopts, oopts, envvars.format(**vars(self)))
 
     self.check_output()
 

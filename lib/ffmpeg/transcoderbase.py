@@ -7,6 +7,7 @@
 import os
 import re
 import slash
+import pathlib
 
 from ...lib.common import timefn, get_media, call, exe2os, filepath2os
 from ...lib.metrics import calculate_psnr
@@ -41,8 +42,16 @@ class BaseTranscoderTest(slash.Test):
     assert scale is not None, "failed to find a suitable vpp scaler: {}".format(mode)
     return scale.format(width = width or self.width, height = height or self.height)
 
+  def get_codec_from_file_ext(self, ext):
+    return {
+      ".h264"  : "avc",
+      ".h265"  : "hevc",
+      ".av1"   : "av1",
+    }.get(ext, "???")
+
   def get_file_ext(self, codec):
     return {
+      "av1"            : "av1",
       "avc"            : "h264",
       "hevc"           : "h265",
       "hevc-8"         : "h265",
@@ -107,7 +116,12 @@ class BaseTranscoderTest(slash.Test):
     opts += " -filter_hw_device hw"
     if "hw" == self.mode:
       opts += " -hwaccel {hwaccel}"
-    opts += " -c:v {}".format(self.get_decoder(self.codec, self.mode))
+
+    source_codec = self.get_codec_from_file_ext(pathlib.Path(filepath2os(self.source)).suffix)
+    if source_codec != "???" and source_codec != self.codec:
+      opts += " -c:v {}".format(self.get_decoder(source_codec, self.mode))
+    else:
+      opts += " -c:v {}".format(self.get_decoder(self.codec, self.mode))
     opts += f" -i {filepath2os(self.source)}"
 
     return opts.format(**vars(self))

@@ -466,5 +466,31 @@
         ]
       }
     }
-  }
+  },
+  "test/ffmpeg-vaapi/transcode/hevc.py:default.test(case=tearsofsteel-h264tohevc-4k-cbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    }
+  }  
 }

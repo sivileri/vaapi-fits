@@ -312,6 +312,13 @@ media._get_test_spec("avc", "transcode").update({
     outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000, rc_buffer_size = 100000, rc_init_occupancy = 100000, rc_max_frame_size_bytes = 4000, fps = 25, qmin = 10, qmax = 40 )],
   ),
 
+# Cross codec transcode
+
+  "tearsofsteel-hevctoh264-4k-cbr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h265-8b.2ch.128kbps.aac.h265"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000)],
+  ),
 
 })
 

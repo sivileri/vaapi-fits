@@ -756,5 +756,83 @@
         ]
       }
     }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=Soccer-h264toh264-720p-qvbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          30.0000,
+          40.0000,
+          40.0000,
+          35.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          30.0000,
+          40.0000,
+          40.0000,
+          35.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=Tallship-h264toh264-1080p-qvbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          25.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          25.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=tearsofsteel-h264toh264-4k-qvbr-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          30.0000,
+          38.0000,
+          38.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          30.0000,
+          38.0000,
+          38.0000,
+          40.0000,
+          40.0000,
+          40.0000
+        ]
+      }
+    }
   }
 }

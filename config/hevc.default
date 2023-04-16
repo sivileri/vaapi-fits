@@ -348,6 +348,25 @@ media._get_test_spec("hevc", "transcode").update({
     width = 1920, height = 1080, format = "NV12", frames = 300, mode = "hw",
     outputs = [dict(codec = "hevc", mode = "hw", width = 1280, height = 720)],
   ),
+
+  # QVBR rate control mode
+
+  "tearsofsteel-hevctohevc-4k-qbvr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h265-8b.2ch.128kbps.aac.h265"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "hevc", mode = "hw", avg_bitrate = 50000 , max_bitrate = 100000 , qvbr_quality = 35)],
+  ),
+  "SHDRef_Motion_DifDirect_01_1280x720p24f_intra_main-hevctohevc-720p-qbvr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_DifDirect_01_1280x720p24f_intra_main.h265"),
+    width = 1280, height = 720, format = "NV12", frames = 300, mode = "hw",
+    outputs = [dict(codec = "hevc", mode = "hw", avg_bitrate = 50000 , max_bitrate = 100000 , qvbr_quality = 35)],
+  ),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_intra_main-hevctohevc-1080p-qbvr-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_intra_main.h265"),
+    width = 1920, height = 1080, format = "NV12", frames = 300, mode = "hw",
+    outputs = [dict(codec = "hevc", mode = "hw", avg_bitrate = 50000 , max_bitrate = 100000 , qvbr_quality = 35)],
+  ),
+
 })
 
 for v in media._get_test_spec("hevc", "transcode").values():

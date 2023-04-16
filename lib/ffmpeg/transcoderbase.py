@@ -4,6 +4,7 @@
 ### SPDX-License-Identifier: BSD-3-Clause
 ###
 
+import os
 import re
 import slash
 
@@ -138,6 +139,19 @@ class BaseTranscoderTest(slash.Test):
         if vars(self).get("hwframes", None) is not None:
           filters[-1] += "=extra_hw_frames={hwframes}"
 
+      self.rcmode = output.get("rcmode", None)
+      if self.rcmode is not None:
+        if (self.rcmode == "QVBR"):
+          self.qvbr_avg_bitrate = output.get("avg_bitrate", None)
+          self.qvbr_peak_bitrate = output.get("max_bitrate", None)
+          self.qvbr_quality = output.get("qvbr_quality", None)
+          opts += " -b:v {qvbr_avg_bitrate}k"
+          opts += " -maxrate {qvbr_peak_bitrate}k"
+          opts += " -global_quality {qvbr_quality}"
+          opts += " -rc_mode {rcmode}"
+        else:
+          assert False # Unsupported RC mode for transcode
+
       vppscale = self.get_vpp_scale(
         output.get("width", None), output.get("height", None), mode)
       if vppscale is not None:
@@ -175,6 +189,24 @@ class BaseTranscoderTest(slash.Test):
       "hwaccel initialisation returned error", self.output, re.MULTILINE)
     assert m is None, "Failed to use hardware decode"
 
+    # rate control mode
+    if self.rcmode is not None:
+      rcmsgs = dict(
+        cqp = (
+          "Using constant-quality mode"
+          "|RC mode: CQP"
+          "|Driver does not report any supported rate control modes: assuming constant-quality"
+        ),
+        cbr = "RC mode: CBR",
+        vbr = "RC mode: VBR",
+        qvbr = "RC mode: QVBR",
+      )
+      m = re.search(rcmsgs[self.rcmode.lower()], self.output, re.MULTILINE)
+      assert m is not None, "Possible incorrect RC mode used"
+      if self.rcmode == "QVBR":
+        m = re.search("RC quality: {qvbr_quality}".format(**vars(self)), self.output, re.MULTILINE)
+        assert m is not None, "Possible incorrect RC Quality Value used"
+
   @timefn("ffmpeg")
   def call_ffmpeg(self, iopts, oopts):
     return call(f"{exe2os('ffmpeg')}"
@@ -203,6 +235,8 @@ class BaseTranscoderTest(slash.Test):
         oopts = "-vf \"{}\" -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
         self.call_ffmpeg(
           iopts.format(osencoded), oopts.format(vppscale, self.frames, osyuv))
+        if self.rcmode is not None:
+          self.check_bitrate(output, osencoded)
         self.check_resolution(output, osencoded)
         self.check_metrics(yuv, refctx = [(n, channel)])
         # delete yuv file after each iteration
@@ -213,6 +247,25 @@ class BaseTranscoderTest(slash.Test):
     expect = "{}x{}".format(
       output.get("width", self.width), output.get("height", self.height))
     assert expect == actual
+
+  def check_bitrate(self, output, encoded):
+    encsize = os.path.getsize(encoded)
+    bitrate_actual = encsize * 8 * vars(self).get("fps", 25) / 1024.0 / self.frames
+    get_media()._set_test_details(
+      size_encoded = encsize,
+      bitrate_actual = "{:-.2f}".format(bitrate_actual))
+
+    if "cbr" == self.rcmode:
+      bitrate_gap = abs(bitrate_actual - self.bitrate) / self.bitrate
+      get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
+
+      # acceptable bitrate within 13% of bitrate
+      if (os.environ.get('D3D12_VAAPIFITS_IGNORE_BITRATE_GAP') == None):
+        assert(bitrate_gap <= 0.13)
+
+    elif (("vbr" == self.rcmode) or ("qvbr" == self.rcmode)):
+      # acceptable bitrate within 25% of minrate and 10% of maxrate
+      assert(self.minrate * 0.75 <= bitrate_actual <= self.maxrate * 1.10)
 
   def check_metrics(self, yuv, refctx):
     get_media().baseline.check_psnr(

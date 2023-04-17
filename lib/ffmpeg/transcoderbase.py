@@ -9,7 +9,7 @@ import re
 import slash
 import pathlib
 
-from ...lib.common import timefn, get_media, call, exe2os, filepath2os
+from ...lib.common import timefn, get_media, call, exe2os, filepath2os, is_windows_libva_driver
 from ...lib.metrics import calculate_psnr
 from ...lib.ffmpeg.util import have_ffmpeg, ffmpeg_probe_resolution
 
@@ -271,9 +271,10 @@ class BaseTranscoderTest(slash.Test):
       #  assert m is not None, "Possible incorrect RC frame rate used"
 
   @timefn("ffmpeg")
-  def call_ffmpeg(self, iopts, oopts, envvars = ""):
+  def call_ffmpeg(self, iopts, oopts, envvars = "", undoenvvars=""):
     return call(f"{envvars} {exe2os('ffmpeg')}"
-                " -v verbose {} {}".format(iopts, oopts))
+                " -v verbose {} {}".format(iopts, oopts)
+                + f" {undoenvvars}")
 
   def transcode(self):
     self.validate_caps()
@@ -281,12 +282,23 @@ class BaseTranscoderTest(slash.Test):
     oopts = self.gen_output_opts()
 
     get_media().test_call_timeout = vars(self).get("call_timeout", 0)
-    envvars = "env "
-    # We are testing the actual encoding VBV params here, so disable any overriding
-    if self.rcmode is not None:
-      envvars += "D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE=0"
-    self.output = self.call_ffmpeg(iopts, oopts, envvars.format(**vars(self)))
 
+    if is_windows_libva_driver():
+      envvars = "powershell.exe "
+      undoenvvars = ";"
+      # We are testing the actual encoding VBV params here, so disable any overriding
+      if self.rcmode is not None:
+        envvars += "$env:backup_D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE=$env:D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE;"
+        envvars += "$env:D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE=\"0\";"
+        undoenvvars += "$env:D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE=$env:backup_D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE;"
+    else:
+      envvars = "env "
+      undoenvvars = ""
+      # We are testing the actual encoding VBV params here, so disable any overriding
+      if self.rcmode is not None:
+        envvars += "D3D12_VIDEO_ENC_CBR_FORCE_VBV_EQUAL_BITRATE=0"
+
+    self.output = self.call_ffmpeg(iopts, oopts, envvars.format(**vars(self)), undoenvvars.format(**vars(self)))
     self.check_output()
 
     for n, output in enumerate(self.outputs):

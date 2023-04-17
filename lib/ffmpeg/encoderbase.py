@@ -7,7 +7,7 @@
 import os
 import slash
 
-from ...lib.common import get_media, timefn, call, exe2os, filepath2os
+from ...lib.common import get_media, timefn, call, exe2os, filepath2os, is_windows_libva_driver
 from ...lib.ffmpeg.util import have_ffmpeg, BaseFormatMapper
 from ...lib.parameters import format_value
 from ...lib.util import skip_test_if_missing_features
@@ -182,7 +182,7 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     self.post_validate()
 
   @timefn("ffmpeg")
-  def call_ffmpeg(self, iopts, oopts, envvars = ""):
+  def call_ffmpeg(self, iopts, oopts, envvars = "", undoenvvars = ""):
     return call(
       (
         f"{envvars} {exe2os('ffmpeg')}"
@@ -192,6 +192,7 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       ).format(**vars(self)) + (
         " -v verbose {iopts} {oopts}"
       ).format(iopts = iopts, oopts = oopts)
+      + f" {undoenvvars}"
     )
 
   def encode(self):
@@ -208,11 +209,20 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     iopts = self.gen_input_opts()
     oopts = self.gen_output_opts()
 
-    envvars = "env "
-    if vars(self).get("tile_mode", None) is not None:
-      envvars += "D3D12_VIDEO_FORCE_TILE_MODE={tile_mode}"
+    if is_windows_libva_driver():
+      envvars = "powershell.exe "
+      undoenvvars = ";"
+      if vars(self).get("tile_mode", None) is not None:
+        envvars += "$env:backup_D3D12_VIDEO_FORCE_TILE_MODE=$env:D3D12_VIDEO_FORCE_TILE_MODE;"
+        envvars += "$env:D3D12_VIDEO_FORCE_TILE_MODE=\"0\";"
+        undoenvvars += "$env:D3D12_VIDEO_FORCE_TILE_MODE=$env:backup_D3D12_VIDEO_FORCE_TILE_MODE;"
+    else:
+      envvars = "env "
+      undoenvvars = ""
+      if vars(self).get("tile_mode", None) is not None:
+        envvars += "D3D12_VIDEO_FORCE_TILE_MODE={tile_mode}"
 
-    self.output = self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)), envvars.format(**vars(self)))
+    self.output = self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)), envvars.format(**vars(self)), undoenvvars.format(**vars(self)))
 
     if vars(self).get("r2r", None) is not None:
       assert type(self.r2r) is int and self.r2r > 1, "invalid r2r value"

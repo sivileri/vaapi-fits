@@ -299,17 +299,17 @@ media._get_test_spec("avc", "transcode").update({
  "tearsofsteel-h264toh264-4k-cbr-transcode-rcparams" : dict(
     source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
     width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
-    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000, rc_buffer_size = 100000, rc_init_occupancy = 100000, rc_max_frame_size_bytes = 3333, fps = 30)],
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 250000, rc_buffer_size = 250000, rc_init_occupancy = 250000, rc_max_frame_size_bytes = 1250, fps = 25)],
   ),
   "Soccer-h264toh264-720p-cbr-transcode-rcparams" : dict(
     source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_3mbps_25fps_High_at_L4.1_Cabac_frext_slice.h264"),
     width=1280, height=720, format = "NV12", frames = 898, mode = "hw",
-    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000, rc_buffer_size = 100000, rc_init_occupancy = 100000, rc_max_frame_size_bytes = 4000, fps = 25 )],
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 250000, rc_buffer_size = 250000, rc_init_occupancy = 250000, rc_max_frame_size_bytes = 1250, fps = 25 )],
   ),
   "Tallship-h264toh264-1080p-cbr-transcode-rcparams" : dict(
     source = os.path.join(assets, "DXVAContent", "Tallship_1920x1088_10mbps_25fps_High_at_L4.1_Cabac_Prog.h264"),
     width = 1920, height = 1080, format = "NV12", frames = 961, mode = "hw",
-    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000, rc_buffer_size = 100000, rc_init_occupancy = 100000, rc_max_frame_size_bytes = 4000, fps = 25, qmin = 10, qmax = 40 )],
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="CBR", avg_bitrate = 100000, rc_buffer_size = 100000, rc_init_occupancy = 100000, rc_max_frame_size_bytes = 500, fps = 25, qmin = 10, qmax = 40 )],
   ),
 
 # Cross codec transcode

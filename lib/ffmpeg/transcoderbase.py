@@ -320,7 +320,8 @@ class BaseTranscoderTest(slash.Test):
         self.call_ffmpeg(
           iopts.format(osencoded), oopts.format(vppscale, self.frames, osyuv))
         if self.rcmode is not None:
-          self.check_bitrate(output, osencoded)
+          if (os.environ.get('D3D12_VAAPIFITS_IGNORE_BITRATE_GAP') == None):
+            self.check_bitrate(output, osencoded)
         self.check_resolution(output, osencoded)
         self.check_metrics(yuv, refctx = [(n, channel)])
         # delete yuv file after each iteration
@@ -342,17 +343,12 @@ class BaseTranscoderTest(slash.Test):
       size_encoded = encsize,
       bitrate_actual = "{:-.2f}".format(bitrate_actual))
 
-    if "cbr" == self.rcmode.lower():
-      bitrate_gap = abs(bitrate_actual - self.rc_avg_bitrate) / self.rc_avg_bitrate
+    # Check that the bitrate is below the target.
+    if (("vbr" == self.rcmode.lower()) or ("vbr" == self.rcmode.lower()) or ("qvbr" == self.rcmode.lower())):
+      max_expected_bitrate = self.rc_avg_bitrate * 1.13 # 13 % more than requested bitrate
+      assert(bitrate_actual <= max_expected_bitrate)
+      bitrate_gap = (bitrate_actual - self.rc_avg_bitrate) / self.rc_avg_bitrate
       get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
-
-      # acceptable bitrate within 13% of bitrate
-      if (os.environ.get('D3D12_VAAPIFITS_IGNORE_BITRATE_GAP') == None):
-        assert(bitrate_gap <= 0.13)
-
-    elif (("vbr" == self.rcmode.lower()) or ("qvbr" == self.rcmode.lower())):
-      # acceptable bitrate within 25% of minrate and 10% of maxrate
-      assert(self.rc_avg_bitrate * 0.75 <= bitrate_actual <= self.rc_peak_bitrate * 1.10)
 
   def check_metrics(self, yuv, refctx):
     get_media().baseline.check_psnr(

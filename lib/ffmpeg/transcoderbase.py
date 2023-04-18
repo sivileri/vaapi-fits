@@ -257,7 +257,12 @@ class BaseTranscoderTest(slash.Test):
 
       if self.rc_max_frame_size is not None:
         m = re.search("Set max frame size: {rc_max_frame_size} bytes.".format(**vars(self)), self.output, re.MULTILINE)
-        assert m is not None, "Possible incorrect RC max_frame_size used"
+        if m is None:
+          m = re.search("Max frame size attribute is not supported", self.output, re.MULTILINE)
+          if m is None:
+            assert m is not None, "Possible incorrect RC max_frame_size used"
+          else:
+            slash.skip_test("Max frame size attribute is not supported")
 
       if self.bufsize is not None:
         assert self.rc_init_occupancy is not None
@@ -334,7 +339,7 @@ class BaseTranscoderTest(slash.Test):
       size_encoded = encsize,
       bitrate_actual = "{:-.2f}".format(bitrate_actual))
 
-    if "cbr" == self.rcmode:
+    if "cbr" == self.rcmode.lower():
       bitrate_gap = abs(bitrate_actual - self.bitrate) / self.bitrate
       get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
 
@@ -342,7 +347,7 @@ class BaseTranscoderTest(slash.Test):
       if (os.environ.get('D3D12_VAAPIFITS_IGNORE_BITRATE_GAP') == None):
         assert(bitrate_gap <= 0.13)
 
-    elif (("vbr" == self.rcmode) or ("qvbr" == self.rcmode)):
+    elif (("vbr" == self.rcmode.lower()) or ("qvbr" == self.rcmode.lower())):
       # acceptable bitrate within 25% of minrate and 10% of maxrate
       assert(self.minrate * 0.75 <= bitrate_actual <= self.maxrate * 1.10)
 

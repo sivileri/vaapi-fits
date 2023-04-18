@@ -334,13 +334,16 @@ class BaseTranscoderTest(slash.Test):
 
   def check_bitrate(self, output, encoded):
     encsize = os.path.getsize(encoded)
-    bitrate_actual = encsize * 8 * vars(self).get("fps", 25) / 1024.0 / self.frames
+    if self.framerate is not None:
+      bitrate_actual = encsize * 8 * int(self.framerate) / 1024.0 / self.frames
+    else:
+      bitrate_actual = encsize * 8 * 25 / 1024.0 / self.frames
     get_media()._set_test_details(
       size_encoded = encsize,
       bitrate_actual = "{:-.2f}".format(bitrate_actual))
 
     if "cbr" == self.rcmode.lower():
-      bitrate_gap = abs(bitrate_actual - self.bitrate) / self.bitrate
+      bitrate_gap = abs(bitrate_actual - self.rc_avg_bitrate) / self.rc_avg_bitrate
       get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
 
       # acceptable bitrate within 13% of bitrate
@@ -349,7 +352,7 @@ class BaseTranscoderTest(slash.Test):
 
     elif (("vbr" == self.rcmode.lower()) or ("qvbr" == self.rcmode.lower())):
       # acceptable bitrate within 25% of minrate and 10% of maxrate
-      assert(self.minrate * 0.75 <= bitrate_actual <= self.maxrate * 1.10)
+      assert(self.rc_avg_bitrate * 0.75 <= bitrate_actual <= self.rc_peak_bitrate * 1.10)
 
   def check_metrics(self, yuv, refctx):
     get_media().baseline.check_psnr(

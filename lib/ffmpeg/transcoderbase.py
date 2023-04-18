@@ -351,7 +351,7 @@ class BaseTranscoderTest(slash.Test):
       max_expected_bitrate = (self.rc_avg_bitrate * 0.3 + self.rc_peak_bitrate * 0.7) # In between the average and the peak
     elif ("qvbr" == self.rcmode.lower()):
       # Using better quality values can move this closer to the peak than the average
-      max_expected_bitrate = self.rc_avg_bitrate * 1.10 # 10 % more than requested peak bitrate
+      max_expected_bitrate = self.rc_peak_bitrate * 1.10 # 10 % more than requested peak bitrate
 
     assert(bitrate_actual <= max_expected_bitrate)
 

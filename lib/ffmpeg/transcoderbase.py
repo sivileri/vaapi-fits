@@ -344,11 +344,16 @@ class BaseTranscoderTest(slash.Test):
       bitrate_actual = "{:-.2f}".format(bitrate_actual))
 
     # Check that the bitrate is below the target.
-    if (("vbr" == self.rcmode.lower()) or ("vbr" == self.rcmode.lower()) or ("qvbr" == self.rcmode.lower())):
-      max_expected_bitrate = self.rc_avg_bitrate * 1.13 # 13 % more than requested bitrate
-      assert(bitrate_actual <= max_expected_bitrate)
-      bitrate_gap = (bitrate_actual - self.rc_avg_bitrate) / self.rc_avg_bitrate
-      get_media()._set_test_details(bitrate_gap = "{:.2%}".format(bitrate_gap))
+    max_expected_bitrate = 0.0
+    if ("cbr" == self.rcmode.lower()):
+      max_expected_bitrate = self.rc_avg_bitrate * 1.13 # 13 % more than average requested bitrate
+    elif ("vbr" == self.rcmode.lower()):
+      max_expected_bitrate = (self.rc_avg_bitrate * 0.3 + self.rc_peak_bitrate * 0.7) # In between the average and the peak
+    elif ("qvbr" == self.rcmode.lower()):
+      # Using better quality values can move this closer to the peak than the average
+      max_expected_bitrate = self.rc_avg_bitrate * 1.10 # 10 % more than requested peak bitrate
+
+    assert(bitrate_actual <= max_expected_bitrate)
 
   def check_metrics(self, yuv, refctx):
     get_media().baseline.check_psnr(

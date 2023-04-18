@@ -278,10 +278,20 @@ media._get_test_spec("avc", "transcode").update({
 
 # QVBR rate control mode
 
- "tearsofsteel-h264toh264-4k-qvbr-transcode" : dict(
+ "tearsofsteel-h264toh264-4k-qvbr-min-transcode" : dict(
     source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
     width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
-    outputs = [dict(codec = "avc", mode = "hw", rcmode="QVBR", avg_bitrate = 50000 , max_bitrate = 100000 , qvbr_quality = 35)],
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="QVBR", avg_bitrate = 50000 , max_bitrate = 100000 , qvbr_quality = 1)],
+  ),
+  "tearsofsteel-h264toh264-4k-qvbr-mid-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="QVBR", avg_bitrate = 50000 , max_bitrate = 100000 , qvbr_quality = 26)],
+  ),
+  "tearsofsteel-h264toh264-4k-qvbr-max-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "avc", mode = "hw", rcmode="QVBR", avg_bitrate = 50000 , max_bitrate = 100000 , qvbr_quality = 51)],
   ),
   "Soccer-h264toh264-720p-qvbr-transcode" : dict(
     source = os.path.join(assets, "DXVAContent", "Soccer_1280x720p_3mbps_25fps_High_at_L4.1_Cabac_frext_slice.h264"),

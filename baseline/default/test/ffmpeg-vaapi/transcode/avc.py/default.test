@@ -809,32 +809,84 @@
       }
     }
   },
-  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=tearsofsteel-h264toh264-4k-qvbr-transcode)": {
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=tearsofsteel-h264toh264-4k-qvbr-max-transcode)": {
     "drv.d3d12": {
       "(0, 0)": {
         "psnr": [
+          28.0000,
+          35.0000,
+          35.0000,
           30.0000,
-          38.0000,
-          38.0000,
-          40.0000,
-          40.0000,
-          40.0000
+          35.0000,
+          35.0000
         ]
       }
     },
     "drv.vaon12": {
       "(0, 0)": {
         "psnr": [
+          28.0000,
+          35.0000,
+          35.0000,
           30.0000,
-          38.0000,
-          38.0000,
-          40.0000,
-          40.0000,
-          40.0000
+          35.0000,
+          35.0000
         ]
       }
     }
   },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=tearsofsteel-h264toh264-4k-qvbr-mid-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          41.0000,
+          41.0000,
+          41.0000,
+          45.0000,
+          45.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          40.0000,
+          41.0000,
+          41.0000,
+          41.0000,
+          45.0000,
+          45.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=tearsofsteel-h264toh264-4k-qvbr-min-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          45.0000,
+          45.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          45.0000,
+          45.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    }
+  },  
   "test/ffmpeg-vaapi/transcode/avc.py:default.test(case=Soccer-h264toh264-720p-cbr-transcode)": {
     "drv.d3d12": {
       "(0, 0)": {

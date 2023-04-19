@@ -35,6 +35,10 @@ class TranscoderTest(BaseTranscoderTest):
         sw = (dict(maxres = (16384, 16384)), have_ffmpeg_decoder("vc1"), "vc1"),
         hw = (platform.get_caps("decode", "vc1"), have_ffmpeg_decoder("vc1"), "vc1"),
       ),
+      "av1-8" : dict(
+        sw = (dict(maxres = (16384, 16384)), have_ffmpeg_decoder("av1"), "av1"),
+        hw = (platform.get_caps("decode", "av1_8"), have_ffmpeg_decoder("av1"), "av1"),
+      ),
     },
     encode = {
       "avc" : dict(
@@ -55,6 +59,10 @@ class TranscoderTest(BaseTranscoderTest):
         sw = (dict(maxres = (16384, 16384)), have_ffmpeg_encoder("mjpeg"), "mjpeg"),
         hw = (platform.get_caps("vdenc", "jpeg"), have_ffmpeg_encoder("mjpeg_vaapi"), "mjpeg_vaapi"),
       ),
+      "av1-8" : dict(
+        sw = (dict(maxres = (16384, 16384)), have_ffmpeg_encoder("av1"), "av1"),
+        hw = (platform.get_caps("encode", "av1_8"), have_ffmpeg_encoder("av1_vaapi"), "av1_vaapi"),
+      ),
     },
     vpp = {
       "scale" : dict(
@@ -67,6 +75,10 @@ class TranscoderTest(BaseTranscoderTest):
   # hevc implies hevc 8 bit
   requirements["encode"]["hevc"] = requirements["encode"]["hevc-8"]
   requirements["decode"]["hevc"] = requirements["decode"]["hevc-8"]
+
+  # av1 implies av1 8 bit
+  requirements["encode"]["av1"] = requirements["encode"]["av1-8"]
+  requirements["decode"]["av1"] = requirements["decode"]["av1-8"]
 
   def before(self):
     super().before()

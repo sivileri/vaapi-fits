@@ -47,11 +47,12 @@ class BaseTranscoderTest(slash.Test):
       ".h264"  : "avc",
       ".h265"  : "hevc",
       ".av1"   : "av1",
+      ".ivf"   : "av1",
     }.get(ext, "???")
 
   def get_file_ext(self, codec):
     return {
-      "av1"            : "av1",
+      "av1"            : "ivf",
       "avc"            : "h264",
       "hevc"           : "h265",
       "hevc-8"         : "h265",
@@ -152,6 +153,14 @@ class BaseTranscoderTest(slash.Test):
         filters.extend(["format=nv12", "hwupload"])
         if vars(self).get("hwframes", None) is not None:
           filters[-1] += "=extra_hw_frames={hwframes}"
+
+      self.gop_size = output.get("gop_size", None)
+      if self.gop_size is not None:
+        opts += " -g {gop_size}"
+
+      self.num_b_frames = output.get("num_b_frames", None)
+      if self.num_b_frames is not None:
+        opts += " -bf {num_b_frames}"
 
       self.rcmode = output.get("rcmode", None)
       if self.rcmode is not None:
@@ -314,11 +323,18 @@ class BaseTranscoderTest(slash.Test):
         yuv = get_media()._test_artifact(
           "{}_{}_{}.yuv".format(self.case, n, channel))
         osyuv = filepath2os(yuv)
-        vppscale = self.get_vpp_scale(self.width, self.height, "sw")
-        iopts = "-i {}"
-        oopts = "-vf \"{}\" -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
+
+        if self.codec.lower() == "av1":
+          vppscale = self.get_vpp_scale(self.width, self.height, "hw")
+          iopts = "-init_hw_device vaapi=hw:/dev/dri/card0 -hwaccel_output_format vaapi -filter_hw_device hw -hwaccel vaapi -c:v av1 -i {}"
+          oopts = "-vf \"{}\" -vf \"hwdownload,format=nv12\" -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
+        else:
+          vppscale = self.get_vpp_scale(self.width, self.height, "sw")
+          iopts = "-i {}"
+          oopts = "-vf \"{}\" -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
         self.call_ffmpeg(
           iopts.format(osencoded), oopts.format(vppscale, self.frames, osyuv))
+
         if self.rcmode is not None:
           if (os.environ.get('D3D12_VAAPIFITS_IGNORE_BITRATE_GAP') == None):
             self.check_bitrate(output, osencoded)

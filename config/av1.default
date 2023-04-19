@@ -427,3 +427,29 @@ media._get_test_spec("av1", "encode", "10bit").update({
     ),
   ),
 })
+
+media._get_test_spec("av1", "transcode").update({
+
+# Pure transcode
+
+  "AV1_4096x2160-av1toav1-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "AV1_4096x2160.mp4"),
+    width = 4096, height = 2160, format = "NV12", frames = 256, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0)],
+  ),
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1-av1toav1-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 300, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0)],
+  ),
+
+  "screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 227, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0)],
+  )
+
+})
+
+for v in media._get_test_spec("av1", "transcode").values():
+  v["refctx"] = ["driver"]

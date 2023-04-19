@@ -437,6 +437,7 @@ media._get_test_spec("av1", "transcode").update({
     width = 4096, height = 2160, format = "NV12", frames = 256, mode = "hw",
     outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0)],
   ),
+
   "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1-av1toav1-transcode" : dict(
     source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1.mp4"),
     width = 1920, height = 1080, format = "NV12", frames = 300, mode = "hw",
@@ -447,7 +448,51 @@ media._get_test_spec("av1", "transcode").update({
     source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
     width = 1920, height = 1080, format = "NV12", frames = 227, mode = "hw",
     outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0)],
-  )
+  ),
+
+# VPP Scaling filter/Cross-codec
+
+  "tearsofsteel-h264toav1-4k-transcode-vppscale" : dict(
+    source = os.path.join(assets, "DXVAContent", "tearsofsteel_4k_60s_24fps.12000kbps.3840x2160.h264-8b.2ch.128kbps.aac.h264"),
+    width = 3840, height = 2160, format = "NV12", frames = 1440, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0, width = 1920, height = 1080)],
+  ),
+
+# CBR rate control mode
+
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1-av1toav1-transcode-cbr" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 300, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0, rcmode="CBR", avg_bitrate = 250000, rc_buffer_size = 250000, rc_init_occupancy = 250000)],
+  ),
+
+# VBR rate control mode
+
+  "screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode-vbr" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 227, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0, rcmode="VBR", avg_bitrate = 100000 , max_bitrate = 200000)],
+  ),
+
+# QVBR rate control mode
+
+  "screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode-min-qvbr" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 227, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0, rcmode="QVBR", avg_bitrate = 100000 , max_bitrate = 200000, qvbr_quality = 1)],
+  ),
+
+  "screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode-mid-qvbr" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 227, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0, rcmode="QVBR", avg_bitrate = 100000 , max_bitrate = 200000, qvbr_quality = 31)],
+  ),
+
+  "screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode-max-qvbr" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 227, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0, rcmode="QVBR", avg_bitrate = 100000 , max_bitrate = 200000, qvbr_quality = 63)],
+  ),
 
 })
 

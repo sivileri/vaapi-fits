@@ -327,7 +327,7 @@ class BaseTranscoderTest(slash.Test):
         if self.codec.lower() == "av1":
           vppscale = self.get_vpp_scale(self.width, self.height, "hw")
           iopts = "-init_hw_device vaapi=hw:/dev/dri/card0 -hwaccel_output_format vaapi -filter_hw_device hw -hwaccel vaapi -c:v av1 -i {}"
-          oopts = "-vf \"{}\" -vf \"hwdownload,format=nv12\" -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
+          oopts = "-vf \"{},hwdownload,format=nv12\" -pix_fmt yuv420p -f rawvideo -vframes {} -y {}"
         else:
           vppscale = self.get_vpp_scale(self.width, self.height, "sw")
           iopts = "-i {}"

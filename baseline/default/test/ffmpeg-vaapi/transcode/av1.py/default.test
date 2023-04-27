@@ -25,6 +25,32 @@
       }
     }
   },
+  "test/ffmpeg-vaapi/transcode/av1.py:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1-av1toav1-transcode-bframes)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          45.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    }
+  },
   "test/ffmpeg-vaapi/transcode/av1.py:default.test(case=MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1-av1toav1-transcode-cbr)": {
     "drv.d3d12": {
       "(0, 0)": {
@@ -77,6 +103,32 @@
       }
     }
   },
+  "test/ffmpeg-vaapi/transcode/av1.py:default.test(case=screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode-bframes)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          50.0000,
+          45.0000,
+          45.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          50.0000,
+          49.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    }
+  },
   "test/ffmpeg-vaapi/transcode/av1.py:default.test(case=screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode-vbr)": {
     "drv.d3d12": {
       "(0, 0)": {
@@ -104,6 +156,32 @@
     }
   },
   "test/ffmpeg-vaapi/transcode/av1.py:default.test(case=AV1_4096x2160-av1toav1-transcode)": {
+    "drv.d3d12": {
+      "(0, 0)": {
+        "psnr": [
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    },
+    "drv.vaon12": {
+      "(0, 0)": {
+        "psnr": [
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000,
+          50.0000
+        ]
+      }
+    }
+  },
+  "test/ffmpeg-vaapi/transcode/av1.py:default.test(case=AV1_4096x2160-av1toav1-transcode-bframes)": {
     "drv.d3d12": {
       "(0, 0)": {
         "psnr": [

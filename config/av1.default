@@ -450,6 +450,24 @@ media._get_test_spec("av1", "transcode").update({
     outputs = [dict(codec = "av1", mode = "hw", gop_size = 30, num_b_frames = 0)],
   ),
 
+  "AV1_4096x2160-av1toav1-transcode-bframes" : dict(
+    source = os.path.join(assets, "DXVAContent", "AV1_4096x2160.mp4"),
+    width = 4096, height = 2160, format = "NV12", frames = 256, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 3, num_b_frames = 1)],
+  ),
+
+  "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1-av1toav1-transcode-bframes" : dict(
+    source = os.path.join(assets, "DXVAContent", "MSHDRef_Motion_FastCam_Action_03_1920x1080p24f_lowlevel_av1.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 300, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 5, num_b_frames = 2)],
+  ),
+
+  "screen_notepad_1920x1080_2000kbps_gop2s-av1toav1-transcode-bframes" : dict(
+    source = os.path.join(assets, "DXVAContent", "screen_notepad_1920x1080_2000kbps_gop2s.mp4"),
+    width = 1920, height = 1080, format = "NV12", frames = 227, mode = "hw",
+    outputs = [dict(codec = "av1", mode = "hw", gop_size = 7, num_b_frames = 3)],
+  ),
+
 # VPP Scaling filter/Cross-codec
 
   "tearsofsteel-h264toav1-4k-transcode-vppscale" : dict(

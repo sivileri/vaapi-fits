@@ -19,15 +19,489 @@
         60.1735,
         59.4859
       ]
-    },
-    "drv.vaon12_warp": {
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=1250,case=QVGA,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
       "psnr": [
-        54.6494,
-        57.6273,
-        56.7264,
-        56.9927,
-        60.1735,
-        59.4859
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=1,bitrate=1250,case=QVGA,fps=30,gop=3,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        58.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        58.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=4000,case=720p,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        32.0000,
+        40.0000,
+        40.0000,
+        32.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        32.0000,
+        40.0000,
+        40.0000,
+        32.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=1,bitrate=4000,case=720p,fps=30,gop=3,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        32.0000,
+        40.0000,
+        40.0000,
+        32.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        32.0000,
+        40.0000,
+        40.0000,
+        32.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=4000,case=720p,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=6000,case=1080p,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=6000,case=1080p,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        30.0000,
+        50.0000,
+        50.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        30.0000,
+        50.0000,
+        50.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=36000,case=2160p,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        30.0000,
+        50.0000,
+        50.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        30.0000,
+        50.0000,
+        50.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=1,bitrate=36000,case=2160p,fps=30,gop=3,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        40.0000,
+        50.0000,
+        50.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        40.0000,
+        50.0000,
+        50.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=36000,case=2160p,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        30.0000,
+        50.0000,
+        50.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        50.0000,
+        50.0000,
+        30.0000,
+        50.0000,
+        50.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=36000,case=2160p,fps=30,gop=1,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        50.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        50.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=1,bitrate=36000,case=2160p,fps=30,gop=3,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        35.0000,
+        50.0000,
+        50.0000,
+        35.0000,
+        50.0000,
+        50.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        35.0000,
+        50.0000,
+        50.0000,
+        35.0000,
+        50.0000,
+        50.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=36000,case=2160p,fps=30,gop=1,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        60.0000,
+        60.0000,
+        45.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        45.0000,
+        60.0000,
+        60.0000,
+        45.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=1,bitrate=6000,case=1080p,fps=30,gop=3,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=2,bitrate=6000,case=1080p,fps=30,gop=5,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=6000,case=1080p,fps=30,gop=30,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        29.0000,
+        40.0000,
+        40.0000,
+        29.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        29.0000,
+        40.0000,
+        40.0000,
+        29.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=6000,case=1080p,fps=30,gop=1,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=2,bitrate=6000,case=1080p,fps=30,gop=5,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=6000,case=1080p,fps=30,gop=1,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=1,bitrate=4000,case=720p,fps=30,gop=3,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=4000,case=720p,fps=30,gop=1,profile=main,quality=4,tile_cols_log2=2,tile_mode=1,tile_rows_log2=1)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:vbr.test(bframes=0,bitrate=4000,case=720p,fps=30,gop=1,profile=main,quality=4,tile_cols_log2=0,tile_mode=0,tile_rows_log2=0)": {
+    "drv.d3d12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        30.0000,
+        40.0000,
+        40.0000,
+        30.0000,
+        40.0000,
+        40.0000
       ]
     }
   }

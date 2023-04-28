@@ -19,6 +19,9 @@ class AV1EncoderBaseTest(EncoderTest):
       ffenc = "av1_vaapi",
     )
 
+  def check_bitrate(self):
+    pass # Disable RC controls for these tests in AV1, transcode/AV1 checks them with more suitable input streams
+
   def get_file_ext(self):
     return "ivf"
 

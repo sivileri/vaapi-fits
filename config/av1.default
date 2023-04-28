@@ -242,7 +242,7 @@ media._get_test_spec("av1", "encode", "8bit").update({
           # Intra, Inter P, Inter B
           dict(gop = 1, tile_rows_log2 = 1, tile_cols_log2 = 2, bframes = 0, bitrate = 4000, fps = 30, profile = "main", tile_mode = 1),
           dict(gop = 30, tile_rows_log2 = 1, tile_cols_log2 = 2, bframes = 0, bitrate = 4000, fps = 30, profile = "main", tile_mode = 1),
-          dict(gop = 0, tile_rows_log2 = 1, tile_cols_log2 = 2, bframes = 1, bitrate = 4000, fps = 30, profile = "main", tile_mode = 1),
+          dict(gop = 3, tile_rows_log2 = 1, tile_cols_log2 = 2, bframes = 1, bitrate = 4000, fps = 30, profile = "main", tile_mode = 1),
       ],
       vbr = [
         # Single tile

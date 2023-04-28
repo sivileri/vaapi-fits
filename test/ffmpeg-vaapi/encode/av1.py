@@ -35,7 +35,7 @@ class AV1EncoderLPTest(AV1EncoderBaseTest):
     )
 
 class cqp_lp(AV1EncoderLPTest):
-  def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2,qp, quality, profile, tile_mode):
+  def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2, qp, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
     vars(self).update(
       case      = case,
@@ -59,6 +59,7 @@ class cbr_lp(AV1EncoderLPTest):
   def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
     vars(self).update(
+      bframes = bframes,
       bitrate = bitrate,
       case    = case,
       fps     = fps,
@@ -115,8 +116,8 @@ class cqp(AV1EncoderTest):
     )
 
   @slash.parametrize(*gen_av1_cqp_parameters(spec))
-  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, qp, quality, profile, tile_mode):
-    self.init(spec, case, gop, bframes, tile_cols_log2, tile_rows_log2, qp, quality, profile, tile_mode)
+  def test(self, case, gop, tile_rows_log2, tile_cols_log2, bframes, qp, quality, profile, tile_mode):
+    self.init(spec, case, gop, tile_rows_log2, tile_cols_log2, bframes, qp, quality, profile, tile_mode)
     self.encode()
 
 class cbr(AV1EncoderTest):
@@ -131,6 +132,7 @@ class cbr(AV1EncoderTest):
     if ((bframes > 0) and (maxSupportedBFrames == 0)):
       slash.skip_test("B frames are not supported by underlying device.")    
     vars(self).update(
+      bframes = bframes,
       bitrate = bitrate,
       case    = case,
       fps     = fps,
@@ -146,10 +148,9 @@ class cbr(AV1EncoderTest):
     )
 
   @slash.parametrize(*gen_av1_cbr_parameters(spec))
-  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, quality, fps, profile, tile_mode):
+  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
     self.init(spec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode)
     self.encode()
-
 
 class vbr(AV1EncoderTest):
   def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
@@ -163,6 +164,7 @@ class vbr(AV1EncoderTest):
     if ((bframes > 0) and (maxSupportedBFrames == 0)):
       slash.skip_test("B frames are not supported by underlying device.")    
     vars(self).update(
+      bframes = bframes,
       bitrate = bitrate,
       case    = case,
       fps     = fps,
@@ -178,6 +180,6 @@ class vbr(AV1EncoderTest):
     )
 
   @slash.parametrize(*gen_av1_vbr_parameters(spec))
-  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, quality, fps, profile, tile_mode):
+  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
     self.init(spec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode)
     self.encode()

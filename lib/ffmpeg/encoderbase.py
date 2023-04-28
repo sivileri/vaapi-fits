@@ -214,7 +214,7 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       undoenvvars = ";"
       if vars(self).get("tile_mode", None) is not None:
         envvars += "$env:backup_D3D12_VIDEO_FORCE_TILE_MODE=$env:D3D12_VIDEO_FORCE_TILE_MODE;"
-        envvars += "$env:D3D12_VIDEO_FORCE_TILE_MODE=\"0\";"
+        envvars += "$env:D3D12_VIDEO_FORCE_TILE_MODE=\"{tile_mode}\";"
         undoenvvars += "$env:D3D12_VIDEO_FORCE_TILE_MODE=$env:backup_D3D12_VIDEO_FORCE_TILE_MODE;"
     else:
       envvars = "env "

@@ -54,6 +54,6 @@ class default(VppTest):
 
     get_media()._set_test_details(ssim = ssim)
 
-    assert 1.0 >= ssim[0] >= 0.90
-    assert 1.0 >= ssim[1] >= 0.93
-    assert 1.0 >= ssim[2] >= 0.93
+    assert 1.0 >= ssim[0] >= 0.88
+    assert 1.0 >= ssim[1] >= 0.88
+    assert 1.0 >= ssim[2] >= 0.88

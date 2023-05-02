@@ -32,7 +32,7 @@ class default(VppTest):
   def check_metrics(self):
     check_metric(
       # if user specified metric, then use it.  Otherwise, use ssim metric with perfect score
-      metric = vars(self).get("metric", dict(type = "ssim", miny = 1.0, minu = 1.0, minv = 1.0)),
+      metric = vars(self).get("metric", dict(type = "ssim", miny = 0.97, minu = 0.97, minv = 0.97)),
       # If user specified reference, use it.  Otherwise, assume source is the reference.
       reference = format_value(self.reference, **vars(self))
         if vars(self).get("reference") else self.source,

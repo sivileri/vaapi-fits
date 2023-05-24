@@ -50,10 +50,10 @@ media._get_test_spec("vpp", "mirroring").update(copy.deepcopy(inputs))
 for v in media._get_test_spec("vpp", "mirroring").values():
   v["refctx"] = ["key:vpp.mirroring"]
 
-# rotation uses md5 metric and should be same for all drivers and middleware
+# rotation uses ssim metric and should be same for all drivers and middleware
 media._get_test_spec("vpp", "rotation").update(copy.deepcopy(inputs))
 for v in media._get_test_spec("vpp", "rotation").values():
-  v["refctx"] = ["key:vpp.rotation"]
+  v["reference"] = os.path.join(assets, "yuv", "filenameplaceholder"),
 
 # transpose uses md5 metric and should be same for all drivers and middleware
 media._get_test_spec("vpp", "transpose").update(copy.deepcopy(inputs))

@@ -15,7 +15,6 @@ class default(VppTest):
   def before(self):
     vars(self).update(
       caps    = platform.get_caps("vpp", "rotation"),
-      metric  = dict(type = "md5"),
       vpp_op  = "transpose",
     )
     super(default, self).before()
@@ -35,3 +34,15 @@ class default(VppTest):
         "{degrees} rotation unsupported".format(**vars(self)))
 
     self.vpp()
+
+  def check_metrics(self):
+    check_metric(
+      metric = dict(type = "ssim", miny = 0.90, minu = 0.90, minv = 0.90),
+      reference = self.reference[0].replace("filenameplaceholder", "{}_transpose_{}_None_{}x{}_{}.yuv".format(self.case, self.degrees, self.width, self.height, self.format)),
+      decoded = self.decoded,
+      format = self.format,
+      format2 = self.format,
+      width = self.width,
+      height = self.height,
+      frames = self.frames,
+    )

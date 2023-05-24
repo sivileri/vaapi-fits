@@ -85,6 +85,7 @@ else
         mkdir -p ~/repos/vaapi-fits/assets/yuv
         tar -xvzf yuv_assets.tar.gz -C ./assets/yuv
         tar -xvzf 4K_yuv_assets.tar.gz -C ./assets/yuv
+        tar -xvzf rotation_yuv_assets.tar.gz -C ./assets/yuv
 
         wget -O assets_HLK.iso https://go.microsoft.com/fwlink/?linkid=2166397
         sudo mkdir /mnt/iso

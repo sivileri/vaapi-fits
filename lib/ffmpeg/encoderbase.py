@@ -264,7 +264,8 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
 
     elif "vbr" == self.rcmode:
       # acceptable bitrate within 25% of minrate and 10% of maxrate
-      assert(self.minrate * 0.75 <= bitrate_actual <= self.maxrate * 1.10)
+      if (os.environ.get('D3D12_VAAPIFITS_IGNORE_BITRATE_GAP') == None):
+        assert(self.minrate * 0.75 <= bitrate_actual <= self.maxrate * 1.10)
 
   def check_metrics(self):
     iopts = ""

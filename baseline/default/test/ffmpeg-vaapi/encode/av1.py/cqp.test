@@ -526,5 +526,291 @@
         60.0000
       ]
     }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=720p,gop=1,profile=main,qp=14,quality=4,tile_cols=2,tile_mode=0,tile_rows=2)": {
+    "drv.d3d12": {
+      "psnr": [
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=720p,gop=1,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=720p,gop=30,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=1,case=720p,gop=3,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=1080p,gop=1,profile=main,qp=14,quality=4,tile_cols=2,tile_mode=0,tile_rows=2)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=1080p,gop=1,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=1080p,gop=30,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=2,case=1080p,gop=5,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=1,case=1080p,gop=3,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=2160p,gop=1,profile=main,qp=14,quality=4,tile_cols=2,tile_mode=0,tile_rows=2)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=2160p,gop=1,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=0,case=2160p,gop=30,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
+  },
+  "test/ffmpeg-vaapi/encode/av1.py:cqp.test(bframes=1,case=2160p,gop=3,profile=main,qp=14,quality=4,tile_cols=4,tile_mode=0,tile_rows=4)": {
+    "drv.d3d12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    },
+    "drv.vaon12": {
+      "psnr": [
+        55.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000,
+        60.0000
+      ]
+    }
   }
 }

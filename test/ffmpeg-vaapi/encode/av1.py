@@ -38,7 +38,7 @@ class AV1EncoderLPTest(AV1EncoderBaseTest):
     )
 
 class cqp_lp(AV1EncoderLPTest):
-  def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2, qp, quality, profile, tile_mode):
+  def init(self, tspec, case, gop, bframes, tile_cols, tile_rows, qp, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
     vars(self).update(
       case      = case,
@@ -48,18 +48,18 @@ class cqp_lp(AV1EncoderLPTest):
       rcmode    = "cqp",
       quality   = quality,
       profile   = profile,
-      tile_rows_log2  = tile_rows_log2,
-      tile_cols_log2  = tile_cols_log2,
+      tile_rows  = tile_rows,
+      tile_cols  = tile_cols,
       tile_mode = tile_mode,
     )
 
   @slash.parametrize(*gen_av1_cqp_lp_parameters(spec))
-  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, qp, quality, profile, tile_mode):
-    self.init(spec, case, gop, bframes, tile_cols_log2, tile_rows_log2, qp, quality, profile, tile_mode)
+  def test(self, case, gop, bframes, tile_cols, tile_rows, qp, quality, profile, tile_mode):
+    self.init(spec, case, gop, bframes, tile_cols, tile_rows, qp, quality, profile, tile_mode)
     self.encode()
 
 class cbr_lp(AV1EncoderLPTest):
-  def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
+  def init(self, tspec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
     vars(self).update(
       bframes = bframes,
@@ -71,15 +71,15 @@ class cbr_lp(AV1EncoderLPTest):
       minrate = bitrate,
       profile = profile,
       rcmode  = "cbr",
-      tile_rows_log2  = tile_rows_log2,
-      tile_cols_log2  = tile_cols_log2,
+      tile_rows  = tile_rows,
+      tile_cols  = tile_cols,
       quality   = quality,
       tile_mode = tile_mode,
     )
 
   @slash.parametrize(*gen_av1_cbr_lp_parameters(spec))
-  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, quality, fps, profile, tile_mode):
-    self.init(spec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode)
+  def test(self, case, gop, bframes, tile_cols, tile_rows, bitrate, quality, fps, profile, tile_mode):
+    self.init(spec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode)
     self.encode()
 
 @slash.requires(*platform.have_caps("encode", "av1_8"))
@@ -95,11 +95,11 @@ class AV1EncoderTest(AV1EncoderBaseTest):
       slash.skip_test(hasSupport[1])
 
 class cqp(AV1EncoderTest):
-  def init(self, tspec, case, gop, tile_rows_log2, tile_cols_log2, bframes, qp, quality, profile, tile_mode):
+  def init(self, tspec, case, gop, tile_rows, tile_cols, bframes, qp, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
     maxSupportedTiles=int(get_vainfo_max_slices(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedTiles))
-    if (maxSupportedTiles < (tile_rows_log2 * tile_cols_log2)):
+    if (maxSupportedTiles < (tile_rows * tile_cols)):
       slash.skip_test("Number of tiles requested is not supported by underlying device.")
     maxSupportedBFrames = int(get_vainfo_num_lX_references(self.get_vaapi_profile(), "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
@@ -113,22 +113,22 @@ class cqp(AV1EncoderTest):
       qp        = qp,
       quality   = quality,
       rcmode    = "cqp",
-      tile_rows_log2    = tile_rows_log2,
-      tile_cols_log2    = tile_cols_log2,
+      tile_rows    = tile_rows,
+      tile_cols    = tile_cols,
       tile_mode = tile_mode,
     )
 
   @slash.parametrize(*gen_av1_cqp_parameters(spec))
-  def test(self, case, gop, tile_rows_log2, tile_cols_log2, bframes, qp, quality, profile, tile_mode):
-    self.init(spec, case, gop, tile_rows_log2, tile_cols_log2, bframes, qp, quality, profile, tile_mode)
+  def test(self, case, gop, tile_rows, tile_cols, bframes, qp, quality, profile, tile_mode):
+    self.init(spec, case, gop, tile_rows, tile_cols, bframes, qp, quality, profile, tile_mode)
     self.encode()
 
 class cbr(AV1EncoderTest):
-  def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
+  def init(self, tspec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
     maxSupportedTiles=int(get_vainfo_max_slices(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedTiles))
-    if (maxSupportedTiles < (tile_rows_log2 * tile_cols_log2)):
+    if (maxSupportedTiles < (tile_rows * tile_cols)):
       slash.skip_test("Number of tiles requested is not supported by underlying device.")
     maxSupportedBFrames = int(get_vainfo_num_lX_references(self.get_vaapi_profile(), "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
@@ -144,23 +144,23 @@ class cbr(AV1EncoderTest):
       minrate = bitrate,
       profile = profile,
       rcmode  = "cbr",
-      tile_rows_log2  = tile_rows_log2,
-      tile_cols_log2  = tile_cols_log2,
+      tile_rows  = tile_rows,
+      tile_cols  = tile_cols,
       quality   = quality,
       tile_mode = tile_mode,
     )
 
   @slash.parametrize(*gen_av1_cbr_parameters(spec))
-  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
-    self.init(spec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode)
+  def test(self, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
+    self.init(spec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode)
     self.encode()
 
 class vbr(AV1EncoderTest):
-  def init(self, tspec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
+  def init(self, tspec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
     maxSupportedTiles=int(get_vainfo_max_slices(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedTiles))
-    if (maxSupportedTiles < (tile_rows_log2 * tile_cols_log2)):
+    if (maxSupportedTiles < (tile_rows * tile_cols)):
       slash.skip_test("Number of tiles requested is not supported by underlying device.")
     maxSupportedBFrames = int(get_vainfo_num_lX_references(self.get_vaapi_profile(), "VAEntrypointEncSlice", "1", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
@@ -176,13 +176,13 @@ class vbr(AV1EncoderTest):
       minrate = bitrate,
       profile = profile,
       rcmode  = "vbr",
-      tile_rows_log2  = tile_rows_log2,
-      tile_cols_log2  = tile_cols_log2,
+      tile_rows  = tile_rows,
+      tile_cols  = tile_cols,
       quality   = quality,
       tile_mode = tile_mode,
     )
 
   @slash.parametrize(*gen_av1_vbr_parameters(spec))
-  def test(self, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode):
-    self.init(spec, case, gop, bframes, tile_cols_log2, tile_rows_log2, bitrate, fps, quality, profile, tile_mode)
+  def test(self, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
+    self.init(spec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode)
     self.encode()

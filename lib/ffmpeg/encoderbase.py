@@ -64,10 +64,6 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       opts += " -tile_cols {tilecols}"
     if vars(self).get("tilerows", None) is not None:
       opts += " -tile_rows {tilerows}"
-    if vars(self).get("tile_cols_log2", None) is not None:
-      opts += " -tile_cols_log2 {tile_cols_log2}"
-    if vars(self).get("tile_rows_log2", None) is not None:
-      opts += " -tile_rows_log2 {tile_rows_log2}"
     if vars(self).get("bframes", None) is not None:
       opts += " -bf {bframes}"
     if vars(self).get("minrate", None) is not None:

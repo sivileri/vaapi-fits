@@ -422,10 +422,10 @@ def gen_av1_cqp_lp_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["qp"], variant["quality"],
-        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("profile", "profile0"), variant.get("tile_mode", 0)]
+        variant.get("tile_cols", 0), variant.get("tile_rows", 0), variant.get("profile", "profile0"), variant.get("tile_mode", 0)]
 
 def gen_av1_cqp_lp_parameters(spec):
-  keys = ("case", "gop", "bframes", "qp", "quality", "tile_cols_log2", "tile_rows_log2", "profile", "tile_mode")
+  keys = ("case", "gop", "bframes", "qp", "quality", "tile_cols", "tile_rows", "profile", "tile_mode")
   params = gen_av1_cqp_lp_variants(spec)
   return keys, params
 
@@ -434,11 +434,11 @@ def gen_av1_cqp_variants(spec):
     variants = params.get("variants", dict()).get("cqp", [])
     for variant in variants:
       yield [
-        case, variant["gop"], variant.get("tile_rows_log2", 0), variant.get("tile_cols_log2", 0), variant["bframes"], variant["qp"], variant["quality"],
+        case, variant["gop"], variant.get("tile_rows", 0), variant.get("tile_cols", 0), variant["bframes"], variant["qp"], variant["quality"],
         variant.get("profile", "profile0"), variant.get("tile_mode", 0)]
 
 def gen_av1_cqp_parameters(spec):
-  keys = ("case", "gop", "tile_rows_log2", "tile_cols_log2", "bframes", "qp", "quality", "profile", "tile_mode")
+  keys = ("case", "gop", "tile_rows", "tile_cols", "bframes", "qp", "quality", "profile", "tile_mode")
   params = gen_av1_cqp_variants(spec)
   return keys, params
 
@@ -448,11 +448,11 @@ def gen_av1_cbr_lp_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["bitrate"], variant.get("quality", 4),
-        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("fps", 30),
+        variant.get("tile_cols", 0), variant.get("tile_rows", 0), variant.get("fps", 30),
         variant.get("profile", "profile0"), variant.get("tile_mode", 0)]
 
 def gen_av1_cbr_lp_parameters(spec):
-  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols_log2", "tile_rows_log2", "fps", "profile", "tile_mode")
+  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols", "tile_rows", "fps", "profile", "tile_mode")
   params = gen_av1_cbr_lp_variants(spec)
   return keys, params
 
@@ -461,12 +461,12 @@ def gen_av1_cbr_variants(spec):
     variants = params.get("variants", dict()).get("cbr", [])
     for variant in variants:
       yield [
-        case, variant["gop"], variant["bframes"], variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), 
+        case, variant["gop"], variant["bframes"], variant.get("tile_cols", 0), variant.get("tile_rows", 0), 
         variant["bitrate"], variant.get("fps", 30), variant.get("quality", 4),
         variant.get("profile", "profile0"), variant.get("tile_mode", 0)]
 
 def gen_av1_cbr_parameters(spec):
-  keys = ("case", "gop", "bframes", "tile_cols_log2", "tile_rows_log2", "bitrate", "fps", "quality", "profile", "tile_mode")
+  keys = ("case", "gop", "bframes", "tile_cols", "tile_rows", "bitrate", "fps", "quality", "profile", "tile_mode")
   params = gen_av1_cbr_variants(spec)
   return keys, params
 
@@ -476,11 +476,11 @@ def gen_av1_vbr_lp_variants(spec):
     for variant in variants:
       yield [
         case, variant["gop"], variant["bframes"], variant["bitrate"], variant.get("quality", 4),
-        variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), variant.get("fps", 30),
+        variant.get("tile_cols", 0), variant.get("tile_rows", 0), variant.get("fps", 30),
         variant.get("profile", "profile0"), variant.get("tile_mode", 0)]
 
 def gen_av1_vbr_lp_parameters(spec):
-  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols_log2", "tile_rows_log2", "fps", "profile", "tile_mode")
+  keys = ("case", "gop", "bframes", "bitrate", "quality", "tile_cols", "tile_rows", "fps", "profile", "tile_mode")
   params = gen_av1_vbr_lp_variants(spec)
   return keys, params
 
@@ -489,11 +489,11 @@ def gen_av1_vbr_variants(spec):
     variants = params.get("variants", dict()).get("vbr", [])
     for variant in variants:
       yield [
-        case, variant["gop"], variant["bframes"], variant.get("tile_cols_log2", 0), variant.get("tile_rows_log2", 0), 
+        case, variant["gop"], variant["bframes"], variant.get("tile_cols", 0), variant.get("tile_rows", 0), 
         variant["bitrate"], variant.get("fps", 30), variant.get("quality", 4), variant.get("profile", "profile0"), variant.get("tile_mode", 0)]
 
 def gen_av1_vbr_parameters(spec):
-  keys = ("case", "gop", "bframes", "tile_cols_log2", "tile_rows_log2", "bitrate", "fps", "quality", "profile", "tile_mode")
+  keys = ("case", "gop", "bframes", "tile_cols", "tile_rows", "bitrate", "fps", "quality", "profile", "tile_mode")
   params = gen_av1_vbr_variants(spec)
   return keys, params
 

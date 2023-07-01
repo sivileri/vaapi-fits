@@ -95,7 +95,7 @@ class MediaPlugin(slash.plugins.PluginInterface):
     self.baseline = Baseline(args.baseline_file, args.rebase)
     self.retention = args.artifact_retention
     self.call_timeout = args.call_timeout
-    self.parallel_metrics = args.parallel_metrics
+    self.parallel_metrics = True #args.parallel_metrics
     self.ctapt = args.ctapt
     self.ctapr = args.ctapr
     self.platform = args.platform

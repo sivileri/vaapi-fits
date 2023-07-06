@@ -85,6 +85,7 @@ class cbr(AV1EncoderTest):
       case    = case,
       fps     = fps,
       gop     = gop,
+      bframes = bframes,
       maxrate = bitrate,
       minrate = bitrate,
       profile = profile,
@@ -99,7 +100,6 @@ class cbr(AV1EncoderTest):
   def test(self, case, gop, bframes, tile_cols, tile_rows, bitrate, quality, fps, profile, tile_mode):
     self.init(spec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode)
     self.encode()
-
 
 class vbr(AV1EncoderTest):
   def init(self, tspec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
@@ -117,6 +117,7 @@ class vbr(AV1EncoderTest):
       case    = case,
       fps     = fps,
       gop     = gop,
+      bframes = bframes,
       maxrate = bitrate,
       minrate = bitrate,
       profile = profile,

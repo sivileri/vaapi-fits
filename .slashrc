@@ -16,11 +16,6 @@ import sys
 import xml.etree.cElementTree as et
 from lib.common import is_windows_libva_driver
 
-__required_slash_version__ = "1.12.0"
-assert slash.__version__ == __required_slash_version__, \
-  "Found slash {}, but slash {} is required.".format(
-    slash.__version__, __required_slash_version__)
-
 __SCRIPT_DIR__ = os.path.abspath(os.path.dirname(__file__))
 
 # LibVA used to load the i965 driver by default, but now it loads the iHD driver

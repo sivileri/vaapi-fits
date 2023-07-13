@@ -94,7 +94,6 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     opts += " -vframes {frames} -y {osencoded}"
 
     opts += " -async_depth 16" # More than 16 and ffmpeg does not have enough hw_frames buffered and fails
-    opts += " -loglevel trace"
 
     return opts
 

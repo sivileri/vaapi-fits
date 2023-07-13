@@ -95,7 +95,7 @@ class VppTest(slash.Test, BaseFormatMapper):
   def call_ffmpeg(self, iopts, oopts):
     return call(
       "ffmpeg -hwaccel vaapi -vaapi_device {renderDevice} -v verbose"
-      " {iopts} {oopts} -loglevel trace".format(renderDevice = self.renderDevice, iopts = iopts, oopts = oopts),
+      " {iopts} {oopts} ".format(renderDevice = self.renderDevice, iopts = iopts, oopts = oopts),
       # withSlashLogger
       True,
       # ignore_proc_code

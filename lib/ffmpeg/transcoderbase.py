@@ -234,7 +234,6 @@ class BaseTranscoderTest(slash.Test):
     opts += " -pix_fmt yuv420p -f rawvideo"
     opts += " -vframes {frames} -y {ossrcyuv}"
 
-    opts += " -loglevel trace"
     return opts.format(**vars(self))
 
   def check_output(self):

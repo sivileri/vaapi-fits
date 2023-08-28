@@ -60,10 +60,10 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
       opts += " -extbrc {extbrc}"
     if vars(self).get("slices", None) is not None:
       opts += " -slices {slices}"
-    if vars(self).get("tilecols", None) is not None:
-      opts += " -tile_cols {tilecols}"
-    if vars(self).get("tilerows", None) is not None:
-      opts += " -tile_rows {tilerows}"
+    if vars(self).get("tile_cols", None) is not None:
+      opts += " -tile_cols {tile_cols}"
+    if vars(self).get("tile_rows", None) is not None:
+      opts += " -tile_rows {tile_rows}"
     if vars(self).get("bframes", None) is not None:
       opts += " -bf {bframes}"
     if vars(self).get("minrate", None) is not None:

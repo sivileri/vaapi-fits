@@ -22,6 +22,30 @@ class AV1EncoderBaseTest(EncoderTest):
   def check_bitrate(self):
     pass # Disable RC controls for these tests in AV1, transcode/AV1 checks them with more suitable input streams
 
+  # Use software decoding for AV1 metrics as ffmpeg decode has bugs with multi-tile
+  def check_metrics(self):
+    iopts = ""
+    if vars(self).get("ffdecoder", None) is not None:
+      iopts += "-c:v {ffdecoder} "
+    iopts += "-i {osencoded}"
+
+
+    name = (self.gen_name() + "-{width}x{height}-{format}").format(**vars(self))
+    self.decoded = get_media()._test_artifact("{}.yuv".format(name))
+    oopts = (
+      " -pix_fmt {mformat} -f rawvideo"
+      " -vsync passthrough -vframes {frames}"
+      f" -y {filepath2os(self.decoded)}")
+    self.call_ffmpeg(iopts.format(**vars(self)), oopts.format(**vars(self)), "", "", True) # Use sw decode
+
+    get_media().baseline.check_psnr(
+      psnr = calculate_psnr(
+        self.source, self.decoded,
+        self.width, self.height,
+        self.frames, self.format),
+      context = self.refctx,
+    )
+
   def get_file_ext(self):
     return "ivf"
 

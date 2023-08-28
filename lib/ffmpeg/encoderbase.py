@@ -177,18 +177,28 @@ class BaseEncoderTest(slash.Test, BaseFormatMapper):
     self.post_validate()
 
   @timefn("ffmpeg")
-  def call_ffmpeg(self, iopts, oopts, envvars = "", undoenvvars = ""):
-    return call(
-      (
-        f"{envvars} {exe2os('ffmpeg')}"
-        " -hwaccel {hwaccel} -init_hw_device {hwaccel}=hw:{renderDevice}"
-        " -hwaccel_output_format {hwaccel}"
-        " -filter_hw_device hw"
-      ).format(**vars(self)) + (
-        " -v verbose {iopts} {oopts}"
-      ).format(iopts = iopts, oopts = oopts)
-      + f" {undoenvvars}"
-    )
+  def call_ffmpeg(self, iopts, oopts, envvars = "", undoenvvars = "", sw = False):
+    if sw == True:
+      return call(
+        (
+          f"{envvars} {exe2os('ffmpeg')}"
+        ).format(**vars(self)) + (
+          " -v verbose {iopts} {oopts}"
+        ).format(iopts = iopts, oopts = oopts)
+        + f" {undoenvvars}"
+      )
+    else:
+      return call(
+        (
+          f"{envvars} {exe2os('ffmpeg')}"
+          " -hwaccel {hwaccel} -init_hw_device {hwaccel}=hw:{renderDevice}"
+          " -hwaccel_output_format {hwaccel}"
+          " -filter_hw_device hw"
+        ).format(**vars(self)) + (
+          " -v verbose {iopts} {oopts}"
+        ).format(iopts = iopts, oopts = oopts)
+        + f" {undoenvvars}"
+      )
 
   def encode(self):
     self.validate_caps()

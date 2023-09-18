@@ -129,6 +129,10 @@ class cqp(AV1EncoderTest):
     slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
     if ((bframes > 0) and (maxSupportedBFrames == 0)):
       slash.skip_test("B frames are not supported by underlying device.")    
+    if (tile_mode == 0) and not is_vainfo_slices_structure_supported(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice, "VA_ENC_SLICE_STRUCTURE_EQUAL_ROWS"): # Uniform
+      slash.skip_test("Uniform tile mode not supported by underlying device.")
+    if (tile_mode == 1) and not is_vainfo_slices_structure_supported(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice, "VA_ENC_SLICE_STRUCTURE_ARBITRARY_MACROBLOCKS"): # Arbitrary
+      slash.skip_test("Arbitrary tile mode not supported by underlying device.")
     vars(self).update(
       bframes   = bframes,
       case      = case,
@@ -158,6 +162,10 @@ class cbr(AV1EncoderTest):
     slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
     if ((bframes > 0) and (maxSupportedBFrames == 0)):
       slash.skip_test("B frames are not supported by underlying device.")    
+    if (tile_mode == 0) and not is_vainfo_slices_structure_supported(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice, "VA_ENC_SLICE_STRUCTURE_EQUAL_ROWS"): # Uniform
+      slash.skip_test("Uniform tile mode not supported by underlying device.")
+    if (tile_mode == 1) and not is_vainfo_slices_structure_supported(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice, "VA_ENC_SLICE_STRUCTURE_ARBITRARY_MACROBLOCKS"): # Arbitrary
+      slash.skip_test("Arbitrary tile mode not supported by underlying device.")
     vars(self).update(
       bframes = bframes,
       bitrate = bitrate,
@@ -190,6 +198,10 @@ class vbr(AV1EncoderTest):
     slash.logger.info("Underlying GPU max supported B frames: " + str(maxSupportedBFrames))
     if ((bframes > 0) and (maxSupportedBFrames == 0)):
       slash.skip_test("B frames are not supported by underlying device.")    
+    if (tile_mode == 0) and not is_vainfo_slices_structure_supported(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice, "VA_ENC_SLICE_STRUCTURE_EQUAL_ROWS"): # Uniform
+      slash.skip_test("Uniform tile mode not supported by underlying device.")
+    if (tile_mode == 1) and not is_vainfo_slices_structure_supported(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice, "VA_ENC_SLICE_STRUCTURE_ARBITRARY_MACROBLOCKS"): # Arbitrary
+      slash.skip_test("Arbitrary tile mode not supported by underlying device.")      
     vars(self).update(
       bframes = bframes,
       bitrate = bitrate,

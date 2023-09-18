@@ -71,6 +71,18 @@ def get_vainfo_max_slices(profile, entrypoint, adapter_index):
   return result, "vainfo support for device:" + adapter_index + " " + profile + " " + entrypoint + " max slices (" + str(result) + ")"
 
 @memoize
+def is_vainfo_slices_structure_supported(profile, entrypoint, adapter_index, slice_structure_mode):
+  if is_windows_libva_driver():
+    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribEncSliceStructure(.*?):(.*?)VAConfigAttribEncQualityRange(.*?)VAProfile').Groups[3].Value.Trim()\"", use_shell = False)
+    result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
+    return result[1].find(slice_structure_mode)
+  else:
+    result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep '{slice_structure_mode}'")
+  if (result[1] == b'\n') or (result[1] == ''):
+    result[0] = False
+  return result[0]
+
+@memoize
 def have_vainfo_rt_format(profile, entrypoint, adapter_index, rt_format):
   if is_windows_libva_driver():
     result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribRTFormat(.*?):(.*?)VAConfigAttribRateControl(.*?):(.*?)VAProfile(.*?)')\"", use_shell = False)

@@ -121,6 +121,20 @@ class AV1EncoderTest(AV1EncoderBaseTest):
 class cqp(AV1EncoderTest):
   def init(self, tspec, case, gop, tile_rows, tile_cols, bframes, qp, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
+    maxSupportedTileRowsSupported = bool(get_vainfo_max_tile_rows(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][0])
+    if (maxSupportedTileRowsSupported):
+      maxSupportedTileRows=int(get_vainfo_max_tile_rows(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
+      slash.logger.info("Underlying GPU max supported tile rows: " + str(maxSupportedTileRows))
+      if (maxSupportedTileRows < tile_rows):
+        slash.skip_test("Requested tile_rows higher than hardware supports.")
+
+    maxSupportedTileColsSupported=bool(get_vainfo_max_tile_cols(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][0])
+    if (maxSupportedTileColsSupported):
+      maxSupportedTileCols=int(get_vainfo_max_tile_cols(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
+      slash.logger.info("Underlying GPU max supported tile cols: " + str(maxSupportedTileCols))
+      if (maxSupportedTileCols < tile_cols):
+        slash.skip_test("Requested tile_cols higher than hardware supports.")
+
     maxSupportedTiles=int(get_vainfo_max_slices(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedTiles))
     if (maxSupportedTiles < (tile_rows * tile_cols)):
@@ -154,6 +168,20 @@ class cqp(AV1EncoderTest):
 class cbr(AV1EncoderTest):
   def init(self, tspec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
+    maxSupportedTileRowsSupported = bool(get_vainfo_max_tile_rows(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][0])
+    if (maxSupportedTileRowsSupported):
+      maxSupportedTileRows=int(get_vainfo_max_tile_rows(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
+      slash.logger.info("Underlying GPU max supported tile rows: " + str(maxSupportedTileRows))
+      if (maxSupportedTileRows < tile_rows):
+        slash.skip_test("Requested tile_rows higher than hardware supports.")
+
+    maxSupportedTileColsSupported=bool(get_vainfo_max_tile_cols(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][0])
+    if (maxSupportedTileColsSupported):
+      maxSupportedTileCols=int(get_vainfo_max_tile_cols(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
+      slash.logger.info("Underlying GPU max supported tile cols: " + str(maxSupportedTileCols))
+      if (maxSupportedTileCols < tile_cols):
+        slash.skip_test("Requested tile_cols higher than hardware supports.")
+
     maxSupportedTiles=int(get_vainfo_max_slices(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedTiles))
     if (maxSupportedTiles < (tile_rows * tile_cols)):
@@ -190,6 +218,20 @@ class cbr(AV1EncoderTest):
 class vbr(AV1EncoderTest):
   def init(self, tspec, case, gop, bframes, tile_cols, tile_rows, bitrate, fps, quality, profile, tile_mode):
     vars(self).update(tspec[case].copy())
+    maxSupportedTileRowsSupported = bool(get_vainfo_max_tile_rows(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][0])
+    if (maxSupportedTileRowsSupported):
+      maxSupportedTileRows=int(get_vainfo_max_tile_rows(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
+      slash.logger.info("Underlying GPU max supported tile rows: " + str(maxSupportedTileRows))
+      if (maxSupportedTileRows < tile_rows):
+        slash.skip_test("Requested tile_rows higher than hardware supports.")
+
+    maxSupportedTileColsSupported=bool(get_vainfo_max_tile_cols(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][0])
+    if (maxSupportedTileColsSupported):
+      maxSupportedTileCols=int(get_vainfo_max_tile_cols(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
+      slash.logger.info("Underlying GPU max supported tile cols: " + str(maxSupportedTileCols))
+      if (maxSupportedTileCols < tile_cols):
+        slash.skip_test("Requested tile_cols higher than hardware supports.")
+
     maxSupportedTiles=int(get_vainfo_max_slices(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][1])
     slash.logger.info("Underlying GPU max supported slices: " + str(maxSupportedTiles))
     if (maxSupportedTiles < (tile_rows * tile_cols)):

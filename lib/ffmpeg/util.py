@@ -62,11 +62,10 @@ def get_vainfo_num_lX_references(profile, entrypoint, lX, adapter_index):
 @memoize
 def get_vainfo_max_tile_rows(profile, entrypoint, adapter_index):
   if is_windows_libva_driver():
-    group_id = 2
-    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)tile_rows=(.*?)tile_cols=(.*?) (.*?)VAProfile').Groups[{group_id}].Value\"", use_shell = False)
+    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribEncMaxTileRows(.*?):(.*?)VAConfigAttribEncMaxTileCols(.*?)VAProfile').Groups[3].Value.Trim()\"", use_shell = False)
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
   else:
-    result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep 'tile_rows=' | cut -f2 -d=")
+    result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep 'VAConfigAttribEncMaxTileRows' | cut -f2 -d: | xargs")
   if (result[1] == b'\n') or (result[1] == ''):
     result[0] = False
   return result, "vainfo support for device:" + adapter_index + " " + profile + " " + entrypoint + " max tile_rows (" + str(result) + ")"
@@ -74,11 +73,10 @@ def get_vainfo_max_tile_rows(profile, entrypoint, adapter_index):
 @memoize
 def get_vainfo_max_tile_cols(profile, entrypoint, adapter_index):
   if is_windows_libva_driver():
-    group_id = 3
-    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)tile_rows=(.*?)tile_cols=(.*?) (.*?)VAProfile').Groups[{group_id}].Value\"", use_shell = False)
+    result = try_call_with_output(f"powershell.exe \"[regex]::match(({exe2os('vainfo')} -a --display win32 --device {adapter_index} 2>&1),'{profile}/{entrypoint}(.*?)VAConfigAttribEncMaxTileCols(.*?):(.*?)VAConfigAttribEncMaxSlices(.*?)VAProfile').Groups[3].Value.Trim()\"", use_shell = False)
     result = (result[0], str(result[1]).replace("b", "").replace("'", "").replace("\\n", "").replace("\\r", ""))
   else:
-    result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep 'tile_cols=' | cut -f2 -d=")
+    result = try_call_with_output(f"{exe2os('vainfo')} -a --display drm --device {adapter_index} 2>&1 | sed -n -e '/{profile}\\/{entrypoint}/,/VAProfile/ p' | head -n -2 | grep 'VAConfigAttribEncMaxTileCols' | cut -f2 -d: | xargs")
   if (result[1] == b'\n') or (result[1] == ''):
     result[0] = False
   return result, "vainfo support for device:" + adapter_index + " " + profile + " " + entrypoint + " max tile_cols (" + str(result) + ")"

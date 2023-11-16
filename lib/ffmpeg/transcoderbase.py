@@ -12,6 +12,7 @@ import pathlib
 from ...lib.common import timefn, get_media, call, exe2os, filepath2os, is_windows_libva_driver
 from ...lib.metrics import calculate_psnr
 from ...lib.ffmpeg.util import have_ffmpeg, ffmpeg_probe_resolution
+from ...lib.ffmpeg.vaapi.util import *
 
 @slash.requires(have_ffmpeg)
 class BaseTranscoderTest(slash.Test):
@@ -49,6 +50,12 @@ class BaseTranscoderTest(slash.Test):
       ".av1"   : "av1",
       ".ivf"   : "av1",
     }.get(ext, "???")
+
+  def get_vaapi_profile(self):
+    return {
+      "avc"                  : "VAProfileH264Main",
+      "hevc"                 : "VAProfileHEVCMain",
+    }[self.codec]
 
   def get_file_ext(self, codec):
     return {
@@ -186,6 +193,9 @@ class BaseTranscoderTest(slash.Test):
 
         self.rc_max_frame_size = output.get("rc_max_frame_size_bytes", None)
         if self.rc_max_frame_size is not None:
+          maxframesize_support=bool(is_vainfo_max_frame_size_supported(self.get_vaapi_profile(), "VAEntrypointEncSlice", self.renderDevice)[0][0])
+          if not maxframesize_support:
+            slash.skip_test("max_frame_size is not supported by underlying HW.")
           opts += " -max_frame_size {rc_max_frame_size}" # this is in bytes
 
         self.bufsize = output.get("rc_buffer_size", None)
